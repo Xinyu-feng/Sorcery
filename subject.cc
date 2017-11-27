@@ -1,6 +1,6 @@
 #include "subject.h"
 
-void Subject<InfoType, StateType>::attach(Observer *o) {
+void Subject::attach(Observer *o) {
 	observers.emplace_back(o);
 }
 
