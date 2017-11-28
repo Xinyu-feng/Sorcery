@@ -3,13 +3,14 @@
 
 #include "card.h"
 #include <utility>
+#include "player.h"
 
 enum class Trigger { Begin, Summon, End };
 
 struct State {
   std::shared_ptr<Card> card;
   Trigger trigger;
-  bool ownsCard;
+  std::shared_ptr<Player> owner;
 };
 
 #endif
