@@ -76,10 +76,37 @@ void Minion::lowerDefense(int i){
     }
 }
     
-void lowerStats(int attack, int defense){
+void Minion::lowerStats(int attack, int defense){
     lowerAttack(attack);
     lowerDefense(defense);
 }
 
 int Minion::getAttack(){ return attack;}
 int Minion::getDefense(){ return defense;}
+
+void Minion::addActivateCost(int i){
+    activateCost += i;
+}
+
+void Minion::setActivateCost(int i ){
+    activateCost = i;
+    if (activateCost < 0){
+        activateCost = 0;
+    }
+}
+
+void Minion::lowerActivateCost(int i){
+    activateCost -= i;
+    if (activateCost < 0){
+        activateCost = 0;
+    }
+}
+
+int getActivateCost(){
+    return activateCost;
+}
+    }
+}
+    }
+}
+}
