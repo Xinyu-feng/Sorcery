@@ -8,12 +8,17 @@ class Card: public Observer{
 	std::string name;
 	int manaCost;
 	std::string description;
+	std::unique_ptr<Player> owner;
+	
+public:
+
+    Card(std::string name);
 
 	void notify(Subject &whoFrom);
 	
 	int getManaCost();
 
-	virtual void runEffect(Card c, Trigger t);
+	virtual void runEffect(Subject s);
 	virtual void displayCard() = 0;
 
 
