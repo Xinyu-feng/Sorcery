@@ -10,12 +10,29 @@ class Minion: public Card{
     int actions = 0;
     
 public:
-    int addAction(int i);
-    int addAttack(int i);
-    int addDefense(int i);
+    void addAction(int i);
+    void lowerAction(int i);
+    void setAction(int i);
+    int getAction();
     
-    int setAttack(int i);
-    int setDefense(int i);
+    void addAttack(int i);
+    void addDefense(int i);
+    
+    void addStats(int attack, int defence);
+    
+    void setAttack(int i);
+    void setDefense(int i);
+    
+    void setStats(int attack, int defence);
+    
+    void lowerAttack(int i);
+    void lowerDefense(int i);
+    
+    void lowerStats(int attack, int defense);
+    
+    int getAttack();
+    int getDefense();
+    
     
     virtual void runEffect(State s)=0;
 }
