@@ -10,6 +10,8 @@ class Card: public Observer{
 	std::string description;
 
 	void notify(Subject &whoFrom);
+	
+	int getManaCost();
 
 	virtual void runEffect(Card c, Trigger t);
 	virtual void displayCard() = 0;
