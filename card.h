@@ -16,6 +16,8 @@ public:
 	void notify(Subject &whoFrom);
 	
 	int getManaCost();
+	
+	string getName();
 
 	virtual void runEffect(Subject board);
 	virtual void displayCard() = 0;
