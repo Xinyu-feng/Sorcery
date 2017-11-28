@@ -11,6 +11,7 @@ struct State {
   std::shared_ptr<Card> card;
   Trigger trigger;
   std::shared_ptr<Player> owner;
+  int position;
 };
 
 #endif
