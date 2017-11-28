@@ -37,6 +37,11 @@ public:
     int getAttack();
     int getDefense();
     
+    void addActivateCost(int i);
+    void setActivateCost(int i);
+    void lowerActivateCost(int i);
+    int getActivateCost();
+    
     
     virtual void runEffect(State s)=0;
 }
