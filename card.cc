@@ -1,6 +1,8 @@
 #include "card.h"
+
 #include "subject.h"
 #include "state.h"
+#include <utility>
 
 Card::Card(std::string name, std::shared_ptr<Player> owner):name{name}, owner{owner}{
     
