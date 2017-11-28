@@ -100,6 +100,10 @@ Card::Card(std::string name, std::shared_ptr<Player> owner):name{name}, owner{ow
     }
 }
 
+std::string Card::getName(){
+    return name;
+}
+
 void Card::notify(Subject &whoFrom){
 	runEffect(whoFrom);
 }
