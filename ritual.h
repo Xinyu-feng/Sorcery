@@ -5,5 +5,11 @@
 
 
 class Ritual: public Card{
-
+    int charges;
+    int activationCost;
+    
+public:
+    Ritual(std::string name);
+    
+    void runEffect(Subject s);
 }
