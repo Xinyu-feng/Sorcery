@@ -5,7 +5,7 @@
 #include <utility>
 #include "player.h"
 
-enum class Trigger { Begin, Summon, End };
+enum class Trigger { Begin, Summon, Leave, End };
 
 struct State {
   std::shared_ptr<Card> card;
