@@ -2,7 +2,7 @@
 #include "subject.h"
 #include "state.h"
 
-Card::Card(std::string name):name{name}{
+Card::Card(std::string name, std::shared_ptr<Player> owner):name{name}, owner{owner}{
     
 }
 
