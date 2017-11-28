@@ -3,8 +3,11 @@
 
 
 #include "miniondecorator.h"
+#include <utility>
 
 class Enchant: public MinionDecorator{
+    
+    std::shared_ptr<Enchantment> e;
 
     Enchant(std::shared_ptr<Minion> m, std::shared_ptr<Enchantment> e);
     
