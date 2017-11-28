@@ -17,7 +17,7 @@ public:
 	
 	int getManaCost();
 	
-	string getName();
+	std::string getName();
 
 	virtual void runEffect(Subject board);
 	virtual void displayCard() = 0;
