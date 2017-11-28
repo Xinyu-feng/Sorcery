@@ -8,7 +8,7 @@ class Spell: public Card{
 public:
     Spell(std::string name, std::shared_ptr<Player> owner);
     
-    void runEffect(Subject s);
+    void runEffect(Subject &board);
     
     void displayCard();
 }
