@@ -8,10 +8,10 @@ class Card: public Observer{
 	std::string name;
 	int manaCost;
 	std::string description;
-	std::unique_ptr<Player> owner;
+	std::shared_ptr<Player> owner;
 	
 public:
-    Card(std::string name, std::unique_ptr<Player> owner);
+    Card(std::string name, std::shared_ptr<Player> owner);
 
 	void notify(Subject &whoFrom);
 	
