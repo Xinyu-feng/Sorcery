@@ -11,8 +11,7 @@ class Card: public Observer{
 	std::unique_ptr<Player> owner;
 	
 public:
-
-    Card(std::string name);
+    Card(std::string name, std::unique_ptr<Player> owner);
 
 	void notify(Subject &whoFrom);
 	
@@ -20,8 +19,6 @@ public:
 
 	virtual void runEffect(Subject s);
 	virtual void displayCard() = 0;
-
-
 }
 #endif
 
