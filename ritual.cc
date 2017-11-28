@@ -17,7 +17,7 @@ Ritual::Ritual(std::string name, std::shared_ptr<Player> owner):Card{name, owner
     }
 }
 
-void Ritual::runEffect(Subject board){
+void Ritual::runEffect(Subject &board){
     State s = board.getState();
     if (charges >= activationCost){
         if (name == "Dark Ritual"){
