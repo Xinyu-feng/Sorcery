@@ -8,6 +8,7 @@ class Minion: public Card{
     int attack;
     int defense;
     int actions = 0;
+    int activateCost = 0;
     
 public:
 
