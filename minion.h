@@ -44,6 +44,8 @@ public:
     
     
     virtual void runEffect(State s)=0;
+    
+    virtual void ~Minion() = 0;
 };
 
 #endif
