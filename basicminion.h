@@ -1,7 +1,7 @@
 #ifndef _BASICMINION_H_
 #define _BASICMINION_H_
 
-#include "card.h"
+#include "minion.h"
 
 class BasicMinion: public Minion{
     
@@ -10,7 +10,6 @@ public:
     
     void runEffect(Subject &board);
     
-}
-
+};
 
 #endif
