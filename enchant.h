@@ -3,6 +3,7 @@
 
 
 #include "miniondecorator.h"
+#include "enchantment.h"
 #include <utility>
 
 class Enchant: public MinionDecorator{
@@ -12,6 +13,10 @@ class Enchant: public MinionDecorator{
     Enchant(std::shared_ptr<Minion> m, std::shared_ptr<Enchantment> e);
     
     void runEffect(Subject &board);
+    
+    std::shared_ptr<Enchantment> removeEnchant();
+    
+};
 
 
 #endif
