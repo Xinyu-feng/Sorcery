@@ -11,7 +11,7 @@ class Ritual: public Card{
 public:
     Ritual(std::string name, std::shared_ptr<Player> owner);
     
-    void runEffect(Subject s);
+    void runEffect(Subject &board);
     
     void displayCard();
 }
