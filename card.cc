@@ -2,9 +2,12 @@
 #include "subject.h"
 #include "state.h"
 
+Card::Card(std::string name):name{name}{
+    
+}
+
 void Card::notify(Subject &whoFrom){
-	State s = whoFrom.getState();
-	runEffect(s.card, s.trigger);
+	runEffect(whoFrom);
 }
 
 void Card::getManaCost(){
