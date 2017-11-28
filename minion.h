@@ -10,6 +10,9 @@ class Minion: public Card{
     int actions = 0;
     
 public:
+
+    Minion(std::string name, std::shared_ptr<Player> owner);
+
     void addAction(int i);
     void lowerAction(int i);
     void setAction(int i);
