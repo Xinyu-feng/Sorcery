@@ -19,6 +19,8 @@ public:
 
 	virtual void runEffect(Subject board);
 	virtual void displayCard() = 0;
-}
+	
+	virtual ~Card() = 0;
+};
 #endif
 
