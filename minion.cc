@@ -1,6 +1,12 @@
 #include "minion.h"
 
 #include <utility>
+#include <string>
+#include <player.h>
+
+Minion::Minion(std::string name, std::shared_ptr<Player> owner):Card{name, owner}{
+    
+}
 
 void Minion::addAction(int i){
     actions += 1;
