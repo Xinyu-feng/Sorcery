@@ -1,4 +1,5 @@
 #include "enchantment.h"
+#include <utility>
 
 Enchantment::Enchantment(std::string name, std::shared_ptr<Player> owner):Card{name, owner}{
     if (name == "Giant Strength"){
@@ -10,3 +11,5 @@ Enchantment::Enchantment(std::string name, std::shared_ptr<Player> owner):Card{n
         defenseMultiplier = 2;
     }
 }
+
+void Enchantment::runEffect(State s){ return void;}
