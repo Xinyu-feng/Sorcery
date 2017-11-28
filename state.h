@@ -12,6 +12,7 @@ struct State {
   Trigger trigger;
   std::shared_ptr<Player> owner;
   int position;
+  bool ritual;
 };
 
 #endif
