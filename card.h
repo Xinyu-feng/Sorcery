@@ -17,7 +17,7 @@ public:
 	
 	int getManaCost();
 
-	virtual void runEffect(Subject s);
+	virtual void runEffect(Subject board);
 	virtual void displayCard() = 0;
 }
 #endif
