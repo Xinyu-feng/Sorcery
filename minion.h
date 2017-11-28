@@ -44,6 +44,6 @@ public:
     
     
     virtual void runEffect(State s)=0;
-}
+};
 
 #endif
