@@ -32,5 +32,9 @@ void Spell::runEffect(Subject &board){
             board.inflictDamage(i, 2);
         }
         
-        int theirMinionCount = 
+        int theirMinionCount = player->getBoard().getMinionCount();
+        for (int i = 0; i < theirMinionCount; ++i){
+            player->getBoard().inflictDamage(i, 2);
+        }
+    }
 }
