@@ -12,5 +12,5 @@ class Enchantment: public Card{
 public:
     Enchantment(std::string name, std::shared_ptr<Player> owner);
     
-    void runEffect(State s);
+    void runEffect(Subject &board);
 }
