@@ -9,7 +9,7 @@ class Ritual: public Card{
     int activationCost;
     
 public:
-    Ritual(std::string name);
+    Ritual(std::string name, std::shared_ptr<Player> owner);
     
     void runEffect(Subject s);
 }
