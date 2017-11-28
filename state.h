@@ -9,6 +9,7 @@ enum class Trigger { Begin, Summon, End };
 struct State {
   std::shared_ptr<Card> card;
   Trigger trigger;
+  bool ownsCard;
 };
 
 #endif
