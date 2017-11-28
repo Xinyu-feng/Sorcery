@@ -1,8 +1,11 @@
 #include "basicminion.h"
 
+#include "subject.h"
+#include "minion.h"
 #include "state.h"
 #include "player.h"
 #include "board.h"
+#include <utility>
 
 BasicMinion::BasicMinion(std::string name, std::shared_ptr<Player> owner):Minion{name, owner}{
     if (name == "Air Elemental"){
