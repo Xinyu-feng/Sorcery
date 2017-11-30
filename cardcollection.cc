@@ -23,6 +23,13 @@ void CardCollection::addCard(std::shared_ptr<Card> card){
     cardList.emplace_back(card);
 }
 
+void CardCollection::setCard(std::shared_ptr<Card> card, int index){
+    cardList.at(i) = card;
+}
+
+void CardCollection::deleteCard(int index){
+    cardList.erase(cardList.begin() + index);
+}
 
 int CardCollection::getCardCount(){
     return cardList.size();
