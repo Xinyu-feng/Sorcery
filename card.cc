@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Card::Card(string name, shared_ptr<Player> owner, int manaCost, string description = "") : 
+Card::Card(string name, shared_ptr<Player> owner, int manaCost, string description) : 
     name{name}, owner{owner}, manaCost{manaCost}, description{description} {}
 
 string Card::getName() {
