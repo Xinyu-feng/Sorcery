@@ -22,6 +22,8 @@ public:
 	void setCard(std::shared_ptr<Card> card, int index);
 	void deleteCard(int index);
 	
+	std::shared_ptr<Card> CardCollection::getCard(int index);
+	
 	int getCardCount();
 	virtual ~CardCollection() = 0;
 };
