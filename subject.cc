@@ -19,6 +19,11 @@ void Subject::detach(std::shared_ptr<Observer> o){
     }
 }
 
+void Subject::replace(std::shared_ptr<Observer> o, int index){
+    observers.at(index) = o;    
+}
+
+
 void Subject::notifyObservers() {
 	for (auto &ob : observers) ob->notify(*this);
 }
