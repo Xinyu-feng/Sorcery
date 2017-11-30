@@ -39,16 +39,16 @@ Deck::Deck(std::string deckFile, std::shared_ptr<Player> owner, bool shuffle){
     
     while(deck.getline(cardName)){
         if (inVector(minions, cardName)){
-            addCard(std::make_shared<Card>(new Basic_Minion{cardName, owner});
+            addCard(std::shared_ptr<Basic_Minion>(new Basic_Minion{cardName, owner});
         }
         else if (inVector(spells, cardName)){
-            addCard(std::make_shared<Card>(new Spell{cardName, owner});
+            addCard(std::shared_ptr<Spell>(new Spell{cardName, owner});
         }
         else if (inVector(enchantments, cardName)){
-            addCard(std::make_shared<Card>(new Enchantment{cardName, owner});
+            addCard(std::shared_ptr<Enchantment>(new Enchantment{cardName, owner});
         }
         else if (inVector(rituals, cardName)){
-            addCard(std::make_shared<Card>(new Ritual{cardName, owner});
+            addCard(std::shared_ptr<Ritual>(new Ritual{cardName, owner});
         }
         else{
         }
