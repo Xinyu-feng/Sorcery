@@ -4,9 +4,10 @@
 #include "card.h"
 
 class Enchantment : public Card {
-    
+    std::string attBuff;
+    std::string defBuff;
 public:
-    Enchantment(std::string name, std::shared_ptr<Player> owner, int manaCost, string description = "");
+    Enchantment(std::string name, std::shared_ptr<Player> owner, int manaCost, std::string description = "", std::string attBuff = "", std::string defBuff = "");
     void runEffect(Subject &board);
 }
 
