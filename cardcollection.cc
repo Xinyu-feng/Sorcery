@@ -12,11 +12,17 @@ void CardCollection::moveCard(CardCollection &collect, int cardPosition, bool bo
         playCard(cardList.at(position), target);
     }
     else{
-        collect.cardList.emplace_back(cardList.at(position));
+        collect.addCard(cardList.at(position))
     }
+    
 	cardList.erase(cardList.begin() + position);
-    }
+    
 }
+
+void CardCollection::addCard(std::shared_ptr<Card> card){
+    cardList.emplace_back(card);
+}
+
 
 int CardCollection::getCardCount(){
     return cardList.size();
