@@ -7,12 +7,12 @@ class Minion: public Card {
     
     int attack;
     int defense;
-    int maxActions;
+    int maxActions = 1;
     int currActions = 0;
 
 public:
 
-    Minion(std::string name, std::shared_ptr<Player> owner, int manaCost, int attack, int defence, int maxActions = 1, string description = "");
+    Minion(std::string name, std::shared_ptr<Player> owner, int manaCost, int attack, int defence, string description = "");
 
     void addAction(int i);
     void lowerAction(int i);
