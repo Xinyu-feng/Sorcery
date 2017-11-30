@@ -6,8 +6,8 @@
 
 using namespace std;
 
-Minion::Minion(string name, shared_ptr<Player> owner, int manaCost, int attack, int defence, int maxActions = 1, string description = "") :
-    Card{name, owner, manaCost, description}, attack{attack}, defence{defence}, maxActions{maxActions} {}
+Minion::Minion(string name, shared_ptr<Player> owner, int manaCost, int attack, int defence, string description = "") :
+    Card{name, owner, manaCost, description}, attack{attack}, defence{defence} {}
 
 void Minion::addAction(int i){
     actions += 1;
@@ -31,9 +31,12 @@ int Minion::getAction(){
     return actions;
 }
  
-void Minion::addStats(int attack, int defense){
-    addAttack(attack);
-    addDefense(defense);
+void Minion::addStats(int att, int def){
+    attack += att;
+    defence += def;
+    
+    if (attack < 0) attack = 0;
+    if (defence < 0) defence = 0;
 }
 
 void Minion::setAttack(int i){
