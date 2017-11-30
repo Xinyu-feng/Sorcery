@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Minion::Minion(string name, shared_ptr<Player> owner, int manaCost, int attack, int defence, string description = "") :
+Minion::Minion(string name, shared_ptr<Player> owner, int manaCost, int attack, int defence, string description) :
     Card{name, owner, manaCost, description}, attack{attack}, defence{defence} {}
 
 void Minion::addAction(int i){
