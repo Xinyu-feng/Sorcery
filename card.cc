@@ -14,7 +14,7 @@ string Card::getName() {
 }
 
 void Card::notify(Subject &whoFrom) {
-	runEffect(whoFrom);
+    runEffect(whoFrom);
 }
 
 void Card::getManaCost(){
