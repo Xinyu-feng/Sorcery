@@ -7,7 +7,7 @@ class Enchantment : public Card {
     
 public:
     Enchantment(std::string name, std::shared_ptr<Player> owner, int manaCost, string description = "");
-    void runEffect(Subject &board) = 0;
+    void runEffect(Subject &board);
 }
 
 #endif
