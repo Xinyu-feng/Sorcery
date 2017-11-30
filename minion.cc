@@ -4,9 +4,10 @@
 #include <string>
 #include <player.h>
 
-Minion::Minion(std::string name, std::shared_ptr<Player> owner):Card{name, owner}{
-    
-}
+using namespace std;
+
+Minion::Minion(string name, shared_ptr<Player> owner, int manaCost, int attack, int defence, int maxActions = 1, string description = "") :
+    Card{name, owner, manaCost, description}, attack{attack}, defence{defence}, maxActions{maxActions} {}
 
 void Minion::addAction(int i){
     actions += 1;
@@ -28,14 +29,6 @@ void Minion::setAction(int i ){
 
 int Minion::getAction(){
     return actions;
-}
-    
-void Minion::addAttack(int i){
-    attack += i;
-}
-
-void Minion::addDefense(int i){
-    defense += i;
 }
  
 void Minion::addStats(int attack, int defense){
@@ -61,52 +54,7 @@ void Minion::setStats(int attack, int defense){
     setAttack(attack);
     setDefense(defense);
 }
-    
-void Minion::lowerAttack(int i){
-    attack -= i;
-    if (attack < 0){
-        attack = 0;
-    }
-}
-
-void Minion::lowerDefense(int i){
-    defense -= i;
-    if (defense < 0){
-        defense = 0;
-    }
-}
-    
-void Minion::lowerStats(int attack, int defense){
-    lowerAttack(attack);
-    lowerDefense(defense);
-}
-
-int Minion::getAttack(){ return attack;}
-int Minion::getDefense(){ return defense;}
-
-void Minion::addActivateCost(int i){
-    activateCost += i;
-}
-
-void Minion::setActivateCost(int i ){
-    activateCost = i;
-    if (activateCost < 0){
-        activateCost = 0;
-    }
-}
-
-void Minion::lowerActivateCost(int i){
-    activateCost -= i;
-    if (activateCost < 0){
-        activateCost = 0;
-    }
-}
 
 int getActivateCost(){
     return activateCost;
-}
-    }
-}
-    }
-}
 }
