@@ -1,7 +1,8 @@
 #include "spell.h"
 #include "state.h"
 
-Spell::Spell(std::string name, std::shared_ptr<Player> owner):Card{name, owner}{}
+Spell::Spell(std::string name, std::shared_ptr<Player> owner, int manaCost, string description = "") : 
+    Card{name, owner, manaCost, description} {}
 
 void Spell::runEffect(Subject &board){
     State s = board.getState();
