@@ -12,6 +12,7 @@ public:
     // The board flag indicates that you are moving the card to the board which requires special behaviour
     // In the case that the board is the destination, you need to track the target for spells and enhancements
 	void moveCard(CardCollection &collect, int cardPosition = -1, bool board = false, int target = -1);
+	virtual void addCard(std::shared_ptr<Card> card);
 	int getCardCount();
 	virtual ~CardCollection() = 0;
 }
