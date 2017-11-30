@@ -12,7 +12,7 @@ void CardCollection::moveCard(CardCollection &collect, int cardPosition, bool bo
         playCard(cardList.at(position), target);
     }
     else{
-        collect.addCard(cardList.at(position))
+        collect.addCard(cardList.at(position));
     }
     
 	cardList.erase(cardList.begin() + position);
@@ -29,6 +29,10 @@ void CardCollection::setCard(std::shared_ptr<Card> card, int index){
 
 void CardCollection::deleteCard(int index){
     cardList.erase(cardList.begin() + index);
+}
+
+std::shared_ptr<Card> CardCollection::getCard(int index){
+    return cardList.at(index);
 }
 
 int CardCollection::getCardCount(){
