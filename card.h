@@ -11,7 +11,7 @@ class Card: public Observer{
 	std::shared_ptr<Player> owner;
 	
 public:
-    Card(std::string name, std::shared_ptr<Player> owner);
+    Card(std::string name, std::shared_ptr<Player> owner, int manaCost, string description = "");
 
 	void notify(Subject &whoFrom);
 	
