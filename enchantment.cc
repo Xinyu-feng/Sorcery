@@ -2,15 +2,9 @@
 #include <utility>
 #include "state.h"
 
-Enchantment::Enchantment(std::string name, std::shared_ptr<Player> owner):Card{name, owner}{
-    if (name == "Giant Strength"){
-        attackBoost = 2;
-        defenseBoost = 2;
-    }
-    else if (name == "Enrage"){
-        attackMultiplier = 2;
-        defenseMultiplier = 2;
-    }
-}
+using namespace std;
 
-void Enchantment::runEffect(State s){ return void;}
+Enchantment::Enchantment(string name, shared_ptr<Player> owner, int manaCost, string description = "") : 
+    Card{name, owner, manaCost, description} {}
+
+void Enchantment::runEffect(State s){...} // move to helper function
