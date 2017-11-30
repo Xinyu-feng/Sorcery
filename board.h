@@ -16,7 +16,9 @@ public:
     
     int getMinionCount();
     
-    void playCard(
+    void playMinion(std::shared_ptr<Minion> m);
+    void playEnchant(std::shared_ptr<Enchantment> e, int target);
+    void playRitual(std::shared_ptr<Ritual> r);
     
     
 
