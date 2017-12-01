@@ -1,8 +1,7 @@
 #include <board.h>
 
 Board::Board():CardCollection{}, BoardSubject{}, minionCount{0}{
-    // Create the Ritual slot
-    addCard(nullptr);
+
 }
 
 void Board::playMinion(std::shared_ptr<Minion> m){
@@ -19,5 +18,5 @@ void Board::playEnchant(std::shared_ptr<Enchantment> e, int target){
 
 void Board::playRitual(std::shared_ptr<Ritual> r){
     attachRitual(r, true);
-    setCard(r, 0);
+    ritual = r;
 }
