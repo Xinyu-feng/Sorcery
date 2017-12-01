@@ -2,6 +2,12 @@
 #define _CARD_H_
 #include "observer.h"
 #include <string>
+#include <memory>
+
+class Board;
+class Subject;
+
+
 
 
 class Card: public Observer{
@@ -21,6 +27,8 @@ public:
 
 	virtual void runEffect(Subject board);
 	virtual void displayCard() = 0;
+	
+	virtual void playCard(Board &b, int target = -1) = 0;
 	
 	virtual ~Card() = 0;
 };
