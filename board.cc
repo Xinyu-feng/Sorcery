@@ -14,7 +14,7 @@ void Board::playMinion(std::shared_ptr<Minion> m){
 }
 
 void Board::playEnchant(std::shared_ptr<Enchantment> e, int target){
-    
+    *getCard(target) = Enchant(b, std::shared_ptr<Enchantment>{this});
 }
 
 void Board::playRitual(std::shared_ptr<Ritual> r){
