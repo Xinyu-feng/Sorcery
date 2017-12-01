@@ -7,15 +7,19 @@
 #include <vector>
 
 class Trigger;
+class Minion;
+class Ritual;
 
-class Board: public CardCollection {
+class Board: public CardCollection<Minion> {
 
 	int minionCount;
 	State s;
 	void setState(Card c, Trigger trigger);
 	State getState();
 	
-	public:
+	std::shared_ptr<Ritual> ritual;
+	
+public:
 	Board();
 	Card returnToHand(int i);
 	
