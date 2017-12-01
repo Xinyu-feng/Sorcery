@@ -9,6 +9,7 @@ void CardCollection::moveCard(CardCollection &collect, int cardPosition, bool bo
     }
     
     if (board){
+        cardList.at(position).play(collect, target)
         playCard(cardList.at(position), target);
     }
     else{
