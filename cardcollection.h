@@ -5,10 +5,9 @@
 #include <memory>
 #include <vector>
 
-class Card;
 
-class CardCollection {
-	std::vector <std::shared_ptr<Card>> cardList;
+template<typename T> class CardCollection {
+	std::vector <std::shared_ptr<T>> cardList;
 public:
 
 
@@ -16,16 +15,16 @@ public:
     // cardPosition represents the position of the card in the deck
     // Default value -1 indicates you want the top card
     
-	void moveCard(CardCollection &collect, int cardPosition = -1);
+	void moveCard(CardCollection<Card> &collect, int cardPosition = -1);
 	void moveCardToBoard(Board &b, int cardPosition = -1, target = -1);
 	
-	virtual void addCard(std::shared_ptr<Card> card);
-	std::shared_ptr<Card> getCard(int i);
+	virtual void addCard(std::shared_ptr<T> card);
+	std::shared_ptr<T> getCard(int i);
 	
-	void setCard(std::shared_ptr<Card> card, int index);
+	void setCard(std::shared_ptr<T> card, int index);
 	void deleteCard(int index);
 	
-	std::shared_ptr<Card> CardCollection::getCard(int index);
+	std::shared_ptr<T> CardCollection::getCard(int index);
 	
 	int getCardCount();
 	virtual ~CardCollection() = 0;
