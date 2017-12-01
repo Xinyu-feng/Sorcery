@@ -31,3 +31,8 @@ void Ritual::runEffect(Subject &board){
         }
     }
 }*/
+
+void Ritual::playCard(Board &b, int target){
+    b.playRitual(std::shared_ptr<Ritual>{this});
+}
+}
