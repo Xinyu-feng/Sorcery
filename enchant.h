@@ -14,7 +14,7 @@ class Enchant: public MinionDecorator{
     
     void runEffect(Subject &board);
     
-    std::shared_ptr<Enchantment> removeEnchant();
+    std::shared_ptr<Minion> removeEnchant();
     
 };
 
