@@ -4,7 +4,9 @@
 
 #include "cardcollection.h"
 
-class Deck: public CardCollection {
+class Card;
+
+class Deck: public CardCollection<Card> {
 	public:
 	void shuffle();
 	Card draw();
