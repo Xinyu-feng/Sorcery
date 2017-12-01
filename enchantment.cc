@@ -10,5 +10,5 @@ Enchantment::Enchantment(string name, shared_ptr<Player> owner, int manaCost, st
 void Enchantment::runEffect(State s){...} // move to helper function
 
 void Enchantment::playCard(Board &b, int target){
-    *b.getCard(target) = Enchant(b, std::shared_ptr<Enchantment>{this});
+    b.playEnchant(std::shared_ptr<Enchantment>{this}, target);
 }
