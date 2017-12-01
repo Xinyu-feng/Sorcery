@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -9,62 +10,59 @@ class Player;
 
 int main(int argc, char *argv[]) {
 
-	Player player1;
-	Player player2;
-	istream &in = cin;
+	//Player player1;
+	//Player player2;
 	ifstream initFile;
-
-	ifstream player1Deck{"default.deck"};
-	ifstream player2Deck{"default.deck"};
+	string initFileName = "";
+	string player1Deck = "default.deck";
+	string player2Deck = "default.deck";
 	
 	bool testing = false;
 
-	if (argv.size() > 1) {
-		for (int i = 1; i < argv.size(); ++i) {
-			if (argv[i] == "-deck1" && i != argv.size() - 1) {
-				// close currently open deck file
-				player1Deck.close();
-				// load deck from file
-				player1Deck.open(argv[i + 1]);
+	if (argc > 1) {
+		vector <string> args{argv, argv + argc};
+		for (int i = 1; i < argc; ++i) {
+			if (args[i] == "-deck1" && i != argc - 1) {
+				player1Deck = args[i + 1];
 			}
-			else if (argv[i] == "-deck2" && i != argv.size() - 1) {
-				// close currently open deck file
-				player2Deck.close();
-				// load deck from file
-				player2Deck.open(argv[i + 1]);
+			else if (args[i] == "-deck2" && i != argc - 1) {
+				player1Deck = args[i + 1];
 			}
-			else if (argv[i] == "-init" && i != argv.size() - 1) {
-				// try to open following argv element
-				// set &in to the file stream to be opened
-				initFile.open(argv[i + 1]);
-				in = initFile;
+			else if (args[i] == "-init" && i != argc - 1) {
+				initFileName = args[i + 1];
 			}
-			else if (argv[i] == "-testing") {
+			else if (args[i] == "-testing") {
 				testing = true;
 			}
-			else if (argv[i] == "-graphics") {
+			else if (args[i] == "-graphics") {
 				// enable graphical interface
 			}
 		}
 	}
-	
-	// load player decks from file stream
+	// load init file if it exists
+	if (initFileName.length() > 0) {
+		initFile.open(initFileName);
+	}
+	// to do: load player decks from file stream
 	string input;
 	int turnPlayer = 1;
 
 	// main game loop
 	while (true) {
 		// default to cin after end of -init file
-		if (in.eof()) {
-			in = cin;
+		if (!initFile.eof()) {
+			getline(initFile, input);
+		}
+		else {
+			getline(cin, input);
 		}
 		// each input on its own line
-		getline(in, input);
 		istringstream iss{input};
 		if (iss >> input) {
 			if (input == "help") {
 				// output help message to text display
 				// output help message to graphics display
+				cout << "This is a placeholder help message." << endl;
 			}
 			else if (input == "end") {
 				// activate any end of turn effects
