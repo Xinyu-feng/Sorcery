@@ -3,13 +3,13 @@
 
 #include "card.h"
 
-class Spell: public Card{
+class Spell: public Card {
 	
 	public:
 	
 	Spell(std::string name, std::shared_ptr<Player> owner);
 
-	void runEffect(Subject &board);
+	void runEffect(Subject &board) override;
 
 	void playCard(Board &b, int target = -1) override;
 	
