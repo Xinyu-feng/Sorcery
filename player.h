@@ -10,6 +10,7 @@ class Hand;
 class Board;
 
 class Player {
+    int player;
 	Graveyard graveyard;
 	Hand hand;
 	Board myBoard;
