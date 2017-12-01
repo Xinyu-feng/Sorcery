@@ -3,7 +3,10 @@
 
 #include "cardcollection.h"
 
-class Graveyard: public CardCollection {
+#include "minion.h"
+class Minion;
+
+class Graveyard: public CardCollection<Minion> {
 }
 
 #endif
