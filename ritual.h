@@ -16,4 +16,6 @@ class Ritual: public Card {
     void playCard(Board &b, int target) override;
 
     card_template_t displayCard() override;
-}
+};
+
+#endif

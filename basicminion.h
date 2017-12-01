@@ -1,16 +1,16 @@
 #ifndef _BASICMINION_H_
 #define _BASICMINION_H_
 
-#include "card.h"
+#include "minion.h"
 
-class BasicMinion: public Minion{
-    
+class BasicMinion: public Minion {
+
 public:
-    BasicMinion(std::string name, std::shared_ptr<Player> owner);
+    BasicMinion(std::string name, std::shared_ptr<Player> owner, int manaCost, int attack, int defence, std::string description = "");
     
-    void runEffect(Subject &board);
+    void runEffect(Subject &board) override;
     
-}
+};
 
 
 #endif

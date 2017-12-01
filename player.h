@@ -10,11 +10,11 @@ class Hand;
 class Board;
 
 class Player {
-    int player;
+	int player;
 	Graveyard graveyard;
 	Hand hand;
 	Board myBoard;
-	Board *otherBoard;
+	std::shared_ptr<Board> otherBoard;
 	Deck deck;
 	int life;
 	int magic;

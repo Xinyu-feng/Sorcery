@@ -7,13 +7,13 @@ class Spell: public Card {
 	
 	public:
 	
-	Spell(std::string name, std::shared_ptr<Player> owner);
+	Spell(std::string name, std::shared_ptr<Player> owner, int manaCost, std::string description = "");
 
 	void runEffect(Subject &board) override;
 
 	void playCard(Board &b, int target = -1) override;
 	
 	card_template_t displayCard() override;
-}
+};
 
 #endif

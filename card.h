@@ -7,9 +7,7 @@
 
 class Board;
 class Subject;
-
-
-
+class Player;
 
 class Card: public Observer{
 	std::string name;
@@ -18,7 +16,7 @@ class Card: public Observer{
 	std::shared_ptr<Player> owner;
 	
 	public:
-	Card(std::string name, std::shared_ptr<Player> owner, int manaCost, string description = "");
+	Card(std::string name, std::shared_ptr<Player> owner, int manaCost, std::string description = "");
 
 	void notify(Subject &whoFrom);
 	
@@ -28,7 +26,7 @@ class Card: public Observer{
 
 	std::string getDescription();
 
-	virtual void runEffect(Subject board);
+	virtual void runEffect(Subject &board);
 	virtual card_template_t displayCard() = 0;
 	
 	virtual void playCard(Board &b, int target = -1) = 0;

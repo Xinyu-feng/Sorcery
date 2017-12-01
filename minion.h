@@ -1,7 +1,8 @@
 #ifndef _MINION_H_
 #define _MINION_H_
-
 #include "card.h"
+
+class State;
 
 class Minion: public Card {
 	int attack;
@@ -10,7 +11,7 @@ class Minion: public Card {
 	int currActions = 0;
 
 	public:
-	Minion(std::string name, std::shared_ptr<Player> owner, int manaCost, int attack, int defence, string description = "");
+	Minion(std::string name, std::shared_ptr<Player> owner, int manaCost, int attack, int defence, std::string description = "");
 	void addAction(int i);
 	void lowerAction(int i);
 	void setAction(int i);
@@ -29,9 +30,9 @@ class Minion: public Card {
 
 	void playCard(Board &b, int target = -1) override;
 
-	virtual void runEffect(State s) = 0;
+	//virtual void runEffect(State s) = 0;
 
-	virtual void ~Minion() = 0;
+	virtual ~Minion() = 0;
 };
 
 #endif
