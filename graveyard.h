@@ -7,6 +7,6 @@
 class Minion;
 
 class Graveyard: public CardCollection<Minion> {
-}
+};
 
 #endif
