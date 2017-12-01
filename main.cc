@@ -44,6 +44,8 @@ int main(int argc, char *argv[]) {
 		initFile.open(initFileName);
 	}
 	// to do: load player decks from file stream
+	// also: shuffle only if testing is false
+
 	string input;
 	int turnPlayer = 1;
 
@@ -100,6 +102,7 @@ int main(int argc, char *argv[]) {
 				}
 			}
 			else if (input == "play") {
+				// testing mode should override costs
 				int handCard;
 				if (iss >> handCard) {
 					int owner;
@@ -115,6 +118,7 @@ int main(int argc, char *argv[]) {
 				}
 			}
 			else if (input == "use") {
+				// testing mode should override costs
 				int minion;
 				if (iss >> minion) {
 					int owner;
@@ -139,7 +143,7 @@ int main(int argc, char *argv[]) {
 				// display turn player's hand
 			}
 			else if (input == "board") {
-				// display turn player's board
+				// display the full board
 			}
 		}
 	}
