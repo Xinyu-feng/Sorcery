@@ -6,7 +6,11 @@
 
 using namespace std;
 
-//class Player;
+void printVec(vector<string> vec) {
+	for (auto &x : vec) {
+		cout << x << endl;
+	}
+}
 
 int main(int argc, char *argv[]) {
 
@@ -44,6 +48,17 @@ int main(int argc, char *argv[]) {
 	if (initFileName.length() > 0) {
 		initFile.open(initFileName);
 	}
+
+	vector<string> helpMessage = {"Commands: help -- Display this message.",
+								  "          end  -- End the current player's turn.",
+								  "			 quit -- End the game.",
+								  "			 attack minion other-minion -- Orders minion to attack other-minion.",
+								  "			 play card [target-player target-card] -- Play card, optionally targeting target-card owned by target-player.",
+								  "			 use minion [target-player target-card] -- Use minion's special ability, optionally targeting target-card owned by target-player.",
+								  "			 inspect minion -- View a minion's card and all enchantments on that minion.",
+								  "			 hand -- Describe all cards in your hand.",
+								  "			 board -- Describe all cards on the board."};
+
 	// to do: load player decks from file stream
 	// also: shuffle only if testing is false
 
@@ -64,8 +79,11 @@ int main(int argc, char *argv[]) {
 		if (iss >> input) {
 			if (input == "help") {
 				// output help message to text display
+				printVec(helpMessage);
 				// output help message to graphics display
-				cout << "This is a placeholder help message." << endl;
+				if (graphics) {
+					//graphics.displayHelp(helpMessage); or something
+				}
 			}
 			else if (input == "end") {
 				// activate any end of turn effects
@@ -142,9 +160,15 @@ int main(int argc, char *argv[]) {
 			}
 			else if (input == "hand") {
 				// display turn player's hand
+				// printVec(player hand -> displayHand());
+				if (graphics) {
+				}
 			}
 			else if (input == "board") {
 				// display the full board
+				// printVec(board->displayBoard());
+				if (graphics) {
+				}
 			}
 		}
 	}
