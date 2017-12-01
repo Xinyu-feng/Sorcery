@@ -63,5 +63,5 @@ int Minion::getActivateCost(){
 }
 
 void Minion::playCard(Board &b, int target){
-    b.playMinion(std::shared_ptr<Minion>{*this});
+    b.playMinion(std::shared_ptr<Minion>{this});
 }
