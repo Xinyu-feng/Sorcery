@@ -14,6 +14,7 @@ void Enchantment::playCard(Board &b, int target){
 }
 
 card_template_t Enchantment::displayCard() {
+	// dependent on strings containing + or * symbol
 	if (attBuff == "" && defBuff == "") {
 		return display_enchantment(this->getName(), this->getManaCost(),
 									this->getDescription());
