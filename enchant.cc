@@ -45,6 +45,6 @@ std::shared_ptr<Enchantment> Enchant::removeEnchant(){
         m->lowerAbilityCost(2);
     }
     
-    return e;
+    return m;
 }
     
