@@ -1,27 +1,36 @@
 #include "cardcollection.h"
 
-void CardCollection::moveCard(CardCollection &collect, int cardPosition, bool board, int target) {
+void CardCollection::moveCard(CardCollection &collect, int cardPosition) {
     
     int position = cardPosition;
     
     if (cardPosition == -1){
         position = getCardCount() - 1;
     }
-    
-    if (board){
-        cardList.at(position).play(collect, target)
-        playCard(cardList.at(position), target);
-    }
-    else{
-        collect.addCard(cardList.at(position));
-    }
+
+    collect.addCard(cardList.at(position));
     
 	cardList.erase(cardList.begin() + position);
     
 }
 
+void CardCollection::moveCardtoBoard(Board &b, int cardPosition, int target){
+    int position = cardPosition;
+    
+    if (cardPosition == -1){
+        position = getCardCount() - 1;
+    }
+    cardList.at(position).play(b, target);
+
+    cardList.erase(cardList.begin() + position);
+}
+
 void CardCollection::addCard(std::shared_ptr<Card> card){
     cardList.emplace_back(card);
+}
+
+std::shared_ptr<Card> CardCollection::getCard(int i){
+    return cardList.at(i);
 }
 
 void CardCollection::setCard(std::shared_ptr<Card> card, int index){
