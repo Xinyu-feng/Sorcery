@@ -5,7 +5,14 @@ Spell::Spell(std::string name, std::shared_ptr<Player> owner, int manaCost, stri
     Card{name, owner, manaCost, description} {}
 
 void Spell::runEffect(Subject &board){
-    State s = board.getState();
+}
+    
+
+
+void playCard(Board &b, int target = -1){
+    
+    std::shared_ptr<Card> t;
+    if (target != -1) t = b.getCard(target);
     
     if (name == "Banish"){
         if (s.ritual){
