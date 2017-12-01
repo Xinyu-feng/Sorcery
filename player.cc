@@ -38,14 +38,39 @@ void play(int i, int p, char t){
     }
 }
 
-void attack(int i, int j = 0);
+void attack(int i, int j = 0){
+    if (j == 0){
+        // Insert direct attack code
+    }
+    
+    else{
+        std::shared_ptr<Minion> myMinion = myBoard.getCard(i - 1);
+        std::shared_ptr<Minion> theirMinion = theirBoard->getCard(j - 1);
+        
+        myMinion->lowerAction(1);
+        theirMinion->addStats(0, -myMinion->getAttack());
+        
+        if (theirMinion->getDefense() == 0){
+            theirBoard->sendToGraveyard(j - 1);
+        }
+        
+        else{
+            myMinion->addStats(0, -theirMinion->getAttack());
+            if (myMinion->getDefense() == 0){
+                myBoard.sendToGraveyard(i - 1);
+            }
+        }
+    }
+}
+
+
 void use(int i, int p, int t);
 //void displayBoard();
 	
 void Player::discard(int i){
     hand.discard(i);
 }
-	void displayHand();
+void displayHand();
 	
 void Player::addMagic(int i){
     magic += i;
