@@ -2,15 +2,15 @@
 #define _HAND_H_
 
 #include "cardcollection.h"
+#include "card.h"
 
-class Hand: public CardCollection{
+class Card;
+
+class Hand: public CardCollection<Card>{
 
 public:
     void displayHand();
-    
     void discard(int i);
-
-
 }
 
 
