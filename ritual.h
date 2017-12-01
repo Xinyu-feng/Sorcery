@@ -13,5 +13,9 @@ public:
     
     void runEffect(Subject &board);
     
+    void playCard(Board &b, int target);
+   
+}
+    
     void displayCard();
 }
