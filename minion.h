@@ -29,6 +29,8 @@ public:
     int getAttack();
     int getDefense();
     
+    void playCard(Board &b, int target = -1);
+    
     virtual void runEffect(State s) = 0;
     
     virtual void ~Minion() = 0;
