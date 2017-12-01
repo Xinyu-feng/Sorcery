@@ -10,15 +10,20 @@ class Hand;
 class Board;
 
 class Player {
-	std::unique_ptr<Graveyard> graveyard;
-	std::unique_ptr<Hand> hand;
-	std::unique_ptr<Board> board;
+	Graveyard graveyard;
+	Hand hand;
+	Board myBoard;
+	Board *otherBoard;
+	Deck deck;
 	int life;
 	int magic;
 	string name;
-	std::shared_ptr<Player> otherPlayer;
-	public:
-	Card draw();
+	
+public:
+    
+    Player(std::string name, std::string deckFile, bool shuffle = true, int life = 20, int magic = 3);
+
+	void draw();
 	void play(int i, int p, char t);
 	void attack(int i, int j = 0);
 	void use(int i, int p, int t);
@@ -26,6 +31,6 @@ class Player {
 	void discard(int i);
 	void displayHand();
 	void addMagic(int i);
-}
+};
 
 #endif
