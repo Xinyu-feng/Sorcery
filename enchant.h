@@ -12,9 +12,11 @@ class Enchant: public MinionDecorator{
 
     Enchant(std::shared_ptr<Minion> m, std::shared_ptr<Enchantment> e);
     
-    void runEffect(Subject &board);
+    void runEffect(Subject &board) override;
     
     std::shared_ptr<Minion> removeEnchant();
+
+    card_template_t displayCard() override;
     
 };
 

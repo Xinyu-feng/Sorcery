@@ -4,18 +4,16 @@
 #include "card.h"
 
 
-class Ritual: public Card{
+class Ritual: public Card {
     int charges;
     int activationCost;
     
-public:
+    public:
     Ritual(std::string name, std::shared_ptr<Player> owner, int manaCost, int charges, int activationCost, std::string description = "");
     
     void runEffect(Subject &board);
     
-    void playCard(Board &b, int target);
-   
-}
-    
-    void displayCard();
+    void playCard(Board &b, int target) override;
+
+    card_template_t displayCard() override;
 }

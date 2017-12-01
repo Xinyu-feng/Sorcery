@@ -6,10 +6,8 @@ Spell::Spell(std::string name, std::shared_ptr<Player> owner, int manaCost, stri
 
 void Spell::runEffect(Subject &board){
 }
-    
 
-
-void playCard(Board &b, int target = -1){
+void playCard(Board &b, int target = -1) {
     
     std::shared_ptr<Card> t;
     if (target != -1) t = b.getCard(target);
@@ -45,4 +43,9 @@ void playCard(Board &b, int target = -1){
             player->getBoard().inflictDamage(i, 2);
         }
     }
+}
+
+card_template_t Spell::displayCard() {
+	return display_spell(this->getName(), this->getManaCost(),
+						this->getDescription());
 }

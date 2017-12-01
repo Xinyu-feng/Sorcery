@@ -13,6 +13,10 @@ string Card::getName() {
     return name;
 }
 
+string Card::getDescription() {
+	return description;
+}
+
 void Card::notify(Subject &whoFrom) {
     runEffect(whoFrom);
 }

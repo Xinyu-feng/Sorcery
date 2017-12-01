@@ -1,5 +1,6 @@
 #ifndef _CARD_H_
 #define _CARD_H_
+#include "ascii_graphics.h"
 #include "observer.h"
 #include <string>
 #include <memory>
@@ -16,8 +17,8 @@ class Card: public Observer{
 	std::string description;
 	std::shared_ptr<Player> owner;
 	
-public:
-    Card(std::string name, std::shared_ptr<Player> owner, int manaCost, string description = "");
+	public:
+	Card(std::string name, std::shared_ptr<Player> owner, int manaCost, string description = "");
 
 	void notify(Subject &whoFrom);
 	
@@ -25,8 +26,10 @@ public:
 	
 	std::string getName();
 
+	std::string getDescription();
+
 	virtual void runEffect(Subject board);
-	virtual void displayCard() = 0;
+	virtual card_template_t displayCard() = 0;
 	
 	virtual void playCard(Board &b, int target = -1) = 0;
 	

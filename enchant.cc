@@ -47,4 +47,8 @@ std::shared_ptr<Enchantment> Enchant::removeEnchant(){
     
     return m;
 }
+
+card_template_t Enchant::displayCard() {
+	return m->displayCard();
+}
     

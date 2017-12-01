@@ -35,4 +35,7 @@ void Ritual::runEffect(Subject &board){
 void Ritual::playCard(Board &b, int target){
     b.playRitual(std::shared_ptr<Ritual>{this});
 }
+
+card_template_t Ritual::displayCard() {
+	return display_ritual(this->getName(), this->getManaCost(), this->activationCost, this->getDescription(), this->charges)
 }
