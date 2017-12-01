@@ -30,7 +30,14 @@ public:
 	//void displayBoard();
 	void discard(int i);
 	void displayHand();
+	
 	void addMagic(int i);
+	void deductMagic(int i);
+	int getMagic();
+	
+	void addLife(int i);
+	void deductLife(int i);
+	int getLife();
 };
 
 #endif
