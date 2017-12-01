@@ -58,6 +58,10 @@ void Minion::setStats(int attack, int defense){
     setDefense(defense);
 }
 
-int getActivateCost(){
+int Minion::getActivateCost(){
     return activateCost;
+}
+
+void Minion::playCard(Board &b, int target){
+    b.playMinion(std::shared_ptr<Minion>{*this});
 }
