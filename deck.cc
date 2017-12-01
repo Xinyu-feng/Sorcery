@@ -64,7 +64,7 @@ void Deck::shuffle(){
     std::vector<std::shared_ptr<Card>> tempHolder;
     
     int originalLength = getCardCount();
-    int length = originalLength();
+    int length = originalLength;
     
     while (length > 0){
         int randIndex = rand() % length;
@@ -78,5 +78,6 @@ void Deck::shuffle(){
     for (int i = 0; i < originalLength; ++i){
         addCard(tempHolder.at(i));
     }
-    
+   
+   // swap temp vector with original cards
 }
