@@ -18,6 +18,7 @@ int main(int argc, char *argv[]) {
 	string player2Deck = "default.deck";
 	
 	bool testing = false;
+	bool graphics = false;
 
 	if (argc > 1) {
 		vector <string> args{argv, argv + argc};
@@ -35,7 +36,7 @@ int main(int argc, char *argv[]) {
 				testing = true;
 			}
 			else if (args[i] == "-graphics") {
-				// enable graphical interface
+				graphics = true;
 			}
 		}
 	}
