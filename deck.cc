@@ -35,7 +35,10 @@ void Deck::shuffle(){
     }
 }
 
-void draw(Hand &hand) {
-    hand.addCard(cardList.back());
-    cardList.pop_back();
+void moveCardTo(int cardPosition, Hand &h) {
+    if (cardPosition == -1) { // top card
+        cardPosition = getCardCount() - 1;
+    }
+    hand.addCard(cardList.at(cardPosition));
+    cardList.erase(cardList.begin() + cardPosition);
 }
