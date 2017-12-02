@@ -16,7 +16,7 @@ void Player::draw(int i){
 }
 
 void Player::play(int i, int p, char t) {
-    if (t == '\0' || t > 'e') {
+    if (t == '\0' || t > '5' || p != 1 || p != 2) {
         // throw ...
     } else {
         
@@ -37,13 +37,17 @@ void Player::play(int i, int p, char t) {
     }
 }
 
-void Player::attack(int i, int j){
+void Player::attack(int i, int j) {
+    if (i < 0 || i > 5 || j < 0 || j > 5) {
+        // throw ...
+    }
+    
     std::shared_ptr<Minion> myMinion = myBoard.getCard(i - 1);
     if (j != 0){
-        myMinion->attackPlayer(otherPlayer);
+        myMinion->attack(otherPlayer);
     } else {
         std::shared_ptr<Minion> otherMinion = otherPlayer->myBoard.getCard(j - 1);
-        myMinion->attackMinion(otherMinion);
+        myMinion->attack(otherMinion);
     }
 }
 
