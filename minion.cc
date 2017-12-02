@@ -76,8 +76,8 @@ void Minion::playCard(Board &b, int target){
     b.playMinion(shared_ptr<Minion>{this});
 }
 
-void Minion::destroy() {
-    owner->graveyard.addCard(this);
+void Minion::destroy(Graveyard &g) {
+    g.addCard(this);
 }
 
 card_template_t Minion::displayCard() {
