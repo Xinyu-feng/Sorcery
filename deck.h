@@ -5,13 +5,14 @@
 #include <memory>
 
 class Card;
+class Hand;
 class Player;
 
 class Deck: public CardCollection<Card> {
 	public:
 	    Deck(std::string deckFile, std::shared_ptr<Player> owner);
     	void shuffle();
-    	void draw(Hand &hand);
+        void moveCardTo(int cardPosition, Hand &h) override;
 };
 
 #endif
