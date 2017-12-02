@@ -1,6 +1,7 @@
 #include "deck.h"
 #include "card.h"
 #include "helper.h"
+#include "hand.h"
 
 #include <string>
 #include <fstream>
@@ -31,4 +32,9 @@ void Deck::shuffle(){
         int randIndex2 = rand() % len;
         iter_swap(cardList.begin() + randIndex1, cardList.begin() + randIndex2); 
     }
+}
+
+void draw(Hand &hand) {
+    hand.addCard(cardList.back());
+    cardList.pop_back();
 }
