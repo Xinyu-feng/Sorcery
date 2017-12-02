@@ -28,9 +28,8 @@ class Card: public Observer{
 
 	virtual void runEffect(Subject &board);
 	virtual card_template_t displayCard() = 0;
-	
 	virtual void playCard(Board &b, int target = -1) = 0;
-	
+    virtual void destroy();	
 	virtual ~Card() = 0;
 };
 #endif
