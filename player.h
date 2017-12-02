@@ -14,6 +14,7 @@ class Player {
 	Hand hand;
 	Board myBoard;
 	std::shared_ptr<Player> otherPlayer;
+	std::shared_ptr<Board> otherBoard;
 	Deck deck;
 	int life = 20;
 	int magic = 3;
