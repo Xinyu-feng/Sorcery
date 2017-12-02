@@ -2,69 +2,50 @@
 
 
 
-Player::Player(int player, std::string name, std::string deckFile, bool shuffle, int life, int magic):
-		player{player}, name{name}, deck{deckFile, std::shared_ptr<Player>(this), shuffle}, life{life}, magic{magic} {
-    
-	if (shuffle) deck.shuffle();
-    
-    for (int i = 0; i < 5; ++i) draw();
+Player::Player(int player, std::string name, std::string deckFile):
+    	player{player}, name{name}, deck{deckFile, std::shared_ptr<Player>(this)} {
+	    
+    draw(5);
 }
 
 
-void Player::draw(){
-    deck.moveCard(hand);
+void Player::draw(int i){
+    for (int j = 0; j < i; j++) {
+        deck.moveCard(hand);
+    }
 }
 
-void Player::play(int i, int p, char t){
-    int target;
-    
-    // Index on board for ritual is located at 0
-    if (t == 'r'){
-        target = 0;
-    }
-    // If still default value, make sure it's -1
-    else if (t == '\0'){
-        target = -1;
-    }
-    // Convert char index into int from 1 to 5
-    else{
-        target = 'a' - t;
-    }
-    
+void Player::play(int i, int p, char t) {
+    if (t == '\0' || t > 'e') {
+        // throw ...
+    } else {
+        
+        int target;
+        // t is one of '1', '2', '3', '4', '5', 'r'
+        if (t == 'r'){
+            target = 0; // ritual located on index 0
+        } else {
+            target = t;
+        }
 
-    if (p == 1){
-        hand.moveCardToBoard(myBoard, i - 1, target);
-    }
-    else{
-        hand.moveCardToBoard(*otherBoard, i - 1, target);
+        if (p == 1){
+            hand.moveCardToBoard(myBoard, i - 1, target);
+        }
+        else{
+            hand.moveCardToBoard(*otherBoard, i - 1, target);
+        }
     }
 }
 
 void Player::attack(int i, int j){
-    if (j == 0){
-        // Insert direct attack code
-    }
-    
-    else{
-        std::shared_ptr<Minion> myMinion = myBoard.getCard(i - 1);
-        std::shared_ptr<Minion> otherMinion = otherBoard->getCard(j - 1);
-        
-        myMinion->lowerAction(1);
-        otherMinion->addStats(0, -myMinion->getAttack());
-        
-        if (otherMinion->getDefense() == 0){
-            //otherBoard->sendToGraveyard(j - 1);
-        }
-        
-        else{
-            myMinion->addStats(0, -otherMinion->getAttack());
-            if (myMinion->getDefense() == 0){
-                //myBoard.sendToGraveyard(i - 1);
-            }
-        }
+    std::shared_ptr<Minion> myMinion = myBoard.getCard(i - 1);
+    if (j != 0){
+        myMinion->attackPlayer(otherPlayer);
+    } else {
+        std::shared_ptr<Minion> otherMinion = otherPlayer->myBoard.getCard(j - 1);
+        myMinion->attackMinion(otherMinion);
     }
 }
-
 
 void Player::use(int i, int p, int t) {
 }
@@ -77,10 +58,6 @@ void Player::discard(int i){
 
 //std::vector<std::string> displayHand();
 	
-void Player::addMagic(int i){
-    magic += i;
-}
-
 void Player::deductMagic(int i){
     magic -= i;
     if (magic < 0) magic = 0;
@@ -90,12 +67,8 @@ int Player::getMagic(){
     return magic;
 }
 	
-void Player::addLife(int i){
-    life += i;
-}
 void Player::deductLife(int i){
     life -= i;
-    if (life < 0) life = 0;
 }
 
 int Player::getLife(){
