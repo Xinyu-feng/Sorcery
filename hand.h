@@ -5,7 +5,7 @@
 #include "cardcollection.h"
 #include "card.h"
 
-class Hand: public CardCollection<Card> {
+class Hand: public CardCollection {
     
 	public:
 	    card_template_t displayHand();

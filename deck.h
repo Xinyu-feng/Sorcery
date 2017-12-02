@@ -8,7 +8,7 @@ class Card;
 class Hand;
 class Player;
 
-class Deck: public CardCollection<Card> {
+class Deck: public CardCollection {
 	public:
 	    Deck(std::string deckFile, std::shared_ptr<Player> owner);
     	void shuffle();

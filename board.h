@@ -11,7 +11,7 @@ class Enchantment;
 class Minion;
 class Ritual;
 
-class Board: public CardCollection<Card> {
+class Board: public CardCollection {
 
 	int minionCount;
 	State s;
