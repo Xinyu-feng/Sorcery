@@ -36,6 +36,9 @@ void Deck::shuffle(){
 }
 
 void moveCardTo(int cardPosition, Hand &h) {
+    if (h.getCardCount() == 5) { // full hand
+        // throw ...
+    }
     if (cardPosition == -1) { // top card
         cardPosition = getCardCount() - 1;
     }
