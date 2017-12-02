@@ -9,6 +9,11 @@ using namespace std;
 Minion::Minion(string name, shared_ptr<Player> owner, int manaCost, int attack, int defence, string description) :
     Card{name, owner, manaCost, description}, attack{attack}, defence{defence} {}
 
+void Minion::attackMinion(Minion *other) {
+    other.addStats(0, -attack);
+    addStats(0, -otherMinion.getAttack());
+}
+
 void Minion::addAction(int i){
     actions += 1;
 }
