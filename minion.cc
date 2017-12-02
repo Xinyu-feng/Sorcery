@@ -24,14 +24,14 @@ void Minion::attack(Minion *other) {
     } catch (...) {
         ...
     } */
-    addStats(0, -other->getAttack())
+    addStats(0, -other->getAttack());
     other->damage(0, -attack);
     
     if (other->getDefense() == 0){
-        other->owner->myBoard.destroy(*other);
+        other->owner->myBoard.discard(*other);
     }
     if (defence == 0){
-        myBoard.destroy(*this);
+        myBoard.discard(*this);
     }
 }
 
@@ -74,6 +74,10 @@ int Minion::getActivateCost(){
 
 void Minion::playCard(Board &b, int target){
     b.playMinion(shared_ptr<Minion>{this});
+}
+
+void Minion::destroy() {
+    owner->graveyard.addCard(this);
 }
 
 card_template_t Minion::displayCard() {
