@@ -27,7 +27,7 @@ class Minion: public Card {
 	int getDefense();
 	
 	virtual card_template_t displayCard() override;
-	void destroy() override;
+	void destroy(Graveyard &g) override;
 
 	void playCard(Board &b, int target = -1) override;
 
