@@ -3,11 +3,10 @@
 
 #include <memory>
 #include <string>
-
-class Graveyard;
-class Deck;
-class Hand;
-class Board;
+#include "board.h"
+#include "deck.h"
+#include "graveyard.h"
+#include "hand.h"
 
 class Player {
 	int player;
@@ -18,19 +17,18 @@ class Player {
 	Deck deck;
 	int life;
 	int magic;
-	string name;
+	std::string name;
 	
-public:
-    
-    Player(std::string name, std::string deckFile, bool shuffle = true, int life = 20, int magic = 3);
+	public:
+	Player(int player, std::string name, std::string deckFile, bool shuffle, int life = 20, int magic = 3);
 
 	void draw();
 	void play(int i, int p = 1, char t = '\0');
 	void attack(int i, int j = 0);
 	void use(int i, int p, int t);
-	//void displayBoard();
+	//std::vector<std::string> displayBoard();
 	void discard(int i);
-	void displayHand();
+	//std::vector<std::string> displayHand();
 	
 	void addMagic(int i);
 	void deductMagic(int i);

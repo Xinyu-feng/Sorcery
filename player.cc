@@ -2,18 +2,20 @@
 
 
 
-Player::Player(int player, std::string name, std::string deckFile, bool shuffle, int life, int magic):player{player}, name{name}, deck{deckFile}, life{life}, magic{magic}{
-    if (shuffle) deck.shuffle();
+Player::Player(int player, std::string name, std::string deckFile, bool shuffle, int life, int magic):
+		player{player}, name{name}, deck{deckFile, std::shared_ptr<Player>(this), shuffle}, life{life}, magic{magic} {
+    
+	if (shuffle) deck.shuffle();
     
     for (int i = 0; i < 5; ++i) draw();
 }
 
 
 void Player::draw(){
-    deck.moveCard(hand, deck);
+    deck.moveCard(hand);
 }
 
-void play(int i, int p, char t){
+void Player::play(int i, int p, char t){
     int target;
     
     // Index on board for ritual is located at 0
@@ -31,46 +33,49 @@ void play(int i, int p, char t){
     
 
     if (p == 1){
-        moveCardToBoard(myBoard, i - 1, target);
+        hand.moveCardToBoard(myBoard, i - 1, target);
     }
     else{
-        moveCardToBoard(*otherBoard, i - 1, target);
+        hand.moveCardToBoard(*otherBoard, i - 1, target);
     }
 }
 
-void attack(int i, int j = 0){
+void Player::attack(int i, int j){
     if (j == 0){
         // Insert direct attack code
     }
     
     else{
         std::shared_ptr<Minion> myMinion = myBoard.getCard(i - 1);
-        std::shared_ptr<Minion> theirMinion = theirBoard->getCard(j - 1);
+        std::shared_ptr<Minion> otherMinion = otherBoard->getCard(j - 1);
         
         myMinion->lowerAction(1);
-        theirMinion->addStats(0, -myMinion->getAttack());
+        otherMinion->addStats(0, -myMinion->getAttack());
         
-        if (theirMinion->getDefense() == 0){
-            theirBoard->sendToGraveyard(j - 1);
+        if (otherMinion->getDefense() == 0){
+            //otherBoard->sendToGraveyard(j - 1);
         }
         
         else{
-            myMinion->addStats(0, -theirMinion->getAttack());
+            myMinion->addStats(0, -otherMinion->getAttack());
             if (myMinion->getDefense() == 0){
-                myBoard.sendToGraveyard(i - 1);
+                //myBoard.sendToGraveyard(i - 1);
             }
         }
     }
 }
 
 
-void use(int i, int p, int t);
-//void displayBoard();
+void Player::use(int i, int p, int t) {
+}
+
+//std::vector<std::string> displayBoard();
 	
 void Player::discard(int i){
     hand.discard(i);
 }
-void displayHand();
+
+//std::vector<std::string> displayHand();
 	
 void Player::addMagic(int i){
     magic += i;
@@ -93,6 +98,6 @@ void Player::deductLife(int i){
     if (life < 0) life = 0;
 }
 
-int getLife(){
+int Player::getLife(){
     return life;
 }

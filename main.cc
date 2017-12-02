@@ -4,6 +4,9 @@
 #include <string>
 #include <vector>
 
+#include "deck.h"
+#include "player.h"
+
 using namespace std;
 
 void printVec(vector<string> vec) {
@@ -51,17 +54,17 @@ int main(int argc, char *argv[]) {
 
 	vector<string> helpMessage = {"Commands: help -- Display this message.",
 								  "          end  -- End the current player's turn.",
-								  "			 quit -- End the game.",
-								  "			 attack minion other-minion -- Orders minion to attack other-minion.",
-								  "			 play card [target-player target-card] -- Play card, optionally targeting target-card owned by target-player.",
-								  "			 use minion [target-player target-card] -- Use minion's special ability, optionally targeting target-card owned by target-player.",
-								  "			 inspect minion -- View a minion's card and all enchantments on that minion.",
-								  "			 hand -- Describe all cards in your hand.",
-								  "			 board -- Describe all cards on the board."};
+								  "          quit -- End the game.",
+								  "          attack minion other-minion -- Orders minion to attack other-minion.",
+								  "          play card [target-player target-card] -- Play card, optionally targeting target-card owned by target-player.",
+								  "          use minion [target-player target-card] -- Use minion's special ability, optionally targeting target-card owned by target-player.",
+								  "          inspect minion -- View a minion's card and all enchantments on that minion.",
+								  "          hand -- Describe all cards in your hand.",
+								  "          board -- Describe all cards on the board."};
 
-	// to do: load player decks from file stream
-	// also: shuffle only if testing is false
-
+	// load player decks from file stream, shuffle only if testing is false
+	//Player player1{"Yugi Moto", player1Deck, !testing};
+	//Player player2{"Joey Wheeler", player2Deck, !testing};
 	string input;
 	int turnPlayer = 1;
 

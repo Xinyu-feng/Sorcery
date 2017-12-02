@@ -47,10 +47,6 @@ void CardCollection::deleteCard(int index){
     cardList.erase(cardList.begin() + index);
 }
 
-std::shared_ptr<T> CardCollection::getCard(int index){
-    return cardList.at(index);
-}
-
 int CardCollection::getCardCount(){
     return cardList.size();
 }

@@ -2,11 +2,13 @@ CC = g++
 
 CXXFLAGS = -std=c++14 -Werror=vla
 
-%.o: %.cc %.h
-	${CC} ${CXXFLAGS} -c $@
+DEPS = player.o deck.o main.o
 
-Sorcery:
-	${CC} ${CXXFLAGS} *.o -o Sorcery
+%.o: %.cc %.h
+	${CC} ${CXXFLAGS} -c $<
+
+Sorcery: ${DEPS}
+	${CC} ${CXXFLAGS} player.o deck.o main.o -o Sorcery
 
 clean:
 	rm *.o

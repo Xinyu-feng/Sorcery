@@ -7,7 +7,8 @@
 #include "basicminion.h"
 
 #include <string>
-#include <ifstream>
+#include <iostream>
+#include <fstream>
 #include <cstdlib>
 #include <memory>
 
