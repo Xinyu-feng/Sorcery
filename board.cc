@@ -20,3 +20,16 @@ void Board::playRitual(std::shared_ptr<Ritual> r){
     attachRitual(r, true);
     ritual = r;
 }
+
+void Board::moveCardTo(int cardPosition, Hand &h) {
+    if (h.getCardCount() == 5) { // full hand
+        // throw ...
+    }
+    if (cardPosition == -1) {
+        hand.addCard(ritual);
+        ritual.reset();
+    } else {
+        hand.addCard(cardList.at(cardPosition));
+        cardList.erase(cardPosition);
+    }
+}
