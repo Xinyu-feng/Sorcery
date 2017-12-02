@@ -8,7 +8,7 @@ DEPS = player.o deck.o main.o
 	${CC} ${CXXFLAGS} -c $<
 
 Sorcery: ${DEPS}
-	${CC} ${CXXFLAGS} player.o deck.o main.o -o Sorcery
+	${CC} ${CXXFLAGS} ${DEPS} -o Sorcery
 
 clean:
 	rm *.o

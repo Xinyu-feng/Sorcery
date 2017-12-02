@@ -11,7 +11,7 @@ Player::Player(int player, std::string name, std::string deckFile):
 
 void Player::draw(int i){
     for (int j = 0; j < i; j++) {
-        deck.moveCard(hand);
+        deck.moveCardTo(-1, hand);
     }
 }
 
