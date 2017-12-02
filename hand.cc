@@ -14,7 +14,3 @@ card_template_t Hand::displayHand() {
 	}
 	return handDisplay;
 }
-
-void Hand::discard(int i){
-    deleteCard(i);
-}
