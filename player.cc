@@ -1,5 +1,5 @@
 #include "player.h"
-
+#include "minion.h"
 
 
 Player::Player(int player, std::string name, std::string deckFile):
@@ -29,9 +29,11 @@ void Player::play(int i, int p, char t) {
         }
 
         if (p == 1){
+            //rewrite w/ moveCardTo
             hand.moveCardToBoard(myBoard, i - 1, target);
         }
         else{
+            //rewrite w/ moveCardTo
             hand.moveCardToBoard(*otherBoard, i - 1, target);
         }
     }
