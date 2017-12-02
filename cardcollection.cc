@@ -1,8 +1,6 @@
 #include "cardcollection.h"
 #include "board.h"
 
-template<typename T>
-
 class Board;
 
 
@@ -31,20 +29,21 @@ void CardCollection::moveCardtoBoard(Board &b, int cardPosition, int target){
     cardList.erase(cardList.begin() + position);
 }
 
-void CardCollection::addCard(std::shared_ptr<T> card){
+void CardCollection::addCard(Card *card){
     cardList.emplace_back(card);
 }
 
-std::shared_ptr<T> CardCollection::getCard(int i){
+void Hand::moveCardTo(int cardPosition, Graveyard &g) {
+    cardList.at(cardPosition)->destroy(g);
+    cardList.erase(cardList.begin() + i);
+}
+
+shared_ptr<Card> CardCollection::getCard(int i){
     return cardList.at(i);
 }
 
-void CardCollection::setCard(std::shared_ptr<T> card, int index){
+void CardCollection::setCard(std::shared_ptr<Card> card, int index){
     cardList.at(i) = card;
-}
-
-void CardCollection::deleteCard(int index){
-    cardList.erase(cardList.begin() + index);
 }
 
 int CardCollection::getCardCount(){
