@@ -9,56 +9,61 @@ using namespace std;
 Minion::Minion(string name, shared_ptr<Player> owner, int manaCost, int attack, int defence, string description) :
     Card{name, owner, manaCost, description}, attack{attack}, defence{defence} {}
 
-void Minion::attackMinion(Minion *other) {
-    other.addStats(0, -attack);
-    addStats(0, -otherMinion.getAttack());
+void Minion::attack(Player *other) {
+   /* try { 
+        lowerAction(1);
+    } catch (...) {
+        ...
+    } */
+    other->reduceLife(attack);
 }
 
-void Minion::addAction(int i){
-    actions += 1;
+void Minion::attack(Minion *other) {
+   /* try { 
+        lowerAction(1);
+    } catch (...) {
+        ...
+    } */
+    addStats(0, -other->getAttack())
+    other->damage(0, -attack);
+    
+    if (other->getDefense() == 0){
+        other->owner->myBoard.destroy(*other);
+    }
+    if (defence == 0){
+        myBoard.destroy(*this);
+    }
 }
 
-void Minion::lowerAction(int i){
+void Minion::lowerAction(int i) {
+    if (actions - i < 0){
+        // throw ...
+    }
     actions -= i;
-    if (actions <= 0){
-        actions = 0;
-    }
 }
 
-void Minion::setAction(int i ){
+void Minion::setAction(int i) {
     actions = i;
-    if (actions < 0){
-        actions = 0;
-    }
 }
 
-int Minion::getAction(){
+int Minion::getActions() {
     return actions;
 }
- 
-void Minion::addStats(int att, int def){
+
+void Minion::addStats(int att, int def ){
     attack += att;
     defence += def;
-    
-    if (attack < 0) attack = 0;
-    if (defence < 0) defence = 0;
 }
 
-void Minion::setAttack(int i){
+void Minion::setAttack(int i) {
     attack = i;
-    if (attack < 0){
-        attack = 0;
-    }
 }
 
-void Minion::setDefense(int i){
+void Minion::setDefense(int i) {
     defense = i;
-    if (defense < 0){
-        defense = 0;
-    }
 }
     
-void Minion::setStats(int attack, int defense){
+void Minion::setStats(int attack, int defense) {
     setAttack(attack);
     setDefense(defense);
 }
