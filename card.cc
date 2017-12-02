@@ -25,4 +25,4 @@ void Card::getManaCost(){
     return manaCost;
 }
 
-void Card::destroy() {}
+void Card::destroy(Graveyard &g) {}
