@@ -5,11 +5,11 @@
 #include "cardcollection.h"
 #include "card.h"
 
-class Hand: public CardCollection<Card>{
-
+class Hand: public CardCollection<Card> {
+    
 	public:
-	card_template_t displayHand();
-	void discard(int i);
+	    card_template_t displayHand();
+	    void moveCardTo(int cardPosition, Board &b, int target = -1) override;
 };
 
 
