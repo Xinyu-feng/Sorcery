@@ -5,6 +5,7 @@
 
 #include <string>
 #include <fstream>
+#include <memory>
 #include <algorithm>
 
 using namespace std;
@@ -20,7 +21,7 @@ Deck::Deck(string deckFile, shared_ptr<Player> owner){
         addCard(createCard(cardName));
     }
 
-    shuffle();
+    shuffle(); // always shuffle on construction
 }
 
 void Deck::shuffle(){
