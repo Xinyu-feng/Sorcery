@@ -23,18 +23,16 @@ class Player {
 	Player(int player, std::string name, std::string deckFile);
 
 	void draw(int i = 1);
-	void play(int i, int p = 1, char t = '\0');
+	void play(int i, int p = 0, char t = '\0');
 	void attack(int i, int j = 0);
 	void use(int i, int p, int t);
 	//std::vector<std::string> displayBoard();
 	void discard(int i);
 	//std::vector<std::string> displayHand();
 	
-	void addMagic(int i);
 	void deductMagic(int i);
 	int getMagic();
 	
-	void addLife(int i);
 	void deductLife(int i);
 	int getLife();
 };
