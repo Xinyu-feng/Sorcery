@@ -17,7 +17,7 @@ Deck::Deck(string deckFile, shared_ptr<Player> owner){
     
     string cardName;
     
-    while(deck.getline(cardName)){
+    while(std::getline(deck, cardName)){
         addCard(createCard(cardName));
     }
 
