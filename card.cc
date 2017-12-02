@@ -24,3 +24,5 @@ void Card::notify(Subject &whoFrom) {
 void Card::getManaCost(){
     return manaCost;
 }
+
+void Card::destroy() {}
