@@ -1,14 +1,14 @@
-CC = g++
+CXX=g++
+CXXFLAGS=-std=c++14 -Wall -g -MMD -Werror=vla
+OBJECTS = ascii_graphics.o board.o boardsubject.o card.o cardcollection.o deck.o effect.o enchant.o enchantment.o graphicsdisplay.o graveyard.o hand.o helper.o minion.o miniondecorator.o observer.o player.o ritual.o spell.o state.o subject.o window.o
+DEPENDS=${OBJECTS:.o=.d}
+EXEC=Sorcery
 
-CXXFLAGS = -std=c++14 -Werror=vla
+${EXEC}: ${OBJECTS} 
+	${CXX} ${CXXFLAGS} ${OBJECTS} -o ${EXEC}
 
-DEPS = player.o deck.o main.o
-
-%.o: %.cc %.h
-	${CC} ${CXXFLAGS} -c $<
-
-Sorcery: ${DEPS}
-	${CC} ${CXXFLAGS} ${DEPS} -o Sorcery
+-include ${DEPENDS}
 
 clean:
-	rm *.o
+	rm ${OBJECTS} ${EXEC}
+.PHONY: clean
