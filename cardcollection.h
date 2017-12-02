@@ -6,27 +6,33 @@
 
 class Board;
 class Card;
+class Graveyard
+class Hand;
 
-template<typename T> class CardCollection {
-	std::vector <std::shared_ptr<T>> cardList;
-public:
+class CardCollection {
+    protected:
+    	std::vector <std::shared_ptr<Card>> cardList;
+    public:
 
 
-    // This function moves a card to the collect CardCollection
-    // cardPosition represents the position of the card in the deck
-    // Default value -1 indicates you want the top card
+        // This function moves a card to the collect CardCollection
+        // cardPosition represents the position of the card in the deck
+
     
-	void moveCard(CardCollection<Card> &collect, int cardPosition = -1);
-	void moveCardToBoard(Board &b, int cardPosition = -1, int target = -1);
+	    virtual void moveCardTo(int cardPosition, Hand &h) = 0;
+	    virtual void moveCardTo(int cardPosition, Graveyard &g);
+	   // -1 indicates you want the top card
+	    virtual void moveCardTo(int cardPosition, Deck &d) = 0;
+	    virtual void moveCardTo(int cardPosition, Board &b, int target = -1);
 	
-	virtual void addCard(std::shared_ptr<T> card);
-	std::shared_ptr<T> getCard(int i);
+	    void addCard(const Card &card);
+    	std::shared_ptr<Card> getCard(int i);
 	
-	void setCard(std::shared_ptr<T> card, int index);
-	void deleteCard(int index);
+    	void setCard(std::shared_ptr<Card> card, int index);
+    	virtual void discard(int index) = 0;
 	
-	int getCardCount();
-	virtual ~CardCollection() = 0;
+    	int getCardCount();
+    	virtual ~CardCollection() = 0;
 };
 
 
