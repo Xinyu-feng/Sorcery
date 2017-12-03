@@ -15,61 +15,79 @@ void Player::draw(int i){
     }
 }
 
-void Player::play(int i, int p, char t) {
+void Player::play(int i, int p, char t) { // have this remove magic
     if (t == '\0' || t > '5' || p != 1 || p != 2) {
         // throw ...
     } else {
-        
-        int target;
-        // t is one of '1', '2', '3', '4', '5', 'r'
-        if (t == 'r'){
-            target = 0; // ritual located on index 0
-        } else {
-            target = t;
-        }
+
         Card *c = hand.getCard(i);
-        Board b = p == 1 ? myBoard : *otherBoard;
         string cardName = c->getName();
-        
-        if (cardName == "Banish") {
-            hand.removeCard(i);
-            b.moveTo(t, graveyard);
-        } else if (cardName == "Unsummon") {
-            b.moveTo
+        if (p == 0) { // no targets
+            if (cardName == "Raise Dead") {
+                if (graveyard.getSize() != 0) graveyard.moveCardTo(-1, myBoard);
+            } else if (cardName == "Blizzard") {
+                myBoard.play(c);
+                otherBoard.play(c);
+                
+                for (int j = 0; j < myBoard.getSize(); ++j) {
+                    if (myBoard.getCard(j)->getDefence() <= 0) destroyMinion(j--) // minion is erased from cardList and size decreases by one, so counter needs to be set one back
+                }
+                for (int j = 0; j < otherBoard.getSize(); j++) {
+                    if (otherBoard.getCard(j)->getDefence() <= 0) otherPlayer->destroyMinion(j--); // see above for loop
+                }
+            } else { 
+                myBoard.play(c);
+            }
         }
+        else if (p == player) playTargetCard(c, t);
+        else otherPlayer->playTargetCard(c, t);
+    }
+}
+
+void Player::playTargetCard(Card *c, int t) {
+    string cardName = c->getName();
+    if (cardName == "Banish") {
+        destroyMinion(t);
+    } else if (cardName == "Unsummon") {
+        returnToHand(t);
+    } else if (cardName == "Disenchant") {
+        myBoard.removeEnchant(t);   
+    } else {
+        myBoard.play(c, t); // play enchantment c on target t
     }
 }
 
 void Player::attack(int i, int j) {
-    if (i < 0 || i > 5 || j < 0 || j > 5) {
-        // throw ...
-    }
-    
     std::shared_ptr<Minion> myMinion = myBoard.getCard(i - 1);
     if (j != 0){
         myMinion->attack(otherPlayer);
     } else {
-        std::shared_ptr<Minion> otherMinion = otherPlayer->myBoard.getCard(j - 1);
+        std::shared_ptr<Minion> otherMinion = otherBoard.getCard(j - 1);
         myMinion->attack(otherMinion);
     }
-    if (myMinion->getDefense() <= 0) myBoard.moveCardTo(i - 1, graveyard);
-    if (otherMinion.getDefense() <= 0) otherBoard.moveCardTo(j - 1, graveyard)
+    if (myMinion->getDefense() <= 0) destroyMinion(i - 1)
+    if (otherMinion.getDefense() <= 0) otherPlayer.destroyMinion(j - 1)
 }
 
 void Player::use(int i, int p, int t) {
 }
 
 //std::vector<std::string> displayBoard();
-	
-void Player::discard(int i){
-    hand.discard(i);
+
+void Player::destroyMinion(int i) {
+    board.moveCardTo(i, graveyard);
+    board.notifyObservers(); // state should be Destroyed
+}
+
+void Player::returnToHand(int i) {
+    board.moveCardTo(i, hand);
 }
 
 //std::vector<std::string> displayHand();
 	
-void Player::deductMagic(int i){
+void Player::deductMagic(int i, bool testing){
+    if (magic - i < 0 && !testing) // throw;
     magic -= i;
-    if (magic < 0) magic = 0;
 }
 
 int Player::getMagic(){
@@ -78,6 +96,7 @@ int Player::getMagic(){
 	
 void Player::deductLife(int i){
     life -= i;
+    if (life < 0) // i lose
 }
 
 int Player::getLife(){
