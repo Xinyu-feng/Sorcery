@@ -9,6 +9,10 @@ class Spell: public Card {
 	
 	Spell(std::string name, int manaCost, std::string description = "");
 
+	void runEffect(Subject &board) override;
+
+	void playCard(Board &b, int target = -1) override;
+	
 	card_template_t displayCard() override;
 };
 
