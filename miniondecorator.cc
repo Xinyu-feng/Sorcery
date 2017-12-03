@@ -1,6 +1,7 @@
 #include "miniondecorator.h"
 
-#include <utility>
+#include <memory>
+#include "minion.h"
 
 MinionDecorator::MinionDecorator(std::shared_ptr<Minion> m):m{m}{}
 
