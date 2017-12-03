@@ -9,8 +9,8 @@
 
 using namespace std;
 
-BasicMinion::BasicMinion(string name, shared_ptr<Player> owner, int manaCost, int attack, int defence, string description = "") : 
-    Minion{name, owner, manaCost, attack, defence, description} {}
+BasicMinion::BasicMinion(string name, int manaCost, int attack, int defence, string description = "") : 
+    Minion{name, manaCost, attack, defence, description} {}
 
 void BasicMinion::runEffect(Subject &board) {
 }
