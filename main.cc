@@ -63,6 +63,13 @@ int main(int argc, char *argv[]) {
 	// load player decks from file stream, shuffle only if testing is false
 	Player player1{1, "Yugi Moto", player1Deck, !testing};
 	Player player2{2, "Joey Wheeler", player2Deck, !testing};
+	
+	player1.setOtherPlayer(&player2);
+	player1.setOtherBoard(player2.getBoard());
+	
+	player2.setOtherPlayer(&player1);
+	player2.setOtherBoard(player1.getBoard());
+	
 	string input;
 	int turn = 1;
 	// should be using a pointer
