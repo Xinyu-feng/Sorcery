@@ -29,7 +29,8 @@ class Player {
 	void use(int i, int p, int t);
 	//std::vector<std::string> displayBoard();
 	void discard(int i);
-	//std::vector<std::string> displayHand();
+	std::vector<std::string> displayHand();
+	std::vector<std::string> inspectMinion(int i);
 	
 	void deductMagic(int i);
 	int getMagic();
