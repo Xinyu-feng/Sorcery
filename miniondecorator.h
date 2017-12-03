@@ -2,7 +2,7 @@
 #define _MINION_DECORATOR_H_
 
 #include "minion.h"
-#include <utility>
+#include <memory>
 
 class MinionDecorator: public Minion{
 
