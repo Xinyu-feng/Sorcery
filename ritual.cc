@@ -39,3 +39,6 @@ void Ritual::playCard(Board &b, int target){
 card_template_t Ritual::displayCard() {
 	return display_ritual(this->getName(), this->getManaCost(), this->activationCost, this->getDescription(), this->charges)
 }
+
+void Ritual::addCharges(int i) { charges += i; }
+void Ritual::addActivateCost(int i) { activationCost += i; }
