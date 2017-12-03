@@ -1,5 +1,5 @@
 #include "player.h"
-#include "minion.h"
+
 
 
 Player::Player(int player, std::string name, std::string deckFile):
@@ -27,15 +27,12 @@ void Player::play(int i, int p, char t) {
         } else {
             target = t;
         }
-        Card *c = hand.getCard(i);
-        Board b = p == 1 ? myBoard : *otherBoard;
-        string cardName = c->getName();
-        
-        if (cardName == "Banish") {
-            hand.removeCard(i);
-            b.moveTo(t, graveyard);
-        } else if (cardName == "Unsummon") {
-            b.moveTo
+
+        if (p == 1){
+            hand.moveCardToBoard(myBoard, i - 1, target);
+        }
+        else{
+            hand.moveCardToBoard(*otherBoard, i - 1, target);
         }
     }
 }
@@ -52,8 +49,6 @@ void Player::attack(int i, int j) {
         std::shared_ptr<Minion> otherMinion = otherPlayer->myBoard.getCard(j - 1);
         myMinion->attack(otherMinion);
     }
-    if (myMinion->getDefense() <= 0) myBoard.moveCardTo(i - 1, graveyard);
-    if (otherMinion.getDefense() <= 0) otherBoard.moveCardTo(j - 1, graveyard)
 }
 
 void Player::use(int i, int p, int t) {
