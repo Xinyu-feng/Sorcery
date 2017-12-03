@@ -25,7 +25,14 @@ void Minion::attack(Minion *other) {
         ...
     } */
     addStats(0, -other->getAttack());
-    other->addStats(0, -attack);
+    other->damage(0, -attack);
+    
+    if (other->getDefense() == 0){
+        other->owner->myBoard.discard(*other);
+    }
+    if (defence == 0){
+        myBoard.discard(*this);
+    }
 }
 
 void Minion::lowerAction(int i) {
@@ -43,7 +50,7 @@ int Minion::getActions() {
     return actions;
 }
 
-void Minion::addStats(int att, int def) {
+void Minion::addStats(int att, int def ){
     attack += att;
     defence += def;
 }
