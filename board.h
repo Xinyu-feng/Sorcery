@@ -10,6 +10,7 @@
 class Enchantment;
 class Minion;
 class Ritual;
+class Spell;
 
 class Board: public CardCollection {
 
@@ -34,10 +35,12 @@ public:
 	//std::vector<string> displayBoard();
 	//void attack(int i, int j);
 	//void inflictDamage(int i, int d);
+	std::shared_ptr<Ritual> getRitual();
 	std::shared_ptr<Card> removeEnchant(int i);
 	// -1 indicates you want the ritual
 	void moveCardTo(int cardPosition, Hand &h) override;
 	void moveCardTo(int cardPosition, Graveyard &g) override;
+	void notifyObservers();
 };
 
 

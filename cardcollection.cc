@@ -3,7 +3,7 @@
 
 class Board;
 
-void CardCollection::addCard(Card *card){
+void CardCollection::addCard(std::shared_ptr<Card> card){
     cardList.emplace_back(card);
 }
 

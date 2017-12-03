@@ -1,35 +1,42 @@
 #include "board.h"
+#include "minion.h"
+#include "card.h"
+#include "hand.h"
+#include "ritual.h"
+#include "spell.h"
+#include "graveyard.h"
 
 using namespace std;
 
-Board::Board():CardCollection{}, BoardSubject{}, minionCount{0}{
+// BoardSubject{} removed from constructor
+Board::Board():CardCollection{}, minionCount{0}{
 
 }
 
-shared_ptr<Ritual> &Board::getRitual() { return ritual; }
+shared_ptr<Ritual> Board::getRitual() { return ritual; }
 
 void Board::play(shared_ptr<Minion> m){
-    addCard(m);
+	addCard(m);
     minionCount += 1;
     // notifyObservers(m, state);
 }
 
-void Board::play(shared_ptr<Spell> s){
+void Board::play(shared_ptr<Spell> s, int target){
     if (s->getName() == "Recharge") {
         if (ritual) {
-            ritual.addCharges(3);
+            ritual->addCharges(3);
         } else {
             // throw ...
         }
-    } else if (s->getName == "Blizzard") {
+    } else if (s->getName() == "Blizzard") {
         for (auto minion : cardList) {
-            minion->addStats(0, -2);
+            dynamic_pointer_cast<Minion>(minion)->addStats(0, -2);
         }
     }
 }
 
 void Board::play(shared_ptr<Enchantment> e, int target) {
-    *getCard(target) = Enchant(b, std::shared_ptr<Enchantment>{this});
+    //*getCard(target) = Enchant(e, std::shared_ptr<Enchantment>{this});
 }
 
 void Board::play(shared_ptr<Ritual> r) {
@@ -45,13 +52,13 @@ void Board::moveCardTo(int cardPosition, Hand &h) {
         ritual.reset();
     } else {
         h.addCard(cardList.at(cardPosition));
-        cardList.erase(cardPosition);
+        cardList.erase(cardList.begin() + cardPosition);
     }
 }
 
 void Board::moveCardTo(int cardPosition, Graveyard &g) {
     g.addCard(cardList.at(cardPosition));
-    cardList.erase(cardPosition);
+    cardList.erase(cardList.begin() + cardPosition);
 }
 
 void Board::notifyObservers() {
