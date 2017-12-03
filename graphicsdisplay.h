@@ -11,5 +11,6 @@ class GraphicsDisplay {
 	public:
 	GraphicsDisplay(int width, int height);
 	void clearScreen();
+	void printVec(std::vector<std::string> vec);
 };
 #endif

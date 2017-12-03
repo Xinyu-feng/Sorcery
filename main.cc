@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
 			}
 			else if (args[i] == "-graphics") {
 				graphics = true;
-				g = unique_ptr<GraphicsDisplay>(new GraphicsDisplay(640, 480));
+				g = unique_ptr<GraphicsDisplay>(new GraphicsDisplay(1280, 720));
 			}
 		}
 	}
@@ -68,11 +68,11 @@ int main(int argc, char *argv[]) {
 	//Player player1{1, "Yugi Moto", player1Deck, !testing};
 	//Player player2{2, "Joey Wheeler", player2Deck, !testing};
 	
-	player1.setOtherPlayer(&player2);
-	player1.setOtherBoard(player2.getBoard());
+	//player1.setOtherPlayer(&player2);
+	//player1.setOtherBoard(player2.getBoard());
 	
-	player2.setOtherPlayer(&player1);
-	player2.setOtherBoard(player1.getBoard());
+	//player2.setOtherPlayer(&player1);
+	//player2.setOtherBoard(player1.getBoard());
 	
 	string input;
 	int turn = 1;
@@ -108,7 +108,7 @@ int main(int argc, char *argv[]) {
     				printVec(helpMessage);
     				// output help message to graphics display
     				if (graphics) {
-    					//graphics.displayHelp(helpMessage); or something
+    					g->printVec(helpMessage);
     				}
     			}
     			else if (input == "end") {
