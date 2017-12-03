@@ -7,7 +7,7 @@ class Spell: public Card {
 	
 	public:
 	
-	Spell(std::string name, std::shared_ptr<Player> owner, int manaCost, std::string description = "");
+	Spell(std::string name, int manaCost, std::string description = "");
 
 	void runEffect(Subject &board) override;
 
