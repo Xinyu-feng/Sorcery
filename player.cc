@@ -8,6 +8,18 @@ Player::Player(int player, std::string name, std::string deckFile, bool shuffle)
     draw(5);
 }
 
+void Player::setOtherPlayer(Player *otherPlayer){
+    this->otherPlayer = otherPlayer;
+}
+
+
+void Player::setOtherBoard(Board *otherBoard){
+    this->otherBoard = otherBoard;
+}
+
+Board *Player::getBoard(){
+    return &myBoard;
+}
 
 void Player::draw(int i){
     for (int j = 0; j < i; j++) {
