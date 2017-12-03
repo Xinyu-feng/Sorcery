@@ -3,7 +3,7 @@
 
 
 Player::Player(int player, std::string name, std::string deckFile, bool shuffle):
-    	player{player}, name{name}, deck{deckFile, std::shared_ptr<Player>(this), shuffle} {
+    	player{player}, name{name}, deck{deckFile, shuffle} {
 	    
     draw(5);
 }
