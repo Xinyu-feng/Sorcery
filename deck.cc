@@ -10,7 +10,7 @@
 
 using namespace std;
 
-Deck::Deck(string deckFile, shared_ptr<Player> owner, bool shuffle){
+Deck::Deck(string deckFile, bool shuffle){
     ifstream deck{deckFile};
     
     deck.open();
