@@ -62,7 +62,7 @@ void Board::moveCardTo(int cardPosition, Graveyard &g) {
 }
 
 
-card_template_t inspect(int i){
+card_template_t Board::inspect(int i){
     std::vector<card_template_t> cards = getCard(i-1)->inspectMinion();
     
     int cardCount = cards.size();
