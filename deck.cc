@@ -10,7 +10,7 @@
 
 using namespace std;
 
-Deck::Deck(string deckFile, shared_ptr<Player> owner){
+Deck::Deck(string deckFile, shared_ptr<Player> owner, bool shuffle){
     ifstream deck{deckFile};
     
     deck.open();
@@ -20,8 +20,9 @@ Deck::Deck(string deckFile, shared_ptr<Player> owner){
     while(std::getline(deck, cardName)){
         addCard(createCard(cardName));
     }
-
-    shuffle(); // always shuffle on construction
+	if (shuffle) {
+    	shuffle();
+	}
 }
 
 void Deck::shuffle(){

@@ -21,7 +21,7 @@ class Player {
 	std::string name;
 	
 	public:
-	Player(int player, std::string name, std::string deckFile);
+	Player(int player, std::string name, std::string deckFile, bool shuffle);
 
 	void draw(int i = 1);
 	void play(int i, int p = 0, char t = '\0');
