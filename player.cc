@@ -27,14 +27,15 @@ void Player::play(int i, int p, char t) {
         } else {
             target = t;
         }
-
-        if (p == 1){
-            //rewrite w/ moveCardTo
-            hand.moveCardTo(myBoard, i - 1, target);
-        }
-        else{
-            //rewrite w/ moveCardTo
-            hand.moveCardTo(*otherBoard, i - 1, target);
+        Card *c = hand.getCard(i);
+        Board b = p == 1 ? myBoard : *otherBoard;
+        string cardName = c->getName();
+        
+        if (cardName == "Banish") {
+            hand.removeCard(i);
+            b.moveTo(t, graveyard);
+        } else if (cardName == "Unsummon") {
+            b.moveTo
         }
     }
 }
