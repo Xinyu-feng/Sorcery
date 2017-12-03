@@ -59,5 +59,3 @@ void Board::notifyObservers() {
         minion->notify();
     }
 }
-    }
-}
