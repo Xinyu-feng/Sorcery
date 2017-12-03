@@ -24,7 +24,7 @@ public:
 	Board();
 	
 	int getMinionCount();
-	void play(Spell &s, int target = -1);
+	void play(std::shared_ptr<Spell> s, int target = -1);
 	void play(std::shared_ptr<Minion> m);
 	void play(std::shared_ptr<Enchantment> e, int target);
 	void play(std::shared_ptr<Ritual> r);
