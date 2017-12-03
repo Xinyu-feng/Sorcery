@@ -21,10 +21,8 @@ class Card: public Observer{
 	    void notify(Subject &whoFrom);
 	
     	int getManaCost();
-	
 	    std::string getName();
-
-    	std::string getDescription();
+        std::string getDescription();
 
     	virtual void runEffect(Subject &board);
     	virtual card_template_t displayCard() = 0;
