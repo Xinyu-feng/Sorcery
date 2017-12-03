@@ -30,11 +30,11 @@ void Player::play(int i, int p, char t) {
 
         if (p == 1){
             //rewrite w/ moveCardTo
-            hand.moveCardToBoard(myBoard, i - 1, target);
+            hand.moveCardTo(myBoard, i - 1, target);
         }
         else{
             //rewrite w/ moveCardTo
-            hand.moveCardToBoard(*otherBoard, i - 1, target);
+            hand.moveCardTo(*otherBoard, i - 1, target);
         }
     }
 }
@@ -51,6 +51,8 @@ void Player::attack(int i, int j) {
         std::shared_ptr<Minion> otherMinion = otherPlayer->myBoard.getCard(j - 1);
         myMinion->attack(otherMinion);
     }
+    if (myMinion->getDefense() <= 0) myBoard.moveCardTo(i - 1, graveyard);
+    if (otherMinion.getDefense() <= 0) otherBoard.moveCardTo(j - 1, graveyard)
 }
 
 void Player::use(int i, int p, int t) {
