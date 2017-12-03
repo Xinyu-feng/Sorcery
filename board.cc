@@ -77,7 +77,7 @@ card_template_t Board::inspect(int i){
             topCardHeight += 11;
             // Adding new lines
             for (int j = 0; j < 11; ++j){
-                inspectDisplay.emplaceBack(std::string{""});
+                inspectDisplay.emplace_back(std::string{""});
             }
         }
         
