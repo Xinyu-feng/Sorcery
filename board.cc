@@ -62,8 +62,8 @@ void Board::moveCardTo(int cardPosition, Graveyard &g) {
 }
 
 
-card_template_t inspect(int i){
-    std::vector<card_template_t> cards = getCard(i-1)->inspectMinion();
+card_template_t Board::inspect(int i){
+    std::vector<card_template_t> cards = (static_cast<std::shared_ptr<Minion>>(getCard(i-1)))->inspectMinion();
     
     int cardCount = cards.size();
     
@@ -77,7 +77,7 @@ card_template_t inspect(int i){
             topCardHeight += 11;
             // Adding new lines
             for (int j = 0; j < 11; ++j){
-                inspectDisplay.emplaceBack(std::string{""});
+                inspectDisplay.emplace_back(std::string{""});
             }
         }
         
