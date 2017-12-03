@@ -19,6 +19,11 @@ card_template_t Hand::displayHand() {
 }
 
 void Hand::moveCardTo(int cardPosition, Graveyard &g) {
-    cardList.at(cardPosition)->destroy(g);
-    cardList.erase(cardList.begin() + i);
+    g.addCard(cardList.at(cardPosition));
+    cardList.erase(cardList.begin() + cardPosition);
+}
+
+void Hand::moveCardTo(int cardPosition, Board &b) {
+    b.play(cardList.at(cardPosition));
+    cardList.erase(cardList.begin() + cardPosition);
 }
