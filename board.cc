@@ -61,6 +61,34 @@ void Board::moveCardTo(int cardPosition, Graveyard &g) {
     cardList.erase(cardList.begin() + cardPosition);
 }
 
+
+card_template_t inspect(int i){
+    std::vector<card_template_t> cards = getCard(i-1)->inspectMinion();
+    
+    int cardCount = cards.size();
+    
+    card_template_t inspectDisplay = cards.at(0);
+    
+    int topCardHeight = 0;
+    
+    for (int i = 1; i < cardCount; ++i){
+        // If you need a new row (i.e. cards #1, 6, 11, etc)
+        if (i % 5 == 1){
+            topCardHeight += 11;
+            // Adding new lines
+            for (int j = 0; j < 11; ++j){
+                inspectDisplay.emplaceBack(std::string{""});
+            }
+        }
+        
+        // Adding the card to the display
+        for (int l = 0; l < 11; ++l){
+            inspectDisplay.at(topCardHeight + l).append(cards.at(i).at(l));
+        }
+    }
+    
+    return inspectDisplay;
+}
 /*
 void Board::notifyObservers() {
     for (auto minion : cardList) {
