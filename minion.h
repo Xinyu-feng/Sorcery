@@ -11,7 +11,7 @@ class Minion: public Card {
 	int currActions = 0;
 
 	public:
-	Minion(std::string name, std::shared_ptr<Player> owner, int manaCost, int attack, int defence, std::string description = "");
+	Minion(std::string name, int manaCost, int attack, int defence, std::string description = "");
 	void addAction(int i);
 	void lowerAction(int i);
 	void setAction(int i);
