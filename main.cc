@@ -17,8 +17,6 @@ void printVec(vector<string> vec) {
 
 int main(int argc, char *argv[]) {
 
-	//Player player1;
-	//Player player2;
 	ifstream initFile;
 	string initFileName = "";
 	string player1Deck = "default.deck";
@@ -67,13 +65,16 @@ int main(int argc, char *argv[]) {
 	//Player player2{"Joey Wheeler", player2Deck, !testing};
 	string input;
 	int turn = 1;
-	Player currentPlayer = player1;
+	// should be using a pointer
+	//Player currentPlayer = player1;
 	bool gameOn = true;
 
 	// main game loop
 	while (gameOn) {
+	    /*
 	    if (turn % 2 == 0) currentPlayer = player2
 	    else currentPlayer = player1;
+	    */
 	    
 	    currentPlayer.draw();
 	    // start of turn effects
