@@ -51,4 +51,10 @@ std::shared_ptr<Enchantment> Enchant::removeEnchant(){
 card_template_t Enchant::displayCard() {
 	return m->displayCard();
 }
+
+std::vector<card_template_t> Enchant::inspectMinion(){
+    std::vector<card_template_t> inspectInfo = getMinion()->inspectMinion();
+    inspectInfo.emplaceBack(e->displayCard());
+    return inspectInfo;
+}
     
