@@ -7,7 +7,7 @@ class Enchantment : public Card {
     std::string attBuff;
     std::string defBuff;
 public:
-    Enchantment(std::string name, std::shared_ptr<Player> owner, int manaCost, std::string description = "", std::string attBuff = "", std::string defBuff = "");
+    Enchantment(std::string name, int manaCost, std::string description = "", std::string attBuff = "", std::string defBuff = "");
     void runEffect(Subject &board) override;
     
     void playCard(Board &b, int target = -1) override;
