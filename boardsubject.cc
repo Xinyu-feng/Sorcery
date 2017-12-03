@@ -1,4 +1,11 @@
 #include "boardsubject.h"
+#include "card.h"
+#include "minion.h"
+#include "ritual.h"
+#include "observer.h"
+#include <memory>
+
+using namespace std;
 
 BoardSubject::BoardSubject(): myMinionCount{0}, myRitual{false}, theirMinionCount{0}, theirRitual{false}{}
 
@@ -51,6 +58,10 @@ void BoardSubject::setRitual(std::shared_ptr<Ritual> r, bool owner){
 // This method detaches the ritual
 void BoardSubject::desetRitual(std::shared_ptr<Ritual> r, bool owner){
     detach(r);
-    if (owner) myRitual = false;
-    else theirRitual = false;
+    if (owner) {
+		myRitual = false;
+	}
+    else {
+		theirRitual = false;
+	}
 }
