@@ -8,7 +8,7 @@
 
 using namespace std;
 
-Board::Board():CardCollection{}, BoardSubject{}, minionCount{0}{
+Board::Board():CardCollection<Minion>{}, BoardSubject{}, minionCount{0}{
 
 }
 
