@@ -83,7 +83,13 @@ void Player::returnToHand(int i) {
     board.moveCardTo(i, hand);
 }
 
-//std::vector<std::string> displayHand();
+std::vector<std::string> Player::displayHand(){
+    return hand.displayHand();
+}
+
+std::vector<std::string> Player::inspectMinion(int i){
+    return myBoard.inspectMinion(i);
+}
 	
 void Player::deductMagic(int i, bool testing){
     if (magic - i < 0 && !testing) // throw;
