@@ -11,17 +11,28 @@ shared_ptr<Ritual> &Board::getRitual() { return ritual; }
 void Board::play(shared_ptr<Minion> m){
     addCard(m);
     minionCount += 1;
-    notify();
-    attachMinion(m, true);
-    
+    // notifyObservers(m, state);
 }
 
-void Board::play(shared_ptr<Enchantment> e, int target){
+void Board::play(shared_ptr<Spell> s){
+    if (s->getName() == "Recharge") {
+        if (ritual) {
+            ritual.addCharges(3);
+        } else {
+            // throw ...
+        }
+    } else if (s->getName == "Blizzard") {
+        for (auto minion : cardList) {
+            minion->addStats(0, -2);
+        }
+    }
+}
+
+void Board::play(shared_ptr<Enchantment> e, int target) {
     *getCard(target) = Enchant(b, std::shared_ptr<Enchantment>{this});
 }
 
-void Board::play(shared_ptr<Ritual> r){
-    attachRitual(r, true);
+void Board::play(shared_ptr<Ritual> r) {
     ritual = r;
 }
 
@@ -41,4 +52,12 @@ void Board::moveCardTo(int cardPosition, Hand &h) {
 void Board::moveCardTo(int cardPosition, Graveyard &g) {
     g.addCard(cardList.at(cardPosition));
     cardList.erase(cardPosition);
+}
+
+void Board::notifyObservers() {
+    for (auto minion : cardList) {
+        minion->notify();
+    }
+}
+    }
 }
