@@ -15,6 +15,10 @@ BasicMinion::BasicMinion(string name, int manaCost, int attack, int defence, str
 void BasicMinion::runEffect(Subject &board) {
 }
 
+std::vector<card_template_t> inspectMinion(){
+    return std::vector<card_template_t>{displayCard()};
+}
+
 /*
 void BasicMinion::runEffect(Subject &board){
     State s = board.getState();
