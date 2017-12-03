@@ -26,10 +26,15 @@ void Board::moveCardTo(int cardPosition, Hand &h) {
         // throw ...
     }
     if (cardPosition == -1) {
-        hand.addCard(ritual);
+        h.addCard(ritual);
         ritual.reset();
     } else {
-        hand.addCard(cardList.at(cardPosition));
+        h.addCard(cardList.at(cardPosition));
         cardList.erase(cardPosition);
     }
+}
+
+void Board::moveCardTo(int cardPosition, Graveyard &g) {
+    g.addCard(cardList.at(cardPosition));
+    cardList.erase(cardPosition);
 }
