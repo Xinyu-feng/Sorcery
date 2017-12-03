@@ -17,8 +17,6 @@ void printVec(vector<string> vec) {
 
 int main(int argc, char *argv[]) {
 
-	//Player player1;
-	//Player player2;
 	ifstream initFile;
 	string initFileName = "";
 	string player1Deck = "default.deck";
@@ -66,114 +64,126 @@ int main(int argc, char *argv[]) {
 	//Player player1{"Yugi Moto", player1Deck, !testing};
 	//Player player2{"Joey Wheeler", player2Deck, !testing};
 	string input;
-	int turnPlayer = 1;
+	int turn = 1;
+	// should be using a pointer
+	//Player currentPlayer = player1;
+	bool gameOn = true;
 
 	// main game loop
-	while (true) {
-		// default to cin after end of -init file
-		if (!initFile.eof()) {
-			getline(initFile, input);
-		}
-		else {
-			getline(cin, input);
-		}
-		// each input on its own line
-		istringstream iss{input};
-		if (iss >> input) {
-			if (input == "help") {
-				// output help message to text display
-				printVec(helpMessage);
-				// output help message to graphics display
-				if (graphics) {
-					//graphics.displayHelp(helpMessage); or something
-				}
-			}
-			else if (input == "end") {
-				// activate any end of turn effects
-				if (turnPlayer == 1) {
-					turnPlayer = 2;
-				}
-				else {
-					turnPlayer = 1;
-				}
-			}
-			else if (input == "quit") {
-				break;
-			}
-			else if (input == "draw") {
-				if (testing) {
-				}
-			}
-			else if (input == "discard") {
-				if (testing) {
-					int index;
-					if (iss >> index) {
-					}
-				}
-			}
-			else if (input == "attack") {
-				int playerMinion;
-				if (iss >> playerMinion) {
-					int enemyMinion;
-					if (iss >> enemyMinion) {
-						// attack selected minion
-					}
-					else {
-						// attack directly
-					}
-				}
-			}
-			else if (input == "play") {
-				// testing mode should override costs
-				int handCard;
-				if (iss >> handCard) {
-					int owner;
-					if (iss >> owner) {
-						int targetCard;
-						if (iss >> targetCard) {
-							// play card from hand on owner's minion
-						}
-					}
-					else {
-						// play card from hand, no target
-					}
-				}
-			}
-			else if (input == "use") {
-				// testing mode should override costs
-				int minion;
-				if (iss >> minion) {
-					int owner;
-					if (iss >> owner) {
-						int targetCard;
-						if (iss >> targetCard) {
-							// activate effect on owner's minion
-						}
-					}
-					else {
-						// play card from hand, no target
-					}
-				}
-			}
-			else if (input == "inspect") {
-				int minion;
-				if (iss >> minion) {
-					// display inspected minion owned by turn player
-				}
-			}
-			else if (input == "hand") {
-				// display turn player's hand
-				// printVec(player hand -> displayHand());
-				if (graphics) {
-				}
-			}
-			else if (input == "board") {
-				// display the full board
-				// printVec(board->displayBoard());
-				if (graphics) {
-				}
-			}
-		}
+	while (gameOn) {
+	    /*
+	    if (turn % 2 == 0) currentPlayer = player2
+	    else currentPlayer = player1;
+	    */
+	    
+	    currentPlayer.draw();
+	    // start of turn effects
+	    bool myTurn = true;
+	    while (myTurn) {
+    		// default to cin after end of -init file
+    		if (!initFile.eof()) {
+    			getline(initFile, input);
+    		}
+    		else {
+    			getline(cin, input);
+    		}
+    		// each input on its own line
+    		istringstream iss{input};
+    		if (iss >> input) {
+    			if (input == "help") {
+    				// output help message to text display
+    				printVec(helpMessage);
+    				// output help message to graphics display
+    				if (graphics) {
+    					//graphics.displayHelp(helpMessage); or something
+    				}
+    			}
+    			else if (input == "end") {
+    				myTurn = false;
+    				break;
+    			}
+    			else if (input == "quit") {
+    			    gameOn = false;
+    				break;
+    			}
+    			else if (input == "draw") {
+    				if (testing) {
+    				    currentPlayer.draw()
+    				}
+    			}
+    			else if (input == "discard") {
+    				if (testing) {
+    					int index;
+    					if (iss >> index) {
+    					    currentPlayer.discard();
+    					}
+    				}
+    			}
+    			else if (input == "attack") {
+    				int playerMinion;
+    				if (iss >> playerMinion) {
+    					int enemyMinion;
+    					if (iss >> enemyMinion) {
+    						currentPlayer.attack(playerMinion, enemyMinion);
+    					}
+    					else {
+    						currentPlayer.attack(playerMinion);
+    					}
+    				}
+    			}
+    			else if (input == "play") {
+    				// testing mode should override costs
+    				int handCard;
+    				if (iss >> handCard) {
+    					int owner;
+    					if (iss >> owner) {
+    						int targetCard;
+    						if (iss >> targetCard) {
+    							// play card from hand on owner's minion
+    						}
+    					}
+    					else {
+    						// play card from hand, no target
+    					}
+    				}
+    			}
+    			else if (input == "use") {
+    				// testing mode should override costs
+    				int minion;
+    				if (iss >> minion) {
+    					int owner;
+    					if (iss >> owner) {
+    						int targetCard;
+    						if (iss >> targetCard) {
+    							// activate effect on owner's minion
+    						}
+    					}
+    					else {
+    						// play card from hand, no target
+    					}
+    				}
+    			}
+    			else if (input == "inspect") {
+    				int minion;
+    				if (iss >> minion) {
+    					// display inspected minion owned by turn player
+    				}
+    			}
+    			else if (input == "hand") {
+    				// display turn player's hand
+    				// printVec(player hand -> displayHand());
+    				if (graphics) {
+    				}
+    			}
+    			else if (input == "board") {
+    				// display the full board
+    				// printVec(board->displayBoard());
+    				if (graphics) {
+    				}
+    			}
+    		}
 	}
-
+        // end of turn effects
+        ++turn;
+	}
 }
