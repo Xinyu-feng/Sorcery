@@ -6,8 +6,8 @@
 
 using namespace std;
 
-Minion::Minion(string name, shared_ptr<Player> owner, int manaCost, int attack, int defence, string description) :
-    Card{name, owner, manaCost, description}, attack{attack}, defence{defence} {}
+Minion::Minion(string name, int manaCost, int attack, int defence, string description) :
+    Card{name, manaCost, description}, attack{attack}, defence{defence} {}
 
 void Minion::attack(Player *other) {
    /* try { 
