@@ -63,7 +63,7 @@ void Board::moveCardTo(int cardPosition, Graveyard &g) {
 
 
 card_template_t Board::inspect(int i){
-    std::vector<card_template_t> cards = static_cast<std::shared_ptr<Minion>>(getCard(i-1))->inspectMinion();
+    std::vector<card_template_t> cards = (static_cast<std::shared_ptr<Minion>>(getCard(i-1)))->inspectMinion();
     
     int cardCount = cards.size();
     
