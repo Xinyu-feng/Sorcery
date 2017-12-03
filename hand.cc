@@ -1,4 +1,7 @@
 #include "hand.h"
+#include "graveyard.h"
+
+using namespace std;
 
 card_template_t Hand::displayHand() {
 	int cardHeight = 11;
@@ -13,4 +16,9 @@ card_template_t Hand::displayHand() {
 		}
 	}
 	return handDisplay;
+}
+
+void Hand::moveCardTo(int cardPosition, Graveyard &g) {
+    cardList.at(cardPosition)->destroy(g);
+    cardList.erase(cardList.begin() + i);
 }
