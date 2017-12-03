@@ -4,7 +4,7 @@
 
 #include "miniondecorator.h"
 #include "enchantment.h"
-#include <utility>
+#include <memory>
 
 class Enchant: public MinionDecorator{
     
@@ -15,6 +15,8 @@ class Enchant: public MinionDecorator{
     void runEffect(Subject &board) override;
     
     std::shared_ptr<Minion> removeEnchant();
+    
+    std::vector<card_template_t> inspectMinion() override;
 
     card_template_t displayCard() override;
     
