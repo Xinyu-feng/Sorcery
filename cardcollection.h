@@ -27,6 +27,7 @@ class CardCollection {
 	    virtual void moveCardTo(int cardPosition, Board &b, int target = -1);
 	
 	    void addCard(const Card &card);
+	    void removeCard(int index);
     	std::shared_ptr<Card> getCard(int i);
 	
     	void setCard(std::shared_ptr<Card> card, int index);
