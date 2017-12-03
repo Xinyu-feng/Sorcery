@@ -13,8 +13,8 @@ class Player {
 	Graveyard graveyard;
 	Hand hand;
 	Board myBoard;
-	std::shared_ptr<Player> otherPlayer;
-	std::shared_ptr<Board> otherBoard;
+	Player *otherPlayer;
+	Board *otherBoard;
 	Deck deck;
 	int life = 20;
 	int magic = 3;
@@ -22,6 +22,9 @@ class Player {
 	
 	public:
 	Player(int player, std::string name, std::string deckFile, bool shuffle);
+	
+	void setOtherPlayer(Player *otherPlayer);
+	void setOtherBoard(Board *otherBoard);
 
 	void draw(int i = 1);
 	void play(int i, int p = 0, char t = '\0');
