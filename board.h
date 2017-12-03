@@ -37,6 +37,7 @@ public:
 	std::shared_ptr<Card> removeEnchant(int i);
 	// -1 indicates you want the ritual
 	void moveCardTo(int cardPosition, Hand &h) override;
+	void moveCardTo(int cardPosition, Graveyard &g) override;
 };
 
 
