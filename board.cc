@@ -8,8 +8,7 @@
 
 using namespace std;
 
-// BoardSubject{} removed from constructor
-Board::Board():CardCollection{}, minionCount{0}{
+Board::Board():CardCollection{}, BoardSubject{}, minionCount{0}{
 
 }
 
@@ -18,7 +17,8 @@ shared_ptr<Ritual> Board::getRitual() { return ritual; }
 void Board::play(shared_ptr<Minion> m){
 	addCard(m);
     minionCount += 1;
-    // notifyObservers(m, state);
+	notifyObservers();
+    //notifyObservers(m, state);
 }
 
 void Board::play(shared_ptr<Spell> s, int target){
@@ -61,8 +61,10 @@ void Board::moveCardTo(int cardPosition, Graveyard &g) {
     cardList.erase(cardList.begin() + cardPosition);
 }
 
+/*
 void Board::notifyObservers() {
     for (auto minion : cardList) {
         minion->notify();
     }
 }
+*/

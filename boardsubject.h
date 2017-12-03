@@ -4,6 +4,9 @@
 #include "subject.h"
 #include <memory>
 
+class Minion;
+class Ritual;
+
 class BoardSubject: public Subject{
     int myMinionCount;
     bool myRitual;
@@ -24,4 +27,6 @@ public:
     void setRitual(std::shared_ptr<Ritual> r, bool owner);
     void desetRitual(std::shared_ptr<Ritual> r, bool owner);
 
-}
+};
+
+#endif

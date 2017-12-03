@@ -2,6 +2,7 @@
 #define _BOARD_H_
 
 #include "ascii_graphics.h"
+#include "boardsubject.h"
 #include "cardcollection.h"
 #include "state.h"
 #include <string>
@@ -12,7 +13,7 @@ class Minion;
 class Ritual;
 class Spell;
 
-class Board: public CardCollection {
+class Board: public CardCollection, public BoardSubject {
 
 	int minionCount;
 	State s;
