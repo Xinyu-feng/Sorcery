@@ -25,6 +25,7 @@ class Player {
 	
 	void setOtherPlayer(Player *otherPlayer);
 	void setOtherBoard(Board *otherBoard);
+	Board *getBoard();
 
 	void draw(int i = 1);
 	void play(int i, int p = 0, char t = '\0');
