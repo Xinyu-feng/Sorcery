@@ -10,6 +10,8 @@ public:
     
     void runEffect(Subject &board) override;
     
+    std::vector<card_template_t> inspectMinion() override;
+    
 };
 
 
