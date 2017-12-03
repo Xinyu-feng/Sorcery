@@ -2,16 +2,14 @@
 #define GRAPHICSDISPLAY_H
 #include <iostream>
 #include <vector>
-#include "observer.h"
-#include "state.h"
 #include "window.h"
 
-class GraphicsDisplay: public Observer {
-	//const int gridSize;
-	const int winSize;
+class GraphicsDisplay {
+	const int width;
+	const int height;
 	Xwindow xw;
 	public:
-	//GraphicsDisplay(int gridSize, int winSize);
-	void notify(Subject &whoNotified) override;
+	GraphicsDisplay(int width, int height);
+	void clearScreen();
 };
 #endif

@@ -3,9 +3,11 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <memory>
 
-#include "deck.h"
-#include "player.h"
+//#include "deck.h"
+//#include "player.h"
+#include "graphicsdisplay.h"
 
 using namespace std;
 
@@ -18,6 +20,7 @@ void printVec(vector<string> vec) {
 int main(int argc, char *argv[]) {
 
 	ifstream initFile;
+	unique_ptr<GraphicsDisplay> g;
 	string initFileName = "";
 	string player1Deck = "default.deck";
 	string player2Deck = "default.deck";
@@ -42,6 +45,7 @@ int main(int argc, char *argv[]) {
 			}
 			else if (args[i] == "-graphics") {
 				graphics = true;
+				g = unique_ptr<GraphicsDisplay>(new GraphicsDisplay(640, 480));
 			}
 		}
 	}
@@ -61,8 +65,8 @@ int main(int argc, char *argv[]) {
 								  "          board -- Describe all cards on the board."};
 
 	// load player decks from file stream, shuffle only if testing is false
-	Player player1{1, "Yugi Moto", player1Deck, !testing};
-	Player player2{2, "Joey Wheeler", player2Deck, !testing};
+	//Player player1{1, "Yugi Moto", player1Deck, !testing};
+	//Player player2{2, "Joey Wheeler", player2Deck, !testing};
 	
 	player1.setOtherPlayer(&player2);
 	player1.setOtherBoard(player2.getBoard());
@@ -72,20 +76,19 @@ int main(int argc, char *argv[]) {
 	
 	string input;
 	int turn = 1;
-	// should be using a pointer
-	Player *currentPlayer = &player1;
+	//Player *currentPlayer = &player1;
 	bool gameOn = true;
 
 	// main game loop
 	while (gameOn) {
 	    if (turn % 2 == 0) {
-			currentPlayer = &player2;
+			//currentPlayer = &player2;
 		}
 	    else {
-			currentPlayer = &player1;
+			//currentPlayer = &player1;
 		}
 
-	    currentPlayer->draw();
+	    //currentPlayer->draw();
 	    
 		// start of turn effects
 	    bool myTurn = true;
@@ -118,7 +121,7 @@ int main(int argc, char *argv[]) {
     			}
     			else if (input == "draw") {
     				if (testing) {
-    				    currentPlayer->draw();
+    				    //currentPlayer->draw();
     				}
     			}
     			else if (input == "discard") {
@@ -134,11 +137,11 @@ int main(int argc, char *argv[]) {
     				if (iss >> playerMinion) {
     					int enemyMinion;
     					if (iss >> enemyMinion) {
-    						currentPlayer->attack(playerMinion, enemyMinion);
+    						//currentPlayer->attack(playerMinion, enemyMinion);
     					}
     					else {
 							// attack directly
-    						currentPlayer->attack(playerMinion);
+    						//currentPlayer->attack(playerMinion);
     					}
     				}
     			}
