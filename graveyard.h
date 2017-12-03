@@ -4,7 +4,7 @@
 #include "cardcollection.h"
 
 
-class Graveyard: public CardCollection {
+class Graveyard: public CardCollection<Minion> {
     void moveCardTo(int cardPosition, Hand &h) override;
     void moveCardTo(int cardPosition, Board &b, int target = -1) override;
 };

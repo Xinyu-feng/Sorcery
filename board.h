@@ -13,7 +13,7 @@ class Minion;
 class Ritual;
 class Spell;
 
-class Board: public CardCollection, public BoardSubject {
+class Board: public CardCollection<Minion>, public BoardSubject {
 
 	int minionCount;
 	State s;

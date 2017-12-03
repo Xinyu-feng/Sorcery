@@ -8,7 +8,7 @@ class Card;
 class Hand;
 class Player;
 
-class Deck: public CardCollection {
+class Deck: public CardCollection<Card> {
 	public:
 	Deck(std::string deckFile, bool shuffle);
     	void shuffle();

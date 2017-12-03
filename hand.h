@@ -8,12 +8,12 @@
 class Board;
 class Graveyard;
 
-class Hand: public CardCollection {
+class Hand: public CardCollection<Card> {
     
 	public:
-	    card_template_t displayHand();
-	    void moveCardTo(int cardPosition, Graveyard &g) override;
-	    void moveCardTo(int cardPosition, Board &b, int target = -1) override;
+	card_template_t displayHand();
+	void moveCardTo(int cardPosition, Graveyard &g) override;
+	void moveCardTo(int cardPosition, Board &b, int target = -1) override;
 };
 
 
