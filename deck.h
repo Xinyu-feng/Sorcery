@@ -10,7 +10,7 @@ class Player;
 
 class Deck: public CardCollection<Card> {
 	public:
-	Deck(std::string deckFile, bool shuffle);
+	Deck(std::string deckFile, bool doShuffle, std::shared_ptr<Player> owner);
     	void shuffle();
         void moveCardTo(int cardPosition, Hand &h) override;
 };

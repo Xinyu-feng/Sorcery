@@ -10,20 +10,20 @@
 
 using namespace std;
 
-Deck::Deck(string deckFile, bool shuffle){
+Deck::Deck(string deckFile, bool doShuffle, shared_ptr<Player> owner) {
     ifstream deck{deckFile};
 
     string cardName;
     
     while(std::getline(deck, cardName)){
-        addCard(createCard(cardName));
+        addCard(createCard(cardName, owner));
     }
-	if (shuffle) {
+	if (doShuffle) {
     	shuffle();
 	}
 }
 
-void Deck::shuffle(){
+void Deck::shuffle() {
     int len = getCardCount();
     
     // swaps two random cards in the vector len * 3 times
@@ -34,13 +34,13 @@ void Deck::shuffle(){
     }
 }
 
-void moveCardTo(int cardPosition, Hand &h) {
+void Deck::moveCardTo(int cardPosition, Hand &h) {
     if (h.getCardCount() == 5) { // full hand
         // throw ...
     }
     if (cardPosition == -1) { // top card
-        cardPosition = getCardCount() - 1;
+        cardPosition = h.getCardCount() - 1;
     }
-    hand.addCard(cardList.at(cardPosition));
+    h.addCard(cardList.at(cardPosition));
     cardList.erase(cardList.begin() + cardPosition);
 }

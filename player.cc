@@ -1,9 +1,9 @@
 #include "player.h"
 #include "minion.h"
-
+#include <memory>
 
 Player::Player(int player, std::string name, std::string deckFile, bool shuffle):
-    	player{player}, name{name}, deck{deckFile, shuffle} {
+    	player{player}, name{name}, deck{deckFile, shuffle, std::make_shared<Player>{this}} {
 	    
     draw(5);
 }
@@ -41,13 +41,7 @@ void Player::play(int i, int p, char t) { // have this remove magic
                 myBoard.play(c);
                 otherBoard.play(c);
                 
-                for (int j = 0; j < myBoard.getSize(); ++j) {
-                    if (myBoard.getCard(j)->getDefence() <= 0) destroyMinion(j--) // minion is erased from cardList and size decreases by one, so counter needs to be set one back
-                }
-                for (int j = 0; j < otherBoard.getSize(); j++) {
-                    if (otherBoard.getCard(j)->getDefence() <= 0) otherPlayer->destroyMinion(j--); // see above for loop
-                }
-            } else { 
+                for (int j = 0; j < myBoard.getSize(); ++j) 
                 myBoard.play(c);
             }
         }
