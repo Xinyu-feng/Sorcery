@@ -1,14 +1,11 @@
 #include "player.h"
 #include "minion.h"
-#include "card.h"
-#include "enchantment.h"
-#include "ritual.h"
+#include "state.h"
 #include <memory>
 
-using namespace std;
-
-Player::Player(int player, string name, string deckFile, bool shuffle):
-    	player{player}, name{name}, deck{deckFile, shuffle} { 
+Player::Player(int player, std::string name, std::string deckFile, bool shuffle):
+    	player{player}, name{name}, deck{deckFile, shuffle, std::make_shared<Player>{this}} {
+	    
     draw(5);
 }
 
@@ -31,105 +28,85 @@ void Player::draw(int i){
     }
 }
 
-void Player::play(int i, int p, int t) { // have this remove magic
-    if (t <= 0 || t > 5 || p != 1 || p != 2) {
+void Player::play(int i, int p, char t) { // have this remove magic
+    if (t == '\0' || t > '5' || p != 1 || p != 2) {
         // throw ...
-    } 
-	else {
-    	shared_ptr<Card> c = hand.getCard(i);
-    	string cardName = c->getName();
-		if (p == 0) { // no targets
-			if (cardName == "Raise Dead") {
-				if (graveyard.getCardCount() != 0) {
-					graveyard.moveCardTo(-1, myBoard);
-				}
-            } 
-			else if (cardName == "Blizzard") {
-				c->playCard(myBoard);
-				c->playCard(*otherBoard);
+    } else {
 
-				int ourMinionCount = myBoard.getCardCount();
-				for (int i = 0; i < ourMinionCount; ++i) {
-					myBoard.inflictDamage(i, 2);
-				}
-				int theirMinionCount = otherBoard->getCardCount();
-				for (int i = 0; i < theirMinionCount; ++i) {
-					otherBoard->inflictDamage(i, 2);
-				}
+        Card *c = hand.getCard(i);
+        string cardName = c->getName();
+        if (p == 0) { // no targets
+            if (cardName == "Raise Dead") {
+                if (graveyard.getSize() != 0) graveyard.moveCardTo(-1, myBoard);
+            } else if (cardName == "Blizzard") {
+                myBoard.play(c);
+                otherBoard.play(c);
 
-                for (int j = 0; j < myBoard.getCardCount(); ++j) {
-                	if ((myBoard.getCard(j))->getDefense() <= 0) {
-						destroyMinion(j);
-						--j; // set counter back
-					}
-				}
-				for (int j = 0; j < otherBoard->getCardCount(); ++j) {
-					if ((otherBoard->getCard(j)->getDefense()) <= 0) {
-						otherPlayer->destroyMinion(j);
-						--j; // set counter back
-					}
-				}
+                for (int j = 0; j < myBoard.getSize(); ++j) {
+                    if (myBoard.getCard(j)->getDefence() <= 0) destroyMinion(j--) // minion is erased from cardList and size decreases by one, so counter needs to be set one back
+                }
+                for (int j = 0; j < otherBoard.getSize(); ++j) {
+                    if (otherBoard->getCard(j)->getDefence() <= 0) otherPlayer->destroyMinion(j--); // see above for loop
+                }
+            } else { 
+                myBoard.play(c);
+                if (c.isMinion()) {
+                    State s{*this, Trigger::Summon, myBoard.getSize() - 1};
+                    notifyApnap(s);
+                }
             }
         }
-        else if (p == player) {
-			playTargetCard(c, t);
-		}
-        else {
-			otherPlayer->playTargetCard(c, t);
-		}
+        else if (p == player) playTargetCard(c, t);
+        else otherPlayer->playTargetCard(c, t);
     }
 }
 
-void Player::playTargetCard(shared_ptr<Card> c, int t) {
+void Player::playTargetCard(Card *c, int t) {
     string cardName = c->getName();
     if (cardName == "Banish") {
-    	destroyMinion(t);
-	} else if (cardName == "Unsummon") {
-    	returnToHand(t);
-	} else if (cardName == "Disenchant") {
+        destroyMinion(t);
+    } else if (cardName == "Unsummon") {
+        returnToHand(t);
+    } else if (cardName == "Disenchant") {
         myBoard.removeEnchant(t);   
     } else {
-		shared_ptr<Enchantment> temp_c = dynamic_pointer_cast<Enchantment>(c);
-        myBoard.play(temp_c, t); // play enchantment c on target t
+        myBoard.play(c, t); // play enchantment c on target t
     }
 }
 
 void Player::attack(int i, int j) {
-    shared_ptr<Minion> myMinion = myBoard.getCard(i - 1);
-	shared_ptr<Minion> otherMinion = otherBoard->getCard(j - 1);
+    std::shared_ptr<Minion> myMinion = myBoard.getCard(i - 1);
     if (j != 0){
-        myMinion->attackOther(otherPlayer);
+        myMinion->attack(otherPlayer);
     } else {
-        myMinion->attackOther(otherMinion);
+        std::shared_ptr<Minion> otherMinion = otherBoard.getCard(j - 1);
+        myMinion->attack(otherMinion);
     }
-    if (myMinion->getDefense() <= 0) {
-		destroyMinion(i - 1);
-	}
-    if (otherMinion->getDefense() <= 0) {
-		otherPlayer->destroyMinion(j - 1);
-	}
+    if (myMinion->getDefense() <= 0) destroyMinion(i - 1)
+    if (otherMinion.getDefense() <= 0) otherPlayer.destroyMinion(j - 1)
 }
 
 void Player::use(int i, int p, int t) {
 }
 
-//vector<string> displayBoard();
+//std::vector<std::string> displayBoard();
 
 void Player::destroyMinion(int i) {
-    myBoard.moveCardTo(i, graveyard);
-    myBoard.notifyObservers(); // state should be Destroyed
+    board.moveCardTo(i, graveyard);
+    State s{*this, Trigger::Leave, i};
+    notifyApnap(s);
 }
 
 void Player::returnToHand(int i) {
-    myBoard.moveCardTo(i, hand);
+    board.moveCardTo(i, hand);
 }
 
-vector<string> Player::displayHand(){
+std::vector<std::string> Player::displayHand(){
     return hand.displayHand();
 }
 
-vector<string> Player::inspectMinion(int i){
-    return myBoard.inspect(i);
+std::vector<std::string> Player::inspectMinion(int i){
+    return myBoard.inspectMinion(i);
 }
 	
 void Player::deductMagic(int i, bool testing){
@@ -141,15 +118,31 @@ int Player::getMagic(){
     return magic;
 }
 	
-void Player::deductLife(int i) {
+void Player::deductLife(int i){
     life -= i;
-	/*
-	// leave this for mainline logic
-    if (life < 0) {
-	}
-	*/
+    if (life < 0) // i lose
 }
 
 int Player::getLife(){
     return life;
+}
+
+void notifyApnap(State s) {
+    myBoard.notifyObservers(s);
+    otherBoard->notifyObservers(s);
+}
+
+void runEffect(Card &c, State s) {
+    if (name == "Dark Ritual" && s.trigger == Trigger::Begin) {
+        ++magic;
+        c.activate();
+    } else if (name == "Aura of Power" && s.trigger == Trigger::Summon && s.player = *this) {
+        myBoard.getCard(i).addStats(1, 1);
+        c.activate();
+    } else if (name == "Standstill" && s.trigger == Trigger::Summon) {
+        s.player.destroyMinion(i);
+        c.activate();
+    } else {
+        //...
+    }
 }
