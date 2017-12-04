@@ -10,7 +10,7 @@ Ritual::Ritual(std::string name, std::shared_ptr<Player> owner, int manaCost, in
 
 void Ritual::notify(State s, Player p) {
     if (active) {
-        p.runEffect(*this, s);
+        p.runEffect(getName(), s);
     }
     if (s.trigger == Trigger::Begin) {
         active = false;
