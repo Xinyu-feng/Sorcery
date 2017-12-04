@@ -8,6 +8,7 @@
 class Board;
 class Subject;
 class Player;
+class State;
 
 class Card: public Observer{
     std::string name;
@@ -17,13 +18,12 @@ class Card: public Observer{
     public:
         Card(std::string name, int manaCost, std::string description = "");
 
-	    void notify(Subject &whoFrom);
+        virtual void notify(State s);
 	
     	int getManaCost();
 	    std::string getName();
         std::string getDescription();
 
-    	virtual void runEffect(Subject &board);
     	virtual card_template_t displayCard() = 0;
     	virtual void playCard(Board &b, int target = -1) = 0;
     	virtual ~Card() = 0;

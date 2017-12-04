@@ -17,10 +17,8 @@ string Card::getDescription() {
 	return description;
 }
 
-void Card::notify(Subject &whoFrom) {
-    runEffect(whoFrom);
-}
-
 int Card::getManaCost(){
     return manaCost;
 }
+
+void notify(State s) {}
