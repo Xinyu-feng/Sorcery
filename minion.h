@@ -14,7 +14,7 @@ class Minion: public Card {
 	Minion();
 	Minion(std::string name, int manaCost, int attack, int defense, std::string description = "");
 
-	void attackOther(std::shared_ptr<Player> other);
+	void attackOther(Player * other);
 	void attackOther(std::shared_ptr<Minion> other);	
 	
 	// these deal with maxActions

@@ -14,11 +14,11 @@ class Player {
 	Hand hand;
 	Board myBoard;
 	Player *otherPlayer;
-	Board *otherBoard;
+	Board *otherBoard;	
+	std::string name;
 	Deck deck;
 	int life = 20;
 	int magic = 3;
-	std::string name;
 	
 	public:
 	Player(int player, std::string name, std::string deckFile, bool shuffle);
@@ -28,15 +28,19 @@ class Player {
 	Board *getBoard();
 
 	void draw(int i = 1);
-	void play(int i, int p = 0, char t = '\0');
+	void play(int i, int p, int t = 0);
+	void playTargetCard(std::shared_ptr<Card> c, int t);
 	void attack(int i, int j = 0);
 	void use(int i, int p, int t);
 	//std::vector<std::string> displayBoard();
 	void discard(int i);
 	std::vector<std::string> displayHand();
 	std::vector<std::string> inspectMinion(int i);
+
+	void destroyMinion(int i);
+	void returnToHand(int i);
 	
-	void deductMagic(int i);
+	void deductMagic(int i, bool testing);
 	int getMagic();
 	
 	void deductLife(int i);

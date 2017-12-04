@@ -43,6 +43,10 @@ void Board::play(shared_ptr<Ritual> r) {
     ritual = r;
 }
 
+void Board::inflictDamage(int i, int d) {
+	cardList.at(i)->addStats(0, -2);
+}
+
 void Board::moveCardTo(int cardPosition, Hand &h) {
     if (h.getCardCount() == 5) { // full hand
         // throw ...

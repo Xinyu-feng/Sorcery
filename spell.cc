@@ -1,27 +1,34 @@
 #include "spell.h"
 #include "state.h"
+#include "board.h"
 
-Spell::Spell(std::string name, int manaCost, string description = "") : 
+using namespace std;
+
+Spell::Spell(string name, int manaCost, string description) : 
     Card{name, manaCost, description} {}
 
 void Spell::runEffect(Subject &board){
 }
 
+// this code was moved to player.cc
 void playCard(Board &b, int target = -1) {
-    
-    std::shared_ptr<Card> t;
-    if (target != -1) t = b.getCard(target);
+	/*
+    string name = getName();
+    shared_ptr<Card> t;
+    if (target != -1) {
+		t = b.getCard(target);
+	}
     
     if (name == "Banish"){
-        if (s.ritual){
+        if (b.ritual){
             board.sendToGraveyard('r');
         }
         else{
-            board.sendToGraveyard(s.position);
+            board.sendToGraveyard(b.position);
         }
     }
     else if (name == "Unsummon"){
-        s.owner->returnToHand(s.position);
+		b->returnToHand(s.position);
     }
     else if (name == "Recharge"){
         s.card->addCharge(3);
@@ -32,7 +39,8 @@ void playCard(Board &b, int target = -1) {
     else if (name == "Raise Dead"){
         board.reviveMonster();
     }
-    else if (name == "Blizzard"){
+    else if (name == "Blizzard") {
+		// this code should be called on both boards
         int ourMinionCount = board.getMinionCount();
         for (int i = 0; i < ourMinionCount; ++i){
             board.inflictDamage(i, 2);
@@ -42,7 +50,9 @@ void playCard(Board &b, int target = -1) {
         for (int i = 0; i < theirMinionCount; ++i){
             player->getBoard().inflictDamage(i, 2);
         }
+		
     }
+	*/
 }
 
 card_template_t Spell::displayCard() {

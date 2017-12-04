@@ -35,7 +35,7 @@ public:
 	card_template_t inspect(int i);
 	//std::vector<string> displayBoard();
 	//void attack(int i, int j);
-	//void inflictDamage(int i, int d);
+	void inflictDamage(int i, int d);
 	std::shared_ptr<Ritual> getRitual();
 	std::shared_ptr<Card> removeEnchant(int i);
 	// -1 indicates you want the ritual

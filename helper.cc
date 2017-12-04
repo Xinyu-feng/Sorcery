@@ -7,7 +7,7 @@
 
 using namespace std;
 
-shared_ptr<Card> createCard(string name, shared_ptr<Player> owner) {
+shared_ptr<Card> createCard(string name) {
 
     shared_ptr<Card> newCard;
 
@@ -83,13 +83,13 @@ shared_ptr<Card> createCard(string name, shared_ptr<Player> owner) {
     // Rituals
     
     else if (name == "Dark Ritual") {
-        newCard = make_shared<Ritual>(name, owner, 0, 5, 1, "At the start of your turn, gain 1 magic");
+        newCard = make_shared<Ritual>(name, 0, 5, 1, "At the start of your turn, gain 1 magic");
     }
     else if (name == "Aura of Power") {
-        newCard = make_shared<Ritual>(name, owner, 1, 4, 1, "Whenever a minion enters play under your control, it gains +1/+1");
+        newCard = make_shared<Ritual>(name, 1, 4, 1, "Whenever a minion enters play under your control, it gains +1/+1");
     }
     else if (name == "Standstill") {
-        newCard = make_shared<Ritual>(name, owner, 3, 4, 2, "Whenever a minion enters play, destroy it");
+        newCard = make_shared<Ritual>(name, 3, 4, 2, "Whenever a minion enters play, destroy it");
     }
     return newCard;
 }

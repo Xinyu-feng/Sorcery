@@ -14,7 +14,7 @@ Minion::Minion(): Card{"", 0, ""} {
 Minion::Minion(string name, int manaCost, int attack, int defense, string description) :
     Card{name, manaCost, description}, attack{attack}, defense{defense} {}
 
-void Minion::attackOther(shared_ptr<Player> other) {
+void Minion::attackOther(Player * other) {
    /* try { 
         lowerAction(1);
     } catch (...) {

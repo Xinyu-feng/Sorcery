@@ -10,13 +10,13 @@
 
 using namespace std;
 
-Deck::Deck(string deckFile, bool doShuffle, shared_ptr<Player> owner) {
+Deck::Deck(string deckFile, bool doShuffle) {
     ifstream deck{deckFile};
 
     string cardName;
     
     while(std::getline(deck, cardName)){
-        addCard(createCard(cardName, owner));
+        addCard(createCard(cardName));
     }
 	if (doShuffle) {
     	shuffle();
