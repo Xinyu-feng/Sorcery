@@ -4,8 +4,9 @@
 enum class Trigger { Begin, Summon, Activate, Leave, End };
 
 struct State {
-  Trigger trigger;
-  int index = -1; // index of card on board, if trigger is summon/activate/leave
+    Player p; // player who triggered the notify
+    Trigger trigger;
+    int index = -1; // index of card on board, if trigger is summon/activate/leave
 };
 
 #endif
