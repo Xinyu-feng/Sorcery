@@ -1,7 +1,7 @@
-#ifndef CREATURE_H
-#define CREATURE_H
+#ifndef ABSTRACTMINION_H
+#define ABSTRACTMINION_H
 
-class Creature {}
+class AbstractMinion {}
     public:
         virtual int getAttack() = 0;
         virtual int getDefence() = 0;
