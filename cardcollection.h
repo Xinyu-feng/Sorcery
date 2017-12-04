@@ -19,7 +19,7 @@ template<typename T> class CardCollection {
     	virtual void moveCardTo(int cardPosition, Graveyard &g);
     	// -1 indicates you want the top card
     	// virtual void moveCardTo(int cardPosition, Deck &d); currently no cards use this
-    	virtual void moveCardTo(int cardPosition, Board &b, int target = -1);
+    	virtual void moveCardTo(int cardPosition, Board &b, int target = -1, int defence = 1); // defence field for resurrecting from graveyard 
       	
     	void addCard(std::shared_ptr<T> card);
     	void removeCard(int index);
