@@ -1,14 +1,14 @@
-#include "creaturedecorator.h"
+#include "miniondecorator.h"
 
 #include <memory>
-#include "creature.h"
+#include "abstactminion.h"
 
 using namespace std;
 
-CreatureDecorator::CreatureDecorator(shared_ptr<Creature> c) : c{c} {}
+MinionDecorator::MinionDecorator(shared_ptr<AbstractMinion> m) : m{m} {}
 
-std::shared_ptr<Creature> CreatureDecorator::getCreature(){
-    return c;
+std::shared_ptr<AbstractMinion> MinionDecorator::getAbstractMinion(){
+    return m;
 }
 
-CreatureDecorator::~CreatureDecorator() {} // do not remove original minion; retain it somehow
+MinionDecorator::~MinionDecorator() {} // do not remove original minion; retain it somehow
