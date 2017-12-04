@@ -1,30 +1,14 @@
 #include "ritual.h"
 #include "subject.h"
 #include "player.h"
-#include "state.h"
 
-Ritual::Ritual(std::string name, std::shared_ptr<Player> owner, int manaCost, int charges, int activationCost, string description) : 
-    Card{name, owner, manaCost, description}, charges{charges}, activationCost{activationCost} {}
+using namespace std;
 
-void Ritual::notify(State s, Player p) {
-    if (active) {
-        p.runEffect(*this, s);
-    }
-    if (s.trigger == Trigger::Begin) {
-        active = false;
-    }
-}
-
-void Ritual::activate() {
-    if (charges < activateCost || active) {
-        // throw...
-    } else {
-        charges -= activateCost;
-        active = true;
-    }
-}
+Ritual::Ritual(string name, int manaCost, int charges, int activationCost, string description) : 
+    Card{name, manaCost, description}, charges{charges}, activationCost{activationCost} {}
 
 /*
+
 void Ritual::runEffect(Subject &board){
     State s = board.getState();
     if (charges >= activationCost){
@@ -51,11 +35,11 @@ void Ritual::runEffect(Subject &board){
 }*/
 
 void Ritual::playCard(Board &b, int target){
-    b.playRitual(std::shared_ptr<Ritual>{this});
+    b.play(shared_ptr<Ritual>{this});
 }
 
 card_template_t Ritual::displayCard() {
-	return display_ritual(this->getName(), this->getManaCost(), this->activationCost, this->getDescription(), this->charges)
+	return display_ritual(this->getName(), this->getManaCost(), this->activationCost, this->getDescription(), this->charges);
 }
 
 void Ritual::addCharges(int i) { charges += i; }
