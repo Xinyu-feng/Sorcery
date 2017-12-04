@@ -11,7 +11,7 @@ class Ritual: public Card {
     bool active = false;
     
     public:
-    Ritual(std::string name, std::shared_ptr<Player> owner, int manaCost, int charges, int activationCost, std::string description = "");
+    Ritual(std::string name, int manaCost, int charges, int activationCost, std::string description = "");
     
     void notify(State s) override;
     
