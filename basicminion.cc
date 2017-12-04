@@ -9,7 +9,7 @@
 
 using namespace std;
 
-BasicMinion::BasicMinion(string name, int manaCost, int attack, int defence, string description = "") : 
+BasicMinion::BasicMinion(string name, int manaCost, int attack, int defence, string description) : 
     Minion{name, manaCost, attack, defence, description} {}
 
 
