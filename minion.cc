@@ -80,13 +80,10 @@ void Minion::playCard(Board &b, int target){
     b.play(shared_ptr<Minion>{this});
 }
 
-/*
-void Minion::destroy(Graveyard &g) {
-    g.addCard(this);
-}
-*/
 
 card_template_t Minion::displayCard() {
 	return display_minion_no_ability(this->getName(), this->getManaCost(),
 									this->getAttack(), this->getDefense());
 }
+
+bool isMinion() { return true; }
