@@ -15,7 +15,11 @@ void Ritual::notify(State s) {
 }
 
 card_template_t Ritual::displayCard() {
-	return display_ritual(this->getName(), this->getManaCost(), this->activationCost, this->getDescription(), this->charges)
+	return display_ritual(this->getName(), this->getManaCost(), this->activationCost, this->getDescription(), this->charges);
+}
+
+void Ritual::playCard(Board &b, int target){
+    b.play(shared_ptr<Ritual>{this});
 }
 
 void Ritual::addCharges(int i) { 
