@@ -3,7 +3,9 @@
 #include <memory>
 #include "creature.h"
 
-CreatureDecorator::CreatureDecorator(Creature *c) : c{c} {}
+using namespace std;
+
+CreatureDecorator::CreatureDecorator(shared_ptr<Creature> c) : c{c} {}
 
 std::shared_ptr<Creature> CreatureDecorator::getCreature(){
     return c;
