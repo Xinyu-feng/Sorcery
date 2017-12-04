@@ -2,23 +2,28 @@
 
 #include <utility>
 #include <string>
-#include <player.h>
+#include "player.h"
 
 using namespace std;
 
-Minion::Minion(string name, int manaCost, int attack, int defence, string description) :
-    Card{name, manaCost, description}, attack{attack}, defence{defence} {}
+Minion::Minion(): Card{"", 0, ""} {
+	attack = 0;
+	defense = 0;
+}
 
-void Minion::attack(Player *other) {
+Minion::Minion(string name, int manaCost, int attack, int defense, string description) :
+    Card{name, manaCost, description}, attack{attack}, defense{defense} {}
+
+void Minion::attackOther(shared_ptr<Player> other) {
    /* try { 
         lowerAction(1);
     } catch (...) {
         ...
     } */
-    other->reduceLife(attack);
+    other->deductLife(attack);
 }
 
-void Minion::attack(Minion *other) {
+void Minion::attackOther(shared_ptr<Minion> other) {
    /* try { 
         lowerAction(1);
     } catch (...) {
@@ -28,24 +33,28 @@ void Minion::attack(Minion *other) {
     other->addStats(0, -attack);
 }
 
+void Minion::addAction(int i) {
+	maxActions += i;
+}
+
 void Minion::lowerAction(int i) {
-    if (actions - i < 0){
+    if (maxActions - i < 0){
         // throw ...
     }
-    actions -= i;
+    maxActions -= i;
 }
 
 void Minion::setAction(int i) {
-    actions = i;
+    maxActions = i;
 }
 
 int Minion::getActions() {
-    return actions;
+    return maxActions;
 }
 
 void Minion::addStats(int att, int def) {
     attack += att;
-    defence += def;
+    defense += def;
 }
 
 void Minion::setAttack(int i) {
@@ -61,17 +70,21 @@ void Minion::setStats(int attack, int defense) {
     setDefense(defense);
 }
 
+/*
 int Minion::getActivateCost(){
     return activateCost;
 }
+*/
 
 void Minion::playCard(Board &b, int target){
-    b.playMinion(shared_ptr<Minion>{this});
+    b.play(shared_ptr<Minion>{this});
 }
 
+/*
 void Minion::destroy(Graveyard &g) {
     g.addCard(this);
 }
+*/
 
 card_template_t Minion::displayCard() {
 	return display_minion_no_ability(this->getName(), this->getManaCost(),

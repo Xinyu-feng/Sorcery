@@ -5,12 +5,7 @@
 #include <memory>
 #include <utility>
 
-#include "card.h"
-#include "enchantment.h"
-#include "basicminion.h"
-#include "ritual.h"
-#include "spell.h"
-
+class Card;
 class Player;
 
 std::shared_ptr<Card> createCard(std::string name, std::shared_ptr<Player> owner);

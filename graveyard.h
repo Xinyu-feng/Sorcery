@@ -3,6 +3,7 @@
 
 #include "cardcollection.h"
 
+class Minion;
 
 class Graveyard: public CardCollection<Minion> {
     void moveCardTo(int cardPosition, Hand &h) override;

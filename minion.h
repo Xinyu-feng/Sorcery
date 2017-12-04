@@ -11,17 +11,23 @@ class Minion: public Card {
 	int currActions = 0;
 
 	public:
-	Minion(std::string name, int manaCost, int attack, int defence, std::string description = "");
+	Minion();
+	Minion(std::string name, int manaCost, int attack, int defense, std::string description = "");
+
+	void attackOther(std::shared_ptr<Player> other);
+	void attackOther(std::shared_ptr<Minion> other);	
+	
+	// these deal with maxActions
 	void addAction(int i);
 	void lowerAction(int i);
 	void setAction(int i);
-	int getAction();
+	int getActions();
 
-	void addStats(int attack, int defence);
+	void addStats(int attack, int defense);
 	void setAttack(int i);
 	void setDefense(int i);
 
-	void setStats(int attack, int defence);
+	void setStats(int attack, int defense);
 
 	int getAttack();
 	int getDefense();
