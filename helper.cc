@@ -7,7 +7,7 @@
 
 using namespace std;
 
-shared_ptr<Card> createCard(string name, shared_ptr<Player> owner) {
+shared_ptr<Card> createCard(string name) {
 
     shared_ptr<Card> newCard;
 
