@@ -83,5 +83,3 @@ card_template_t Minion::displayCard() {
 	return display_minion_no_ability(this->getName(), this->getManaCost(),
 									this->getAttack(), this->getDefense());
 }
-
-bool isMinion() { return true; }
