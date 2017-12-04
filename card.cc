@@ -19,5 +19,3 @@ string Card::getDescription() {
 int Card::getManaCost(){
     return manaCost;
 }
-
-bool Card::isMinion() { return false; }
