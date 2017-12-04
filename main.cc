@@ -185,7 +185,7 @@ int main(int argc, char *argv[]) {
     			}
     			else if (input == "hand") {
     				// display turn player's hand
-    				// printVec(player hand -> displayHand());
+    				printVec(player->displayHand());
     				if (graphics) {
     				}
     			}
