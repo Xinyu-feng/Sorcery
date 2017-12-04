@@ -29,39 +29,37 @@ void Player::draw(int i){
 }
 
 void Player::play(int i, int p, char t) { // have this remove magic
-    if (t == '\0' || t > '5' || p != 1 || p != 2) {
-        // throw ...
-    } else {
+    Card *c = hand.getCard(i);
+    string cardName = c->getName();
+    if (p == 0) { // no targets
+        if (cardName == "Raise Dead") {
+            if (graveyard.getSize() != 0) graveyard.moveCardTo(-1, myBoard);
+        } else if (cardName == "Blizzard") {
+            myBoard.play(c);
+            otherBoard.play(c);
 
-        Card *c = hand.getCard(i);
-        string cardName = c->getName();
-        if (p == 0) { // no targets
-            if (cardName == "Raise Dead") {
-                if (graveyard.getSize() != 0) graveyard.moveCardTo(-1, myBoard);
-            } else if (cardName == "Blizzard") {
-                myBoard.play(c);
-                otherBoard.play(c);
-
-                for (int j = 0; j < myBoard.getSize(); ++j) {
-                    if (myBoard.getCard(j)->getDefence() <= 0) destroyMinion(j--) // minion is erased from cardList and size decreases by one, so counter needs to be set one back
-                }
-                for (int j = 0; j < otherBoard.getSize(); ++j) {
-                    if (otherBoard->getCard(j)->getDefence() <= 0) otherPlayer->destroyMinion(j--); // see above for loop
-                }
-            } else { 
-                myBoard.play(c);
-                if (c.isMinion()) {
-                    State s{*this, Trigger::Summon, myBoard.getSize() - 1};
-                    notifyApnap(s);
-                }
+            for (int j = 0; j < myBoard.getSize(); ++j) {
+                if (myBoard.getCard(j)->getDefence() <= 0) destroyMinion(j--) // minion is erased from cardList and size decreases by one, so counter needs to be set one back
+            }
+            for (int j = 0; j < otherBoard.getSize(); ++j) {
+                if (otherBoard->getCard(j)->getDefence() <= 0) otherPlayer->destroyMinion(j--); // see above for loop
+            }
+        } else { 
+            myBoard.play(c);
+            if (c.isMinion()) {
+                State s{*this, Trigger::Summon, myBoard.getSize() - 1};
+                notifyApnap(s);
             }
         }
-        else if (p == player) playTargetCard(c, t);
-        else otherPlayer->playTargetCard(c, t);
     }
+    else if (p == player) playTargetCard(c, t);
+    else otherPlayer->playTargetCard(c, t);
 }
 
-void Player::playTargetCard(Card *c, int t) {
+void Player::playTargetCard(Card *c, char t) {
+    int target = t - "0";
+    if (t == "r") target = 0;
+    
     string cardName = c->getName();
     if (cardName == "Banish") {
         destroyMinion(t);
