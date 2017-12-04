@@ -12,9 +12,7 @@ using namespace std;
 
 Deck::Deck(string deckFile, bool shuffle){
     ifstream deck{deckFile};
-    
-    deck.open();
-    
+
     string cardName;
     
     while(std::getline(deck, cardName)){

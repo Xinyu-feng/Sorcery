@@ -21,6 +21,6 @@ void Card::notify(Subject &whoFrom) {
     runEffect(whoFrom);
 }
 
-void Card::getManaCost(){
+int Card::getManaCost(){
     return manaCost;
 }

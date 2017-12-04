@@ -1,33 +1,38 @@
 #include "cardcollection.h"
 #include "board.h"
 
-class Board;
-
-void CardCollection::addCard(std::shared_ptr<Card> card){
+template <typename T>
+void CardCollection<T>::addCard(std::shared_ptr<T> card){
     cardList.emplace_back(card);
 }
 
-void CardCollection::removeCard(int index) {
+template <typename T>
+void CardCollection<T>::removeCard(int index) {
     cardList.erase(index);
 }
 
-void Hand::moveCardTo(int cardPosition, Graveyard &g) {
+template <typename T>
+void CardCollection<T>::moveCardTo(int cardPosition, Graveyard &g) {
     cardList.at(cardPosition)->destroy(g);
-    cardList.erase(cardList.begin() + i);
+    cardList.erase(cardList.begin() + cardPosition);
 }
 
-shared_ptr<Card> CardCollection::getCard(int i){
+template <typename T>
+std::shared_ptr<T> CardCollection<T>::getCard(int i){
     return cardList.at(i);
 }
 
-void CardCollection::setCard(std::shared_ptr<Card> card, int index){
-    cardList.at(i) = card;
+template <typename T>
+void CardCollection<T>::setCard(std::shared_ptr<T> card, int index){
+    cardList.at(index) = card;
 }
 
-int CardCollection::getCardCount(){
+template <typename T>
+int CardCollection<T>::getCardCount(){
     return cardList.size();
 }
 
-CardCollection::~CardCollection() {
+template <typename T>
+CardCollection<T>::~CardCollection() {
 	this->cardList.clear();
 }
