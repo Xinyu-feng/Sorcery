@@ -5,49 +5,58 @@
 #include "minion.h"
 #include "state.h"
 
-Enchant::Enchant(std::shared_ptr<Minion> m, std::shared_ptr<Enchantment> e):MinionDecorator{m}, e{e}{
-	std::string enchantName = e->getName();
-    if (enchantName == "Giant Strength"){
-        getMinion()->addStats(2, 2);
-    }
-    else if (enchantName == "Enrage"){
-        getMinion()->setStats(m->getAttack() * 2, m->getDefense() * 2);
-    }
-    else if (enchantName == "Magic Fatigue"){
-        //getMinion()->addAbilityCost(2);
-    }
+using namespace std;
+
+Enchant::Enchant(shared_ptr<AbstractMinion> m, shared_ptr<Enchantment> e) : MinionDecorator{m}, e{e} {}
+
+shared_ptr<Minion> Enchant::removeEnchant() {
+    getMinion();
 }
 
-/*
-void Enchant::runEffect(Subject &b){
-	
-    if (e.getName() != "Silence"){
-    
-        getMinion()->runEffect(b);
-        
-        State s = b->getState();
-        if (e.getName() == "Haste"){
-            if (s.trigger == Trigger::Start){
-                addAction(1);
-            }
+int Enchant::getAttack() {
+    Minion &m = getMinion();
+    if (e->getName() == "Giant Strength") {
+        return m->getAttack() + 2;
+    } else if (e->getName() == "Enrage") {
+        return m->getAttack() * 2;
+    }
+    return m->getAttack();
+}
+
+int Enchant::getDefence() {
+    Minion &m = getMinion();
+    if (e->getName() == "Giant Strength") {
+        return m->getDefence() + 2;
+    } else if (e->getName() == "Enrage") {
+        return m->getDefence() * 2;
+    } 
+    return m->getDefence();
+}
+
+int Enchant::getActions() {
+    Minion &m = getMinion();
+    if (e->getName() == "Haste") {
+        return m->getActions() + 1;
+    } 
+    return m->getActions();
+}
+
+int Enchant::getAbilityCost() {
+    Minion &m = getMinion();
+    if (m->getAbilityCost() != -1) {
+        if (e->getName() == "Magic Fatigue") {
+            return m->getAbilityCost() + 2;
         }
     }
+    return m->getAbilityCost();
 }
-*/
 
-std::shared_ptr<Minion> Enchant::removeEnchant() {
-	std::string enchantName = e->getName();
-    if (enchantName == "Giant Strength"){
-        getMinion()->addStats(-2, -2);
+bool Enchant::active {
+    Minion &m = getMinion();
+    if (e->getName() == "Silence") {
+        return false;
     }
-    else if (enchantName == "Enrage"){
-        getMinion()->setStats(getMinion()->getAttack() / 2, getMinion()->getDefense() / 2);
-    }
-    else if (enchantName == "Magic Fatigue"){
-        //getMinion()->lowerAbilityCost(2);
-    }
-    
-    return getMinion();
+    return m->active();
 }
 
 card_template_t Enchant::displayCard() {
