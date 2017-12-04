@@ -12,6 +12,7 @@ void GraphicsDisplay::clearScreen() {
 }
 
 void GraphicsDisplay::printVec(vector<string> vec) {
+	clearScreen();
 	int x = height / 8;
 	int y = width / 16;
 	for (auto &msg : vec) {
