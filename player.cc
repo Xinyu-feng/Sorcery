@@ -4,6 +4,7 @@
 #include "enchantment.h"
 #include "ritual.h"
 #include "helper.h"
+#include "board.h"
 #include <memory>
 
 using namespace std;
