@@ -19,7 +19,6 @@ class Card {
 	    std::string getName();
         std::string getDescription();
     
-        virtual bool isMinion(); // for observer pattern
     	virtual card_template_t displayCard() = 0;
     	virtual void playCard(Board &b, int target = -1) = 0;
     	virtual ~Card() = default;
