@@ -34,5 +34,5 @@ int CardCollection<T>::getCardCount(){
 
 template <typename T>
 CardCollection<T>::~CardCollection() {
-	this->cardList.clear();
+    this->cardList.clear();
 }

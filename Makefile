@@ -1,6 +1,6 @@
 CXX=g++
 CXXFLAGS=-std=c++14 -Wall -g -MMD -Werror=vla
-OBJECTS = ascii_graphics.o board.o boardsubject.o card.o cardcollection.o deck.o effect.o enchant.o enchantment.o graphicsdisplay.o graveyard.o hand.o helper.o minion.o miniondecorator.o player.o ritual.o spell.o subject.o window.o
+OBJECTS = ascii_graphics.o board.o card.o cardcollection.o deck.o enchant.o enchantment.o graphicsdisplay.o graveyard.o hand.o helper.o minion.o miniondecorator.o player.o ritual.o spell.o subject.o window.o
 DEPENDS=${OBJECTS:.o=.d}
 EXEC=sorcery
 
@@ -10,5 +10,5 @@ ${EXEC}: ${OBJECTS}
 -include ${DEPENDS}
 
 clean:
-	rm ${OBJECTS} ${EXEC}
+	rm ${OBJECTS} ${EXEC} ${DEPENDS}
 .PHONY: clean
