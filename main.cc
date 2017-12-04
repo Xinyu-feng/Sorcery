@@ -128,7 +128,7 @@ int main(int argc, char *argv[]) {
     				if (testing) {
     					int index;
     					if (iss >> index) {
-    						//currentPlayer->discard();
+    						currentPlayer->discard();
     					}
     				}
     			}
