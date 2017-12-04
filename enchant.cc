@@ -9,12 +9,12 @@ using namespace std;
 
 Enchant::Enchant(shared_ptr<AbstractMinion> m, shared_ptr<Enchantment> e) : MinionDecorator{m}, e{e} {}
 
-shared_ptr<Minion> Enchant::removeEnchant() {
-    getMinion();
+shared_ptr<AbstractMinion> Enchant::removeEnchant() {
+    return getAbstractMinion();
 }
 
 int Enchant::getAttack() {
-    Minion &m = getMinion();
+    shared_ptr<AbstractMinion> m = getAbstractMinion();
     if (e->getName() == "Giant Strength") {
         return m->getAttack() + 2;
     } else if (e->getName() == "Enrage") {
@@ -23,18 +23,18 @@ int Enchant::getAttack() {
     return m->getAttack();
 }
 
-int Enchant::getDefence() {
-    Minion &m = getMinion();
+int Enchant::getDefense() {
+    shared_ptr<AbstractMinion> m = getAbstractMinion();
     if (e->getName() == "Giant Strength") {
-        return m->getDefence() + 2;
+        return m->getDefense() + 2;
     } else if (e->getName() == "Enrage") {
-        return m->getDefence() * 2;
+        return m->getDefense() * 2;
     } 
-    return m->getDefence();
+    return m->getDefense();
 }
 
 int Enchant::getActions() {
-    Minion &m = getMinion();
+    shared_ptr<AbstractMinion> m = getAbstractMinion();
     if (e->getName() == "Haste") {
         return m->getActions() + 1;
     } 
@@ -42,7 +42,7 @@ int Enchant::getActions() {
 }
 
 int Enchant::getAbilityCost() {
-    Minion &m = getMinion();
+    shared_ptr<AbstractMinion> m = getAbstractMinion();
     if (m->getAbilityCost() != -1) {
         if (e->getName() == "Magic Fatigue") {
             return m->getAbilityCost() + 2;
@@ -51,21 +51,21 @@ int Enchant::getAbilityCost() {
     return m->getAbilityCost();
 }
 
-bool Enchant::active {
-    Minion &m = getMinion();
+bool Enchant::active() {
+    shared_ptr<AbstractMinion> m = getAbstractMinion();
     if (e->getName() == "Silence") {
         return false;
     }
     return m->active();
 }
-
+/*
 card_template_t Enchant::displayCard() {
-	return getMinion()->displayCard();
+	return getAbstractMinion()->displayCard();
 }
 
-std::vector<card_template_t> Enchant::inspectMinion(){
-    std::vector<card_template_t> inspectInfo = getMinion()->inspectMinion();
+vector<card_template_t> Enchant::inspectMinion(){
+    vector<card_template_t> inspectInfo = getAbstractMinion()->inspectMinion();
     inspectInfo.emplace_back(e->displayCard());
     return inspectInfo;
 }
-    
+  */  

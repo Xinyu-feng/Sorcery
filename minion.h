@@ -28,7 +28,7 @@ class Minion: public Card, public AbstractMinion {
 	void setStats(int attack, int defense);
 
 	int getAttack() override;
-	int getDefence() override;
+	int getDefense() override;
 	virtual int getAbilityCost() override;
 	virtual bool active() override;
 	
@@ -38,7 +38,7 @@ class Minion: public Card, public AbstractMinion {
 	void playCard(Board &b, int target = -1) override;
 
 	//virtual void runEffect(State s) = 0;
-
+	
 	virtual ~Minion() = 0;
 };
 

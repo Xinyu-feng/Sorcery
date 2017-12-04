@@ -21,7 +21,7 @@ class Card {
     
     	virtual card_template_t displayCard() = 0;
     	virtual void playCard(Board &b, int target = -1) = 0;
-    	virtual ~Card() = default;
+	virtual ~Card() = 0;
 };
 #endif
 

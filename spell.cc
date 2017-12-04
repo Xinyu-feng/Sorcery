@@ -1,4 +1,5 @@
 #include "spell.h"
+#include "card.h"
 #include "state.h"
 #include "board.h"
 

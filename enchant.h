@@ -14,13 +14,13 @@ class Enchant: public MinionDecorator{
     
         std::shared_ptr<AbstractMinion> removeEnchant();
         int getAttack() override;
-        int getDefence() override;
+        int getDefense() override;
         int getActions() override;
         int getAbilityCost() override;
-        bool active override;
-        std::vector<card_template_t> inspectMinion() override;
+        bool active() override;
+       // std::vector<card_template_t> inspectMinion();
 
-        card_template_t displayCard() override;
+        //card_template_t displayCard();
     
 };
 

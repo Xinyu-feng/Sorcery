@@ -26,9 +26,10 @@ void Hand::moveCardTo(int cardPosition, Graveyard &g) {
     g.addCard(dynamic_pointer_cast<Minion>(cardList.at(cardPosition)));
     cardList.erase(cardList.begin() + cardPosition);
 }
-
-void Hand::moveCardTo(int cardPosition, Board &b, int target) {
-	// should call different play fn depending on type
-    //b.play(cardList.at(cardPosition));
-    //cardList.erase(cardList.begin() + cardPosition);
-}
+/*
+void Hand::moveCardTo(int cardPosition, Board &b, int target, int defense) {
+    // should call different play fn depending on type
+    if (target == -1) { // minion/ritual
+    	b.play(cardList.at(cardPosition));
+    cardList.erase(cardList.begin() + cardPosition);
+}*/

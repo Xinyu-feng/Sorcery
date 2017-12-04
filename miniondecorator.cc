@@ -1,7 +1,7 @@
 #include "miniondecorator.h"
 
 #include <memory>
-#include "abstactminion.h"
+#include "abstractminion.h"
 
 using namespace std;
 

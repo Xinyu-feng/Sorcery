@@ -3,6 +3,7 @@
 #include "card.h"
 #include "enchantment.h"
 #include "ritual.h"
+#include "helper.h"
 #include <memory>
 
 using namespace std;
@@ -56,10 +57,10 @@ void Player::play(int i, int p, char t) {
 				}
 			}
         } else if (cardName == "Recharge") { 
-            if (myBoard->getRitual()) {
+            if (myBoard.getRitual()) {
                 c->playCard(myBoard);
             }
-        } else if (myBoard->getCardCount() < 5 {
+        } else if (myBoard.getCardCount() < 5) {
             c->playCard(myBoard);
             State s{*this, Trigger::Summon, myBoard.getCardCount() - 1};
             notifyApnap(s);
@@ -103,19 +104,18 @@ void Player::attack(int i, int j) {
 void Player::use(int i, int p, int t) {
     shared_ptr<Minion> myMinion = myBoard.getCard(i - 1);
     string cardName = myMinion->getName();
-    int cost = myMinion->getAbilityCost();
     
     if (name == "Novice Pyromancer") {
         otherBoard->getCard(t - 1)->addStats(0, -1);
         if (otherBoard->getCard(t - 1)->getDefense() <= 0) otherPlayer->destroyMinion(t - 1);
     } else if (name == "Apprentice Summoner" || name == "Master Summoner"){
-        if (myBoard->getCardCount() < 5) {
+        if (myBoard.getCardCount() < 5) {
             int limit = 1;
             if (name == "Master Summoner"){
                 limit = 3;
             }
             
-            while (myBoard->getCardCount() < 5 && limit > 0){
+            while (myBoard.getCardCount() < 5 && limit > 0){
                 shared_ptr<Card> c = createCard("Air Elemental");
                 c->playCard(myBoard);
                 limit -= 1;
@@ -190,4 +190,4 @@ void Player::runRitual(Ritual &r, State s) {
     }
 }
 
-void Player::runTriggerMinion()
+//void Player::runTriggerMinion()

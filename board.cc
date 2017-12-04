@@ -94,3 +94,4 @@ void Board::notifyObservers(State s) {
     ritual->notify(s);
 }
 
+

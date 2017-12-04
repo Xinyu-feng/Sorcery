@@ -62,10 +62,10 @@ void Minion::setStats(int attack, int defense) {
     setDefense(defense);
 }
 
-int getAttack() { return attack; }
-int getDefense() { return defence; }
-int getAbilityCost() { return -1; } // no ability
-bool active() { return false; } // no ability
+int Minion::getAttack() { return attack; }
+int Minion::getDefense() { return defense; }
+int Minion::getAbilityCost() { return -1; } // no ability
+bool Minion::active() { return false; } // no ability
 
 
 /*
@@ -83,3 +83,5 @@ card_template_t Minion::displayCard() {
 	return display_minion_no_ability(this->getName(), this->getManaCost(),
 									this->getAttack(), this->getDefense());
 }
+
+Minion::~Minion() {}

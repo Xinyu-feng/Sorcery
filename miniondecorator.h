@@ -1,7 +1,7 @@
 #ifndef _MINION_DECORATOR_H_
 #define _MINION_DECORATOR_H_
 
-#include "creature.h"
+#include "abstractminion.h"
 #include <memory>
 
 class MinionDecorator: public AbstractMinion {

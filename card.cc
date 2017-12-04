@@ -19,3 +19,5 @@ string Card::getDescription() {
 int Card::getManaCost(){
     return manaCost;
 }
+
+Card::~Card() {}
