@@ -10,5 +10,5 @@ ${EXEC}: ${OBJECTS}
 -include ${DEPENDS}
 
 clean:
-	rm ${OBJECTS} ${EXEC}
+	rm ${OBJECTS} ${EXEC} ${DEPENDS}
 .PHONY: clean
