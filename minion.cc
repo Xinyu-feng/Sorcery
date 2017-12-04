@@ -76,6 +76,10 @@ int Minion::getActivateCost(){
 }
 */
 
+void Minion::playCard(Board &b, int target){
+    b.play(shared_ptr<Minion>{this});
+}
+
 
 card_template_t Minion::displayCard() {
 	return display_minion_no_ability(this->getName(), this->getManaCost(),

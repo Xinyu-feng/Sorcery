@@ -3,8 +3,8 @@
 #include "state.h"
 #include <memory>
 
-Player::Player(int player, std::string name, std::string deckFile, bool doShuffle):
-    	player{player}, name{name}, deck{deckFile, doShuffle} {
+Player::Player(int player, std::string name, std::string deckFile, bool shuffle):
+    	player{player}, name{name}, deck{deckFile, shuffle, std::make_shared<Player>{this}} {
 	    
     draw(5);
 }

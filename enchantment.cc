@@ -9,6 +9,9 @@ using namespace std;
 Enchantment::Enchantment(string name, int manaCost, string description, string attBuff, string defBuff) : 
     Card{name, manaCost, description}, attBuff{attBuff}, defBuff{defBuff} {}
 
+void Enchantment::playCard(Board &b, int target){
+    b.play(std::shared_ptr<Enchantment>{this}, target);
+}
 
 card_template_t Enchantment::displayCard() {
 	// dependent on strings containing + or * symbol
