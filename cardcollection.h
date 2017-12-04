@@ -52,7 +52,7 @@ void CardCollection<T>::addCard(std::shared_ptr<T> card){
 
 template<typename T>
 void CardCollection<T>::removeCard(int index) {
-    cardList.erase(index);
+    cardList.erase(cardList.begin() + index);
 }
 
 template<typename T>
