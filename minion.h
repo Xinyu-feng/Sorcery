@@ -17,11 +17,9 @@ class Minion: public Card, public Creature {
 	void attackOther(Player * other);
 	void attackOther(std::shared_ptr<Minion> other);	
 	
-	// these deal with maxActions
-	void addAction(int i);
 	void lowerAction(int i);
 	void setAction(int i);
-	int getActions();
+	int getActions() override;
 
 	void addStats(int attack, int defense);
 	void setAttack(int i);
@@ -29,11 +27,12 @@ class Minion: public Card, public Creature {
 
 	void setStats(int attack, int defense);
 
-	int getAttack();
-	int getDefense();
+	int getAttack() override;
+	int getDefense() override;
+	virtual int getAbilityCost() override;
+	virtual bool active override;
 	
 	virtual card_template_t displayCard() override;
-	
 	virtual std::vector<card_template_t> inspectMinion() = 0;
 
 	void playCard(Board &b, int target = -1) override;
