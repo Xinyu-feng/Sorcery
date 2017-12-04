@@ -7,7 +7,9 @@ using namespace std;
 Spell::Spell(string name, int manaCost, string description) : 
     Card{name, manaCost, description} {}
 
-/* this code was moved to player.cc
+// this code was moved to player.cc
+void playCard(Board &b, int target = -1) {
+	/*
     string name = getName();
     shared_ptr<Card> t;
     if (target != -1) {

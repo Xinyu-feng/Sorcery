@@ -3,10 +3,8 @@
 #include "state.h"
 #include <memory>
 
-using namespace std;
-
-Player::Player(int player, string name, string deckFile, bool doShuffle):
-    	player{player}, name{name}, deck{deckFile, doShuffle} {
+Player::Player(int player, std::string name, std::string deckFile, bool shuffle):
+    	player{player}, name{name}, deck{deckFile, shuffle, std::make_shared<Player>{this}} {
 	    
     draw(5);
 }
@@ -58,7 +56,7 @@ void Player::play(int i, int p, char t) { // have this remove magic
     else otherPlayer->playTargetCard(c, t);
 }
 
-void Player::playTargetCard(shared_ptr<Card> c, int t) {
+void Player::playTargetCard(Card *c, char t) {
     int target = t - "0";
     if (t == "r") target = 0;
     
@@ -69,18 +67,17 @@ void Player::playTargetCard(shared_ptr<Card> c, int t) {
         returnToHand(t);
     } else if (cardName == "Disenchant") {
         myBoard.removeEnchant(t);   
-    } else {		
-        shared_ptr<Enchantment> temp_c = dynamic_pointer_cast<Enchantment>(c);
-        myBoard.play(temp_c, t); // play enchantment c on target t
+    } else {
+        myBoard.play(c, t); // play enchantment c on target t
     }
 }
 
 void Player::attack(int i, int j) {
-    shared_ptr<Minion> myMinion = myBoard.getCard(i - 1);
+    std::shared_ptr<Minion> myMinion = myBoard.getCard(i - 1);
     if (j != 0){
         myMinion->attack(otherPlayer);
     } else {
-        shared_ptr<Minion> otherMinion = otherBoard.getCard(j - 1);
+        std::shared_ptr<Minion> otherMinion = otherBoard.getCard(j - 1);
         myMinion->attack(otherMinion);
     }
     if (myMinion->getDefense() <= 0) destroyMinion(i - 1)
@@ -90,24 +87,24 @@ void Player::attack(int i, int j) {
 void Player::use(int i, int p, int t) {
 }
 
-//vector<string> displayBoard();
+//std::vector<std::string> displayBoard();
 
 void Player::destroyMinion(int i) {
-    myBoard.moveCardTo(i, graveyard);
+    board.moveCardTo(i, graveyard);
     State s{*this, Trigger::Leave, i};
     notifyApnap(s);
 }
 
 void Player::returnToHand(int i) {
-    myBoard.moveCardTo(i, hand);
+    board.moveCardTo(i, hand);
 }
 
-vector<string> Player::displayHand(){
+std::vector<std::string> Player::displayHand(){
     return hand.displayHand();
 }
 
-vector<string> Player::inspectMinion(int i){
-    return myBoard.inspect(i);
+std::vector<std::string> Player::inspectMinion(int i){
+    return myBoard.inspectMinion(i);
 }
 	
 void Player::deductMagic(int i, bool testing){
@@ -121,12 +118,7 @@ int Player::getMagic(){
 	
 void Player::deductLife(int i){
     life -= i;
-	/*
-	// leave this for mainline logic
-    if (life < 0) {
-	}
-	*/
-}
+    if (life < 0) // i lose
 }
 
 int Player::getLife(){
