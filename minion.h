@@ -11,7 +11,6 @@ class Minion: public Card, public AbstractMinion {
 	int currActions = 0;
 
 	public:
-	Minion();
 	Minion(std::string name, int manaCost, int attack, int defense, std::string description = "");
 
 	void attackOther(Player * other);
