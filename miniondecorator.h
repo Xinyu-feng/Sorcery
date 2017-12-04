@@ -13,7 +13,7 @@ public:
     
     std::shared_ptr<Minion> getMinion();
     
-    virtual ~MinionDecorator() = default; // do not remove original minion
+    virtual ~MinionDecorator() = 0; // do not remove original minion
 
 };
 
