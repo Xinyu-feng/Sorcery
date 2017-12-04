@@ -6,10 +6,10 @@
 
 class MinionDecorator: public Minion{
 
-    std::shared_ptr<Minion> m;
+    Minion *m;
 
 public:
-    MinionDecorator(std::shared_ptr<Minion> m);
+    MinionDecorator(Minion *m);
     
     std::shared_ptr<Minion> getMinion();
     
