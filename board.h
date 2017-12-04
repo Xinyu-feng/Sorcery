@@ -3,6 +3,7 @@
 
 #include "ascii_graphics.h"
 #include "cardcollection.h"
+#include "subject.h"
 #include "state.h"
 #include <string>
 #include <vector>
@@ -13,7 +14,7 @@ class Ritual;
 class Spell;
 class State;
 
-class Board: public CardCollection<Minion>{
+class Board: public CardCollection<Minion>, public Subject {
 
 	std::shared_ptr<Ritual> ritual;
 	
