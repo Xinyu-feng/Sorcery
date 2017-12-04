@@ -24,8 +24,6 @@ void Board::play(shared_ptr<Spell> s, int target){
     if (s->getName() == "Recharge") {
         if (ritual) {
             ritual->addCharges(3);
-        } else {
-            // throw ...
         }
     } else if (s->getName() == "Blizzard") {
         for (auto minion : cardList) {
