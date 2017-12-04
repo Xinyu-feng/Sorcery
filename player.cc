@@ -34,15 +34,12 @@ void Player::draw(int i){
 void Player::play(int i, int p, char t) { 
   	shared_ptr<Card> c = hand.getCard(i);
 	string cardName = c->getName();
-	
 	if (p == 0) { // no targets
 		if (cardName == "Raise Dead") {
 			if (graveyard.getCardCount() != 0) {
-			    magic -= c->manaCost;
 				graveyard.moveCardTo(-1, myBoard);
 			}
         } else if (cardName == "Blizzard") {
-            magic -= c->manaCost;
             c->playCard(myBoard);
 			c->playCard(*otherBoard);
             
@@ -60,16 +57,12 @@ void Player::play(int i, int p, char t) {
 			}
         } else if (cardName == "Recharge") { 
             if (myBoard->getRitual()) {
-                magic -= c->manaCost;
                 c->playCard(myBoard);
             }
-        } else {
+        } else if (myBoard->getCardCount() < 5 {
             c->playCard(myBoard);
-            if (c->isMinion()) {
-                magic -= c->manaCost;
-                State s{*this, Trigger::Summon, myBoard.getCardCount() - 1};
-                notifyApnap(s);
-            }
+            State s{*this, Trigger::Summon, myBoard.getCardCount() - 1};
+            notifyApnap(s);
         }
     }
     else if (p == player) playTargetCard(c, t);
@@ -81,8 +74,7 @@ void Player::playTargetCard(shared_ptr<Card> c, char t) {
     if (t == 'r') target = 0;
     
     string cardName = c->getName();
-    magic -= c->manaCost;
-    
+
     if (cardName == "Banish") {
         destroyMinion(target);
     } else if (cardName == "Unsummon") {
@@ -112,24 +104,21 @@ void Player::use(int i, int p, int t) {
     shared_ptr<Minion> myMinion = myBoard.getCard(i - 1);
     string cardName = myMinion->getName();
     int cost = myMinion->getAbilityCost();
-    if (cost != -1) { // minion has an ability
-        if (name == "Novice Pyromancer") {
-            magic -= cost;
-            otherBoard->getCard(t - 1)->addStats(0, -1);
-            if (otherBoard->getCard(t - 1)->getDefense() <= 0) otherPlayer->destroyMinion(t - 1);
-        } else if (name == "Apprentice Summoner" || name == "Master Summoner"){
-            if (myBoard->getCardCount() < 5) {
-                magic -= cost;
-                int limit = 1;
-                if (name == "Master Summoner"){
-                    limit = 3;
-                }
-                
-                while (myBoard->getCardCount() < 5 && limit > 0){
-                    shared_ptr<Card> c = createCard("Air Elemental");
-                    c->playCard(myBoard);
-                    limit -= 1;
-                }
+    
+    if (name == "Novice Pyromancer") {
+        otherBoard->getCard(t - 1)->addStats(0, -1);
+        if (otherBoard->getCard(t - 1)->getDefense() <= 0) otherPlayer->destroyMinion(t - 1);
+    } else if (name == "Apprentice Summoner" || name == "Master Summoner"){
+        if (myBoard->getCardCount() < 5) {
+            int limit = 1;
+            if (name == "Master Summoner"){
+                limit = 3;
+            }
+            
+            while (myBoard->getCardCount() < 5 && limit > 0){
+                shared_ptr<Card> c = createCard("Air Elemental");
+                c->playCard(myBoard);
+                limit -= 1;
             }
         }
     }
@@ -156,8 +145,13 @@ std::vector<std::string> Player::inspectMinion(int i){
 }
 	
 void Player::deductMagic(int i, bool testing){
-    if (magic - i < 0 && !testing) // throw;
-    magic -= i;
+    if (magic - i < 0) {
+        if (testing) {
+            magic = 0;
+        }
+    } else {
+        magic -= i;
+    }
 }
 
 int Player::getMagic(){
