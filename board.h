@@ -14,7 +14,7 @@ class Ritual;
 class Spell;
 class State;
 
-class Board: public CardCollection<Minion>, public Subject {
+class Board: public CardCollection<Minion> {
 
 	std::shared_ptr<Ritual> ritual;
 	
