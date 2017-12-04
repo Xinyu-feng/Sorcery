@@ -5,7 +5,7 @@
 #include "ritual.h"
 #include "spell.h"
 #include "graveyard.h"
-#include "trigger.h"
+#include "state.h"
 #include <string>
 
 using namespace std;
