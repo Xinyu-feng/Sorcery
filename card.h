@@ -10,7 +10,7 @@ class Subject;
 class Player;
 class State;
 
-class Card: public Observer{
+class Card {
     std::string name;
     int manaCost;
     std::string description;
@@ -22,7 +22,6 @@ class Card: public Observer{
 	    std::string getName();
         std::string getDescription();
     
-        void notify(State s) override;
         virtual bool isMinion(); // for observer pattern
     	virtual card_template_t displayCard() = 0;
     	virtual void playCard(Board &b, int target = -1) = 0;
