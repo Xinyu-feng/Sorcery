@@ -18,8 +18,6 @@ class Card: public Observer{
     public:
         Card(std::string name, int manaCost, std::string description = "");
 
-        virtual void notify(State s);
-	
     	int getManaCost();
 	    std::string getName();
         std::string getDescription();
