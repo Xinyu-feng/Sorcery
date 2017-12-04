@@ -40,6 +40,10 @@ void Board::play(shared_ptr<Ritual> r) {
     ritual = r;
 }
 
+std::shared_ptr<Card> removeEnchant(int i){
+    *getCard(i - 1) = getCard(i-1)->removeEnchant();
+}
+
 void Board::moveCardTo(int cardPosition, Hand &h) {
     if (h.getCardCount() == 5) { // full hand
         // throw ...
