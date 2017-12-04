@@ -3,9 +3,7 @@
 #include <memory>
 #include "minion.h"
 
-MinionDecorator::MinionDecorator(std::shared_ptr<Minion> m) {
-	this->m = m;
-}
+MinionDecorator::MinionDecorator(Minion *m) : m{m} {}
 
 std::shared_ptr<Minion> MinionDecorator::getMinion(){
     return m;
