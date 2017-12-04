@@ -7,7 +7,7 @@ void CardCollection<T>::moveCardTo(int cardPosition, Hand &h) {}
 
 void CardCollection<T>::moveCardTo(int cardPosition, Graveyard &g) {}
 
-void CardCollection<T>::moveCardTo(int cardPosition, Board &b, int target = -1, int defence = 1) {}
+void CardCollection<T>::moveCardTo(int cardPosition, Board &b, int target, int defence) {}
 
 void CardCollection<T>::addCard(std::shared_ptr<T> card){
     cardList.emplace_back(card);
