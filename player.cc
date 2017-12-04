@@ -103,7 +103,7 @@ void Player::use(int i, int p, int t) {
     std::string cardName = myMinion->getName();
     
     if (name == "Novice Pyromancer"){
-        otherBoard->getCard(t - 1)->addDefense(-1);
+        otherBoard->getCard(t - 1)->addStats(0, -1);
         if (otherBoard->getCard(t - 1)->getDefense() <= 0) otherPlayer->destroyMinion(t - 1);
     }
     else if (name == "Apprentice Summoner" || name == "Master Summoner"){
@@ -113,7 +113,7 @@ void Player::use(int i, int p, int t) {
         }
         
         while (otherBoard->getCardCount() < 5 && limit > 0){
-            std::shared_ptr<Minion> c{"Air Elemental"};
+            std::shared_ptr<Card> c = createCard("Air Elemental");
             c->playCard(myBoard);
             limit -= 1;
         }
@@ -178,8 +178,6 @@ void Player::runRitual(Ritual &r, State s) {
     } else if (name == "Standstill" && s.trigger == Trigger::Summon) {
         s.player.destroyMinion(i);
         r.activate();
-    } else {
-        //...
     }
 }
 
