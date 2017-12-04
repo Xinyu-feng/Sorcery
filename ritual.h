@@ -5,7 +5,7 @@
 
 class State;
 
-class Ritual: public Card {
+class Ritual: public Card, public Observer {
     int charges;
     int activationCost;
     bool active = true;
