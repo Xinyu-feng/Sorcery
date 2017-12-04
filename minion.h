@@ -4,7 +4,7 @@
 
 class State;
 
-class Minion: public Card, public Creature {
+class Minion: public Card, public AbstractMinion {
 	int attack;
 	int defense;
 	int maxActions = 1;
