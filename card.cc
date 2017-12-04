@@ -21,4 +21,6 @@ int Card::getManaCost(){
     return manaCost;
 }
 
-void notify(State s) {}
+void Card::notify(State s) {}
+
+bool Card::isMinion() { return false; }
