@@ -38,9 +38,11 @@ void Deck::moveCardTo(int cardPosition, Hand &h) {
     if (h.getCardCount() == 5) { // full hand
         // throw ...
     }
-    if (cardPosition == -1) { // top card
-        cardPosition = getCardCount() - 1;
+    else{
+        if (cardPosition == -1) {// top card
+            cardPosition = getCardCount() - 1;
+        }
+        h.addCard(cardList.at(cardPosition));
+        cardList.erase(cardList.begin() + cardPosition);
     }
-    h.addCard(cardList.at(cardPosition));
-    cardList.erase(cardList.begin() + cardPosition);
 }
