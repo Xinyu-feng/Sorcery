@@ -6,11 +6,6 @@
 
 using namespace std;
 
-Minion::Minion(): Card{"", 0, ""} {
-	attack = 0;
-	defense = 0;
-}
-
 Minion::Minion(string name, int manaCost, int attack, int defense, string description) :
     Card{name, manaCost, description}, attack{attack}, defense{defense} {}
 
@@ -66,6 +61,12 @@ void Minion::setStats(int attack, int defense) {
     setAttack(attack);
     setDefense(defense);
 }
+
+int getAttack() { return attack; }
+int getDefense() { return defence; }
+int getAbilityCost() { return -1; } // no ability
+bool active() { return false; } // no ability
+
 
 /*
 int Minion::getActivateCost(){
