@@ -9,3 +9,4 @@ std::shared_ptr<Minion> MinionDecorator::getMinion(){
     return m;
 }
 
+MinionDecorator::~MinionDecorator() {} // do not remove original minion; retain it somehow
