@@ -42,6 +42,7 @@ void Board::play(shared_ptr<Ritual> r) {
 
 std::shared_ptr<Card> removeEnchant(int i){
     //*getCard(i - 1) = getCard(i-1)->removeEnchant();
+    return nullptr;
 }
 
 void Board::moveCardTo(int cardPosition, Hand &h) {
