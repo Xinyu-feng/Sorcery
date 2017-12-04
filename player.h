@@ -18,10 +18,10 @@ class Player {
 	Board myBoard;
 	Player *otherPlayer;
 	Board *otherBoard;
+	std::string name;
 	Deck deck;
 	int life = 20;
 	int magic = 3;
-	std::string name;
 	
 	public:
 	Player(int player, std::string name, std::string deckFile, bool shuffle);
@@ -32,7 +32,7 @@ class Player {
 
 	void draw(int i = 1);
 	void play(int i, int p = 0, char t = '\0');
-	void playTargetCard(Card *c, char t);
+	void playTargetCard(std::shared_ptr<Card> c, char t);
 	void attack(int i, int j = 0);
 	void use(int i, int p, int t);
 	//std::vector<std::string> displayBoard();
@@ -40,7 +40,10 @@ class Player {
 	std::vector<std::string> displayHand();
 	std::vector<std::string> inspectMinion(int i);
 	
-	void deductMagic(int i);
+	void destroyMinion(int i);
+	void returnToHand(int i);
+	
+	void deductMagic(int i, bool testing);
 	int getMagic();
 	
 	void deductLife(int i);
