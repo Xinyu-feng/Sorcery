@@ -35,8 +35,6 @@ class Minion: public Card, public AbstractMinion {
 	virtual std::vector<card_template_t> inspectMinion() = 0;
 
 	void playCard(Board &b, int target = -1) override;
-	
-	bool isMinion() override;
 
 	//virtual void runEffect(State s) = 0;
 
