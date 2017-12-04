@@ -33,23 +33,20 @@ void Minion::attackOther(shared_ptr<Minion> other) {
     other->addStats(0, -attack);
 }
 
-void Minion::addAction(int i) {
-	maxActions += i;
-}
-
 void Minion::lowerAction(int i) {
-    if (maxActions - i < 0){
-        // throw ...
-    }
-    maxActions -= i;
+    currActions -= i;
 }
 
 void Minion::setAction(int i) {
-    maxActions = i;
+    currActions = i;
 }
 
 int Minion::getActions() {
-    return maxActions;
+    return currActions;
+}
+
+void Minion::resetActions() {
+    currActions = 1;
 }
 
 void Minion::addStats(int att, int def) {
