@@ -9,6 +9,7 @@
 #include "hand.h"
 
 class State;
+class Card;
 
 class Player {
 	int player;
@@ -31,6 +32,7 @@ class Player {
 
 	void draw(int i = 1);
 	void play(int i, int p = 0, char t = '\0');
+	void playTargetCard(Card *c, char t);
 	void attack(int i, int j = 0);
 	void use(int i, int p, int t);
 	//std::vector<std::string> displayBoard();
