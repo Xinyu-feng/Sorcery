@@ -1,6 +1,7 @@
 #ifndef _MINION_H_
 #define _MINION_H_
 #include "card.h"
+#include "abstractminion.h"
 
 class State;
 
@@ -27,9 +28,9 @@ class Minion: public Card, public AbstractMinion {
 	void setStats(int attack, int defense);
 
 	int getAttack() override;
-	int getDefense() override;
+	int getDefence() override;
 	virtual int getAbilityCost() override;
-	virtual bool active override;
+	virtual bool active() override;
 	
 	virtual card_template_t displayCard() override;
 	virtual std::vector<card_template_t> inspectMinion() = 0;
