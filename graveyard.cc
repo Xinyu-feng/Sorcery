@@ -18,7 +18,7 @@ void Graveyard::moveCardTo(int cardPosition, Hand &h) {
 	}
 }
 
-void Graveyard::moveCardTo(int cardPosition, Board &b, int defense, int target) {
+void Graveyard::moveCardTo(int cardPosition, Board &b, int target, int defense) {
     cardList.at(cardPosition)->setDefence(defence);
 	b.play(cardList.at(cardPosition));
 	cardList.erase(cardList.begin() + cardPosition);
