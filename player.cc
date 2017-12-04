@@ -125,6 +125,10 @@ void Player::use(int i, int p, int t) {
     }
 }
 
+void Player::discard(int i){
+    hand.removeCard(i - 1);
+}
+
 //std::vector<std::string> displayBoard();
 
 void Player::destroyMinion(int i) {
