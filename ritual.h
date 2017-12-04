@@ -8,8 +8,8 @@ class State;
 class Ritual: public Card {
     int charges;
     int activationCost;
-    bool active = false;
-    
+    bool active = true;
+
     public:
     Ritual(std::string name, int manaCost, int charges, int activationCost, std::string description = "");
     
