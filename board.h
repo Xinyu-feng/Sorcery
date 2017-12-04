@@ -2,6 +2,7 @@
 #define _BOARD_H_
 
 #include "ascii_graphics.h"
+#include "boardsubject.h"
 #include "cardcollection.h"
 #include "state.h"
 #include <string>
@@ -13,7 +14,7 @@ class Ritual;
 class Spell;
 class State;
 
-class Board: public CardCollection<Minion> {
+class Board: public CardCollection<Minion>, public BoardSubject {
 
 	std::shared_ptr<Ritual> ritual;
 	

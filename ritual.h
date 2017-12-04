@@ -14,6 +14,8 @@ class Ritual: public Card {
     Ritual(std::string name, int manaCost, int charges, int activationCost, std::string description = "");
     
     void notify(State s) override;
+    
+    void playCard(Board &b, int target) override;
 
     card_template_t displayCard() override;
     void addCharges(int i);

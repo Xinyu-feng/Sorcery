@@ -9,6 +9,8 @@ class Enchantment : public Card {
 public:
     Enchantment(std::string name, int manaCost, std::string description = "", std::string attBuff = "", std::string defBuff = "");
     
+    void playCard(Board &b, int target = -1) override;
+
     card_template_t displayCard() override;
 };
 
