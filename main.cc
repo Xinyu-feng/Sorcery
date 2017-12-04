@@ -5,8 +5,8 @@
 #include <vector>
 #include <memory>
 
-//#include "deck.h"
-//#include "player.h"
+#include "deck.h"
+#include "player.h"
 #include "graphicsdisplay.h"
 
 using namespace std;
@@ -65,30 +65,30 @@ int main(int argc, char *argv[]) {
 								  "          board -- Describe all cards on the board."};
 
 	// load player decks from file stream, shuffle only if testing is false
-	//Player player1{1, "Yugi Moto", player1Deck, !testing};
-	//Player player2{2, "Joey Wheeler", player2Deck, !testing};
+	Player player1{1, "Yugi Moto", player1Deck, !testing};
+	Player player2{2, "Joey Wheeler", player2Deck, !testing};
 	
-	//player1.setOtherPlayer(&player2);
-	//player1.setOtherBoard(player2.getBoard());
+	player1.setOtherPlayer(&player2);
+	player1.setOtherBoard(player2.getBoard());
 	
-	//player2.setOtherPlayer(&player1);
-	//player2.setOtherBoard(player1.getBoard());
+	player2.setOtherPlayer(&player1);
+	player2.setOtherBoard(player1.getBoard());
 	
 	string input;
 	int turn = 1;
-	//Player *currentPlayer = &player1;
+	Player *currentPlayer = &player1;
 	bool gameOn = true;
 
 	// main game loop
 	while (gameOn) {
 	    if (turn % 2 == 0) {
-			//currentPlayer = &player2;
+			currentPlayer = &player2;
 		}
 	    else {
-			//currentPlayer = &player1;
+			currentPlayer = &player1;
 		}
 
-	    //currentPlayer->draw();
+	    currentPlayer->draw();
 	    
 		// start of turn effects
 	    bool myTurn = true;
