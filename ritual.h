@@ -2,6 +2,7 @@
 #define _RITUAL_H_
 
 #include "card.h"
+#include "observer.h"
 
 class State;
 

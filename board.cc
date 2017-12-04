@@ -90,9 +90,9 @@ card_template_t Board::inspect(int i){
 }
 
 void Board::notifyObservers(State s) {
-    for (auto minion : cardList) {
-        minion->notify(s);
-    }
+//    for (auto minion : cardList) {
+//        minion->notify(s);
+//    }
     ritual->notify(s);
 }
 

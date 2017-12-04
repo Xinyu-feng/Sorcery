@@ -1,6 +1,8 @@
 #ifndef STATE_H
 #define STATE_H
 
+class Player;
+
 enum class Trigger { Begin, Summon, Activate, Leave, End };
 
 struct State {

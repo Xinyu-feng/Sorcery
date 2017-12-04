@@ -47,9 +47,10 @@ class Player {
 	int getMagic();
 	
 	void deductLife(int i);
+	int getPlayerNumber();
 	int getLife();
 	void notifyApnap(State s);
-	void runEffect(Card &c, State s);
+	void runRitual(Ritual &r, State s);
 };
 
 #endif

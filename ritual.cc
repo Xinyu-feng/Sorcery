@@ -1,5 +1,4 @@
 #include "ritual.h"
-#include "subject.h"
 #include "player.h"
 #include "state.h"
 
@@ -10,7 +9,7 @@ Ritual::Ritual(std::string name, int manaCost, int charges, int activationCost, 
 
 void Ritual::notify(State s) {
     if (active) {
-        s.player.runEffect(*this, s);
+        s.player.runRitual(*this, s);
     }
 }
 

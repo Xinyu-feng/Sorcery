@@ -3,7 +3,6 @@
 #include <utility>
 #include "enchantment.h"
 #include "minion.h"
-#include "subject.h"
 #include "state.h"
 
 Enchant::Enchant(std::shared_ptr<Minion> m, std::shared_ptr<Enchantment> e):MinionDecorator{m}, e{e}{

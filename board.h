@@ -3,7 +3,6 @@
 
 #include "ascii_graphics.h"
 #include "cardcollection.h"
-#include "subject.h"
 #include "state.h"
 #include <string>
 #include <vector>
