@@ -8,6 +8,6 @@
 class Card;
 class Player;
 
-std::shared_ptr<Card> createCard(std::string name, std::shared_ptr<Player> owner);
+std::shared_ptr<Card> createCard(std::string name);
 
 #endif
