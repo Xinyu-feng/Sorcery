@@ -57,3 +57,5 @@ card_template_t Spell::displayCard() {
 	return display_spell(this->getName(), this->getManaCost(),
 						this->getDescription());
 }
+
+Spell::~Spell(){}
