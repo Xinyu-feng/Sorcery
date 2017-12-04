@@ -5,10 +5,12 @@
 #include "ritual.h"
 #include "spell.h"
 #include "graveyard.h"
+#include "trigger.h"
+#include <string>
 
 using namespace std;
 
-Board::Board():CardCollection<Minion>{}, BoardSubject{}, minionCount{0}{
+Board::Board() : CardCollection<Minion>{} {
 
 }
 
@@ -16,9 +18,6 @@ shared_ptr<Ritual> Board::getRitual() { return ritual; }
 
 void Board::play(shared_ptr<Minion> m){
 	addCard(m);
-    minionCount += 1;
-	notifyObservers();
-    //notifyObservers(m, state);
 }
 
 void Board::play(shared_ptr<Spell> s, int target){
@@ -41,10 +40,6 @@ void Board::play(shared_ptr<Enchantment> e, int target) {
 
 void Board::play(shared_ptr<Ritual> r) {
     ritual = r;
-}
-
-void Board::inflictDamage(int i, int d) {
-	cardList.at(i)->addStats(0, -2);
 }
 
 void Board::moveCardTo(int cardPosition, Hand &h) {
@@ -93,10 +88,11 @@ card_template_t Board::inspect(int i){
     
     return inspectDisplay;
 }
-/*
-void Board::notifyObservers() {
+
+void Board::notifyObservers(State s) {
     for (auto minion : cardList) {
-        minion->notify();
+        minion->notify(s);
     }
+    ritual->notify(s);
 }
-*/
+
