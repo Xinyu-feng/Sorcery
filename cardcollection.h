@@ -3,10 +3,7 @@
 
 #include <memory>
 #include <vector>
-#include "card.h"
-#include "hand.h"
-#include "graveyard.h"
-#include "deck.h"
+
 
 class Board;
 class Card;
@@ -35,6 +32,11 @@ template<typename T> class CardCollection {
     	int getCardCount();
     	virtual ~CardCollection() = 0;
 };
+
+#include "card.h"
+#include "hand.h"
+#include "graveyard.h"
+#include "deck.h"
 
 template <typename T>
 void CardCollection<T>::addCard(std::shared_ptr<T> card){
