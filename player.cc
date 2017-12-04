@@ -37,7 +37,7 @@ void Player::play(int i, int p, char t) { // have this remove magic
 	if (p == 0) { // no targets
 		if (cardName == "Raise Dead") {
 			if (graveyard.getCardCount() != 0) {
-				graveyard.moveCardTo(-1, myBoard, 1);
+				graveyard.moveCardTo(-1, myBoard);
 			}
         } else if (cardName == "Blizzard") {
             c->playCard(myBoard);
