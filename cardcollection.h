@@ -3,6 +3,10 @@
 
 #include <memory>
 #include <vector>
+#include "card.h"
+#include "hand.h"
+#include "graveyard.h"
+#include "deck.h"
 
 class Board;
 class Card;
