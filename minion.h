@@ -7,7 +7,6 @@ class State;
 class Minion: public Card, public AbstractMinion {
 	int attack;
 	int defense;
-	int maxActions = 1;
 	int currActions = 0;
 
 	public:
@@ -19,6 +18,7 @@ class Minion: public Card, public AbstractMinion {
 	void lowerAction(int i);
 	void setAction(int i);
 	int getActions() override;
+	void resetActions();
 
 	void addStats(int attack, int defense);
 	void setAttack(int i);
