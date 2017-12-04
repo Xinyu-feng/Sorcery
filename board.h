@@ -12,14 +12,10 @@ class Enchantment;
 class Minion;
 class Ritual;
 class Spell;
+class State;
 
 class Board: public CardCollection<Minion>, public BoardSubject {
 
-	int minionCount;
-	State s;
-	void setState(std::shared_ptr<Card> c, Trigger trigger);
-	State getState();
-	
 	std::shared_ptr<Ritual> ritual;
 	
 public:
@@ -35,13 +31,13 @@ public:
 	card_template_t inspect(int i);
 	//std::vector<string> displayBoard();
 	//void attack(int i, int j);
-	void inflictDamage(int i, int d);
+	//void inflictDamage(int i, int d);
 	std::shared_ptr<Ritual> getRitual();
 	std::shared_ptr<Card> removeEnchant(int i);
 	// -1 indicates you want the ritual
 	void moveCardTo(int cardPosition, Hand &h) override;
 	void moveCardTo(int cardPosition, Graveyard &g) override;
-	void notifyObservers();
+	void notifyObservers(State s);
 };
 
 
