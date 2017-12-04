@@ -1,14 +1,11 @@
 #ifndef _CARD_H_
 #define _CARD_H_
 #include "ascii_graphics.h"
-#include "observer.h"
 #include <string>
 #include <memory>
 
 class Board;
-class Subject;
 class Player;
-class State;
 
 class Card {
     std::string name;
