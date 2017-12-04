@@ -67,7 +67,7 @@ void Player::play(int i, int p, char t) { // have this remove magic
     else otherPlayer->playTargetCard(c, t);
 }
 
-void Player::playTargetCard(shared_ptr<Card> c, int t) {
+void Player::playTargetCard(shared_ptr<Card> c, char t) {
     int target = t - "0";
     if (t == "r") target = 0;
     
