@@ -8,8 +8,6 @@ class BasicMinion: public Minion {
 public:
     BasicMinion(std::string name, int manaCost, int attack, int defence, std::string description = "");
     
-    void runEffect(Subject &board) override;
-    
     std::vector<card_template_t> inspectMinion() override;
     
 };

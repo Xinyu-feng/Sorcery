@@ -19,8 +19,9 @@ Enchant::Enchant(std::shared_ptr<Minion> m, std::shared_ptr<Enchantment> e):Mini
     }
 }
 
+/*
 void Enchant::runEffect(Subject &b){
-	/*
+	
     if (e.getName() != "Silence"){
     
         getMinion()->runEffect(b);
@@ -32,8 +33,8 @@ void Enchant::runEffect(Subject &b){
             }
         }
     }
-	*/
 }
+*/
 
 std::shared_ptr<Minion> Enchant::removeEnchant() {
 	std::string enchantName = e->getName();

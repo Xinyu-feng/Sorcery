@@ -9,11 +9,6 @@ using namespace std;
 Enchantment::Enchantment(string name, int manaCost, string description, string attBuff, string defBuff) : 
     Card{name, manaCost, description}, attBuff{attBuff}, defBuff{defBuff} {}
 
-//void Enchantment::runEffect(State s){...} // move to helper function
-
-void Enchantment::runEffect(Subject &board) {
-}
-
 void Enchantment::playCard(Board &b, int target){
     b.play(std::shared_ptr<Enchantment>{this}, target);
 }

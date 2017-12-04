@@ -7,9 +7,6 @@ using namespace std;
 Spell::Spell(string name, int manaCost, string description) : 
     Card{name, manaCost, description} {}
 
-void Spell::runEffect(Subject &board){
-}
-
 // this code was moved to player.cc
 void playCard(Board &b, int target = -1) {
 	/*
