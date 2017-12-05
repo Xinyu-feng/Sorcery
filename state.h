@@ -3,7 +3,7 @@
 
 class Player;
 
-enum class Trigger { Begin, Summon, Activate, Leave, End };
+enum class Trigger { Begin, Summon, Leave, End };
 
 struct State {
     Player &player; // player who triggered the notify
