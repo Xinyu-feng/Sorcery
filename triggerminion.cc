@@ -1,5 +1,5 @@
 #include "triggerminion.h"
-#include "subject.h"
+#include "observer.h"
 #include "minion.h"
 #include "state.h"
 #include "player.h"
