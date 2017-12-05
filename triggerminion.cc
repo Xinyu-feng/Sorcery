@@ -1,4 +1,5 @@
 #include "triggerminion.h"
+#include "card.h"
 #include "observer.h"
 #include "minion.h"
 #include "state.h"
