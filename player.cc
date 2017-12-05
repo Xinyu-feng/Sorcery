@@ -6,6 +6,7 @@
 #include "helper.h"
 #include "board.h"
 #include <memory>
+#include "asciigraphics.h"
 
 using namespace std;
 
@@ -129,7 +130,44 @@ void Player::discard(int i){
     hand.removeCard(i - 1);
 }
 
-//std::vector<std::string> displayBoard();
+/*
+std::vector<std::string> Player::displayBoard(){
+    Player *p1;
+    Player *p2;
+    
+    if (player == 1){
+        p1 = this;
+        p2 = otherPlayer;
+    }
+    else{
+        p1 = otherPlayer;
+        p2 = this;
+    }
+    
+    int boardHeight = 56;
+    int boardLength = 167;
+    int cardLength = 33;
+    
+    std::vector<std::string> display(boardHeight, "");
+    display.at(0) = std::string{boardLength, '-'};
+    
+    card_template_t p2Ritual;
+    if (p2->getRitual() != nullptr){
+        p2Ritual = p2->getBoard()->getRitual()->displayCard();
+    }
+    else{
+        p2Ritual = CARD_TEMPLATE_EMPTY;
+    }
+    
+    card_template_t p2TopGraveyard;
+    if (p2->graveyard.getCardCount == 0){
+        p2TopGraveyard = CARD_TEMPLATE_EMPTY;
+    }
+    else{
+        
+    }
+    
+}*/
 
 void Player::destroyMinion(int i) {
     myBoard.moveCardTo(i, graveyard);
