@@ -121,7 +121,7 @@ int main(int argc, char *argv[]) {
     			}
     			else if (input == "draw") {
     				if (testing) {
-    				    //currentPlayer->draw();
+    				    currentPlayer->draw(1);
     				}
     			}
     			else if (input == "discard") {
