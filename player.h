@@ -10,6 +10,8 @@
 
 class State;
 class Card;
+class Ritual;
+class TriggerMinion;
 
 class Player {
 	int player;
@@ -53,6 +55,7 @@ class Player {
 	int getLife();
 	void notifyApnap(State s);
 	void runRitual(Ritual &r, State s);
+	void runTriggerMinion(TriggerMinion &tm, State s);
 };
 
 #endif

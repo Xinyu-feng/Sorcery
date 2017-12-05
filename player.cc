@@ -3,6 +3,8 @@
 #include "card.h"
 #include "enchantment.h"
 #include "ritual.h"
+#include "triggerminion.h"
+#include "abilityminion.h"
 #include "helper.h"
 #include "board.h"
 #include <memory>
@@ -299,12 +301,12 @@ void Player::runRitual(Ritual &r, State s) {
 }
 
 void Player::runTriggerMinion(TriggerMinion &tm, State s) {
-    string name - tm.getname();
+    string name = tm.getName();
     int i = s.index;
     if (name == "Bone Golem" && s.trigger == Trigger::Leave) {
         tm.addStats(1, 1);
     } else if (name == "Fire Elemental" && s.trigger == Trigger::Summon && s.player.getPlayerNumber() != player) {
-        otherBoard.getCard(i)->addStats(0, -1);
+        otherBoard->getCard(i)->addStats(0, -1);
     } else if (name == "Potion Seller" && s.trigger == Trigger::End) {
         for (int j = 0; j < myBoard.getCardCount(); ++j) {
             myBoard.getCard(j)->addStats(0, 1);

@@ -2,6 +2,8 @@
 #include "card.h"
 #include "enchantment.h"
 #include "basicminion.h"
+#include "triggerminion.h"
+#include "abilityminion.h"
 #include "ritual.h"
 #include "spell.h"
 
