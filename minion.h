@@ -32,7 +32,6 @@ class Minion: public Card, public AbstractMinion {
 	virtual int getAbilityCost() override;
 	virtual bool active() override;
 	
-	virtual card_template_t displayCard() override;
 	virtual std::vector<card_template_t> inspectMinion() = 0;
 
 	void playCard(Board &b, int target = -1) override;
