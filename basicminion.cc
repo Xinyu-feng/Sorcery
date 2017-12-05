@@ -17,6 +17,11 @@ std::vector<card_template_t> BasicMinion::inspectMinion(){
     return std::vector<card_template_t>{displayCard()};
 }
 
+card_template_t BasicMinion::displayCard() {
+	return display_minion_no_ability(this->getName(), this->getManaCost(),
+									this->getAttack(), this->getDefense());
+}
+
 /*
 void BasicMinion::runEffect(Subject &board){
     State s = board.getState();
