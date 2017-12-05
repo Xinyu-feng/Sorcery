@@ -59,3 +59,4 @@ card_template_t Spell::displayCard() {
 }
 
 Spell::~Spell(){}
+
