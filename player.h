@@ -17,7 +17,7 @@ class Player {
 	int player;
 	Graveyard graveyard;
 	Hand hand;
-	Board myBoard;
+	Board myBoard{};
 	Player *otherPlayer;
 	Board *otherBoard;
 	std::string name;

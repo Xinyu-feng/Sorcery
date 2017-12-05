@@ -83,13 +83,14 @@ int main(int argc, char *argv[]) {
 	while (gameOn) {
 	    if (turn % 2 == 0) {
 			currentPlayer = &player2;
-		}
+		}	
 	    else {
 			currentPlayer = &player1;
 		}
 
 	    currentPlayer->draw();
-	    
+//	    State s{*currentPlayer, Trigger::Begin};
+//	    currentPlayer->notifyApnap(s);
 		// start of turn effects
 	    bool myTurn = true;
 	    while (myTurn) {
@@ -137,11 +138,10 @@ int main(int argc, char *argv[]) {
     				if (iss >> playerMinion) {
     					int enemyMinion;
     					if (iss >> enemyMinion) {
-    						//currentPlayer->attack(playerMinion, enemyMinion);
+    						currentPlayer->attack(playerMinion, enemyMinion);
     					}
     					else {
-							// attack directly
-    						//currentPlayer->attack(playerMinion);
+    						currentPlayer->attack(playerMinion);
     					}
     				}
     			}
@@ -153,11 +153,11 @@ int main(int argc, char *argv[]) {
     					if (iss >> owner) {
     						int targetCard;
     						if (iss >> targetCard) {
-    							// play card from hand on owner's minion
+    							 currentPlayer->play(handCard, owner, targetCard);
     						}
     					}
     					else {
-    						// play card from hand, no target
+    						currentPlayer->play(handCard);
     					}
     				}
     			}
@@ -200,7 +200,8 @@ int main(int argc, char *argv[]) {
     			}
     		}
 	}
-        // end of turn effects
+//        State d{*currentPlayer, Trigger::End};
+//	currentPlayer->notifyApnap(d);
         ++turn;
 	}
 }

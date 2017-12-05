@@ -2,9 +2,8 @@
 #define _TRIGGERMINION_H_
 
 #include "minion.h"
-#include "observer.h"
 
-class TriggerMinion: public Minion, public Observer {
+class TriggerMinion: public Minion {
 
 public:
     TriggerMinion(std::string name, int manaCost, int attack, int defence, std::string description = "");

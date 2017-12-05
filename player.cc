@@ -9,6 +9,7 @@
 #include "board.h"
 #include <memory>
 #include "ascii_graphics.h"
+#include <iostream>
 
 using namespace std;
 
@@ -37,19 +38,25 @@ void Player::draw(int i){
 }
 
 void Player::play(int i, int p, char t) { 
-  	shared_ptr<Card> c = hand.getCard(i);
+  	shared_ptr<Card> c = hand.getCard(i - 1);
 	string cardName = c->getName();
+	int cost = c->getManaCost();
+	bool cardPlayed = false;
+	//if (magic >= cost) {
 	if (p == 0) { // no targets
 		if (cardName == "Raise Dead") {
 			if (graveyard.getCardCount() != 0) {
+				cardPlayed = true;
 				graveyard.moveCardTo(-1, myBoard);
 			}
-        } else if (cardName == "Blizzard") {
-            c->playCard(myBoard);
+        	} 
+		else if (cardName == "Blizzard") {
+			cardPlayed = true;
+	       	 	c->playCard(myBoard);
 			c->playCard(*otherBoard);
             
-            for (int j = 0; j < myBoard.getCardCount(); ++j) {
-            	if ((myBoard.getCard(j))->getDefense() <= 0) {
+			for (int j = 0; j < myBoard.getCardCount(); ++j) {
+  		         	if ((myBoard.getCard(j))->getDefense() <= 0) {
 					destroyMinion(j);
 					--j; // set counter back
 				}
@@ -60,18 +67,31 @@ void Player::play(int i, int p, char t) {
 					--j; // set counter back
 				}
 			}
-        } else if (cardName == "Recharge") { 
-            if (myBoard.getRitual()) {
-                c->playCard(myBoard);
-            }
-        } else if (myBoard.getCardCount() < 5) {
-            c->playCard(myBoard);
-            State s{*this, Trigger::Summon, myBoard.getCardCount() - 1};
-            notifyApnap(s);
-        }
-    }
-    else if (p == player) playTargetCard(c, t);
-    else otherPlayer->playTargetCard(c, t);
+		} else if (cardName == "Recharge") { 
+        		if (myBoard.getRitual()) {
+				cardPlayed = true;
+               			c->playCard(myBoard);
+        		}
+      		} else if (cardName == "Dark Ritual" || cardName == "Aura of Power" || cardName == "Standstill") {
+			cardPlayed = true;
+			shared_ptr<Ritual> temp_c = dynamic_pointer_cast<Ritual>(c);
+			myBoard.play(temp_c);
+		} else if (myBoard.getCardCount() < 5) { // minion
+			cardPlayed = true;
+			shared_ptr<Minion> temp_c = dynamic_pointer_cast<Minion>(c);
+       	 		myBoard.play(temp_c);
+       	 		State s{*this, Trigger::Summon, myBoard.getCardCount() - 1};
+        		notifyApnap(s);
+       	 	}
+	
+	} else {
+		cardPlayed = true;
+    		if (p == player) playTargetCard(c, t);
+    		else otherPlayer->playTargetCard(c, t);
+	}
+
+	if (cardPlayed) hand.removeCard(i - 1);
+//	}   
 }
 
 void Player::playTargetCard(shared_ptr<Card> c, char t) {
@@ -93,16 +113,18 @@ void Player::playTargetCard(shared_ptr<Card> c, char t) {
 }
 
 void Player::attack(int i, int j) {
-    std::shared_ptr<Minion> otherMinion = otherBoard->getCard(j - 1);
-    std::shared_ptr<Minion> myMinion = myBoard.getCard(i - 1);
-    if (j != 0){
-        myMinion->attackOther(otherPlayer);
-    } else {
-
-        myMinion->attackOther(otherMinion);
-    }
-    if (myMinion->getDefense() <= 0) destroyMinion(i - 1);
-    if (otherMinion->getDefense() <= 0) otherPlayer->destroyMinion(j - 1);
+	std::shared_ptr<Minion> myMinion = myBoard.getCard(i - 1);
+	if (myMinion->getActions() > 0) {
+		myMinion->lowerAction(1);
+	}
+	if (j == 0) {
+		myMinion->attackOther(otherPlayer);
+    	} else {
+		std::shared_ptr<Minion> otherMinion = otherBoard->getCard(j - 1);
+        	myMinion->attackOther(otherMinion);
+   		if (myMinion->getDefense() <= 0) destroyMinion(i - 1);
+    		if (otherMinion->getDefense() <= 0) otherPlayer->destroyMinion(j - 1);
+	}
 }
 
 void Player::use(int i, int p, int t) {

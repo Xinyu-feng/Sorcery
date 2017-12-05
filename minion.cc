@@ -66,7 +66,7 @@ int Minion::getAttack() { return attack; }
 int Minion::getDefense() { return defense; }
 int Minion::getAbilityCost() { return -1; } // no ability
 bool Minion::active() { return false; } // no ability
-
+void Minion::notify(State s) {}
 
 /*
 int Minion::getActivateCost(){

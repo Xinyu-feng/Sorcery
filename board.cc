@@ -27,7 +27,7 @@ void Board::play(shared_ptr<Spell> s, int target){
         }
     } else if (s->getName() == "Blizzard") {
         for (auto minion : cardList) {
-            dynamic_pointer_cast<Minion>(minion)->addStats(0, -2);
+            minion->addStats(0, -2);
         }
     }
 }
@@ -93,10 +93,10 @@ card_template_t Board::inspect(int i){
 }
 
 void Board::notifyObservers(State s) {
-//    for (auto minion : cardList) {
-//        minion->notify(s);
-//    }
-    ritual->notify(s);
+    for (auto minion : cardList) {
+         minion->notify(s);
+    }
+    if (ritual) ritual->notify(s);
 }
 
 
