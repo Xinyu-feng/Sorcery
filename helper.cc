@@ -41,7 +41,6 @@ shared_ptr<Card> createCard(string name) {
         newCard = make_shared<BasicMinion>(name, 3, 4, 4);
     }
 
-	/*
     else if (name == "Bone Golem") {
         newCard = make_shared<TriggerMinion>(name, 2, 1, 3, "Gain +1/+1 whenever a minion leaves play");   
     }
@@ -60,7 +59,6 @@ shared_ptr<Card> createCard(string name) {
     else if (name == "Master Summoner") {
         newCard = make_shared<AbilityMinion>(name, 3, 2, 3, 2, "Summon up to three 1/1 air elementals");
     }
-    */
 
     // Enchantments
     
