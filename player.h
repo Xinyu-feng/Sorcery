@@ -35,7 +35,9 @@ class Player {
 	void playTargetCard(std::shared_ptr<Card> c, char t);
 	void attack(int i, int j = 0);
 	void use(int i, int p, int t);
-	//std::vector<std::string> displayBoard();
+	std::vector<std::string> displayBoard();
+	std::vector<std::string> displayBoardMinions();
+	std::vector<std::string> displayBoardRest();
 	void discard(int i);
 	std::vector<std::string> displayHand();
 	std::vector<std::string> inspectMinion(int i);

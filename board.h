@@ -20,7 +20,7 @@ class Board: public CardCollection<Minion> {
 public:
 	Board();
 	
-	int getMinionCount();
+	//int getMinionCount();
 	void play(std::shared_ptr<Spell> s, int target = -1);
 	void play(std::shared_ptr<Minion> m);
 	void play(std::shared_ptr<Enchantment> e, int target);
@@ -28,7 +28,7 @@ public:
 	void use(int i, int t);
 	
 	card_template_t inspect(int i);
-	//std::vector<string> displayBoard();
+	//std::vector<std::string> displayBoard();
 	//void attack(int i, int j);
 	std::shared_ptr<Ritual> getRitual();
 	std::shared_ptr<Card> removeEnchant(int i);

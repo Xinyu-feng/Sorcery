@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
 			}
 			else if (args[i] == "-graphics") {
 				graphics = true;
-				g = unique_ptr<GraphicsDisplay>(new GraphicsDisplay(1280, 720));
+				g = unique_ptr<GraphicsDisplay>(new GraphicsDisplay(1280, 1280));
 			}
 		}
 	}
@@ -192,8 +192,10 @@ int main(int argc, char *argv[]) {
     			}
     			else if (input == "board") {
     				// display the full board
-    				// printVec(board->displayBoard());
+					vector<string> display = currentPlayer->displayBoard();
+					printVec(display);
     				if (graphics) {
+						g->printVec(display);
     				}
     			}
     		}

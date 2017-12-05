@@ -6,7 +6,7 @@
 #include "helper.h"
 #include "board.h"
 #include <memory>
-#include "asciigraphics.h"
+#include "ascii_graphics.h"
 
 using namespace std;
 
@@ -130,8 +130,7 @@ void Player::discard(int i){
     hand.removeCard(i - 1);
 }
 
-/*
-std::vector<std::string> Player::displayBoard(){
+vector<string> Player::displayBoard() {
     Player *p1;
     Player *p2;
     
@@ -146,28 +145,94 @@ std::vector<std::string> Player::displayBoard(){
     
     int boardHeight = 56;
     int boardLength = 167;
-    int cardLength = 33;
+    //int cardLength = 33;
+	int cardHeight = 11;
+	int middleGraphicHeight = 10;
     
-    std::vector<std::string> display(boardHeight, "");
-    display.at(0) = std::string{boardLength, '-'};
-    
-    card_template_t p2Ritual;
-    if (p2->getRitual() != nullptr){
-        p2Ritual = p2->getBoard()->getRitual()->displayCard();
+    vector<string> display(boardHeight, "");
+    display.at(0) = string(boardLength, '-');
+	display.at(boardHeight - 1) = display.at(0);
+
+	vector<string> topMostDisplay = p1->displayBoardRest();
+	vector<string> topMidDisplay = p1->displayBoardMinions();
+	vector<string> botMidDisplay = p2->displayBoardMinions();
+	vector<string> botMostDisplay = p2->displayBoardRest();
+	
+	for (int i = 0; i < cardHeight; ++i) {
+		display.at(i + 1).append("|");
+		display.at(i + 1).append(topMostDisplay.at(i));
+		display.at(i + 1).append("|");
+	}
+	for (int i = 0; i < cardHeight; ++i) {
+		display.at(i + 1 + cardHeight).append("|");
+		display.at(i + 1 + cardHeight).append(topMidDisplay.at(i));
+		display.at(i + 1 + cardHeight).append("|");
+	}
+	for (int i = 0; i < middleGraphicHeight; ++i) {
+		display.at(i + 1 + cardHeight * 2).append(CENTRE_GRAPHIC.at(i));
+	}
+	for (int i = 0; i < cardHeight; ++i) {
+		display.at(i + 1 + (cardHeight * 2) + middleGraphicHeight).append("|");
+		display.at(i + 1 + (cardHeight * 2) + middleGraphicHeight).append(botMidDisplay.at(i));
+		display.at(i + 1 + (cardHeight * 2) + middleGraphicHeight).append("|");
+	}
+	for (int i = 0; i < cardHeight; ++i) {
+		display.at(i + 1 + (cardHeight * 3) + middleGraphicHeight).append("|");
+		display.at(i + 1 + (cardHeight * 3) + middleGraphicHeight).append(botMostDisplay.at(i));
+		display.at(i + 1 + (cardHeight * 3) + middleGraphicHeight).append("|");
+	}
+	return display;
+}
+
+vector<string> Player::displayBoardRest() {
+	int cardHeight = 11;
+	vector<string> display(cardHeight, "");
+    card_template_t pRitual;
+    if (getBoard()->getRitual() != nullptr) {
+        pRitual = getBoard()->getRitual()->displayCard();
+    }
+    else {
+        pRitual = CARD_TEMPLATE_BORDER;
+    }
+    card_template_t pTopGraveyard;
+    if (graveyard.getCardCount() == 0){
+        pTopGraveyard = CARD_TEMPLATE_BORDER;
     }
     else{
-        p2Ritual = CARD_TEMPLATE_EMPTY;
+		pTopGraveyard = graveyard.getCard(graveyard.getCardCount() - 1)->displayCard();
     }
-    
-    card_template_t p2TopGraveyard;
-    if (p2->graveyard.getCardCount == 0){
-        p2TopGraveyard = CARD_TEMPLATE_EMPTY;
-    }
-    else{
-        
-    }
-    
-}*/
+
+	card_template_t pPlayerCard = display_player_card(player, name, getLife(), getMagic());
+
+	for (int i = 0; i < cardHeight; ++i) {
+		display.at(i).append(pRitual.at(i));
+		display.at(i).append(CARD_TEMPLATE_EMPTY.at(i));
+		display.at(i).append(pPlayerCard.at(i));
+		display.at(i).append(CARD_TEMPLATE_EMPTY.at(i));
+		display.at(i).append(pTopGraveyard.at(i));
+	}
+	return display;
+}
+
+vector<string> Player::displayBoardMinions() {
+	int minionCount = myBoard.getCardCount();
+	int cardHeight = 11;
+	vector<string> display(cardHeight, "");
+	for (int i = 0; i < 5; ++i) {
+		card_template_t currentCard;
+		if (i < minionCount) {
+			currentCard = getBoard()->getCard(i)->displayCard();
+		}
+		else {
+			currentCard = CARD_TEMPLATE_BORDER;
+		}
+
+		for (int j = 0; j < cardHeight; ++j) {
+			display.at(j).append(currentCard.at(j));
+		}
+	}
+	return display;
+}
 
 void Player::destroyMinion(int i) {
     myBoard.moveCardTo(i, graveyard);
