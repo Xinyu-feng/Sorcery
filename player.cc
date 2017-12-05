@@ -233,4 +233,16 @@ void Player::runRitual(Ritual &r, State s) {
     }
 }
 
-//void Player::runTriggerMinion()
+void Player::runTriggerMinion(TriggerMinion &tm, State s) {
+    string name - tm.getname();
+    int i = s.index;
+    if (name == "Bone Golem" && s.trigger == Trigger::Leave) {
+        tm.addStats(1, 1);
+    } else if (name == "Fire Elemental" && s.trigger == Trigger::Summon && s.player.getPlayerNumber() != player) {
+        otherBoard.getCard(i)->addStats(0, -1);
+    } else if (name == "Potion Seller" && s.trigger == Trigger::End) {
+        for (int j = 0; j < myBoard.getCardCount(); ++j) {
+            myBoard.getCard(j)->addStats(0, 1);
+        }
+    }
+}
