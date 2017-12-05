@@ -4,6 +4,7 @@
 #include "minion.h"
 
 class AbilityMinion: public Minion {
+    int abilityCost;
 public:
     AbilityMinion(std::string name, int manaCost, int attack, int defence, int abilityCost std::string description = "");
     
