@@ -24,7 +24,8 @@ int main(int argc, char *argv[]) {
 	string initFileName = "";
 	string player1Deck = "default.deck";
 	string player2Deck = "default.deck";
-	
+
+	bool init = false;
 	bool testing = false;
 	bool graphics = false;
 
@@ -39,6 +40,7 @@ int main(int argc, char *argv[]) {
 			}
 			else if (args[i] == "-init" && i != argc - 1) {
 				initFileName = args[i + 1];
+				init = true;
 			}
 			else if (args[i] == "-testing") {
 				testing = true;
@@ -65,8 +67,15 @@ int main(int argc, char *argv[]) {
 								  "          board -- Describe all cards on the board."};
 
 	// load player decks from file stream, shuffle only if testing is false
-	Player player1{1, "Yugi Moto", player1Deck, !testing};
-	Player player2{2, "Joey Wheeler", player2Deck, !testing};
+	string player1Name = "Yugi Moto";
+	string player2Name = "Joey Wheeler";
+	if (init) {
+		getline(initFile, player1Name);
+		getline(initFile, player2Name);
+	}
+
+	Player player1{1, player1Name, player1Deck, !testing};
+	Player player2{2, player2Name, player2Deck, !testing};
 	
 	player1.setOtherPlayer(&player2);
 	player1.setOtherBoard(player2.getBoard());
@@ -94,10 +103,7 @@ int main(int argc, char *argv[]) {
 	    bool myTurn = true;
 	    while (myTurn) {
     		// default to cin after end of -init file
-    		if (!initFile.eof()) {
-    			getline(initFile, input);
-    		}
-    		else {
+    		if (!getline(initFile, input)) {
     			getline(cin, input);
     		}
     		// each input on its own line
