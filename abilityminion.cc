@@ -1,4 +1,5 @@
 #include "abilityminion.h"
+#include "card.h"
 #include "subject.h"
 #include "minion.h"
 #include "state.h"
